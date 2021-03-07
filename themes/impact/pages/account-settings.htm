@@ -1,0 +1,171 @@
+title = "Mijn account"
+url = "/account"
+layout = "user-dashboard"
+is_hidden = 0
+
+[account userAccount]
+redirect = 0
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+<?php
+use Arstech\Profile\Models\Profile;
+use OFFLINE\Mall\Models\Address;
+
+function onUpdatePersonalInfo(){
+
+    $data = post();
+
+    $rules = [
+        'name' => 'required',
+        'salution'=>'required'
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    try {
+        // update billing
+        if($data['address'] && $data['zip'] && $data['city'])
+            $this->updateBillingAddress($data);
+
+        // update users table details
+        $update = $this->userAccount->onUpdate();
+        Flash::success('Successfully updated');
+        return $update;
+
+    }
+    catch (Exception $ex) {
+        Flash::error($ex->getMessage());
+    }
+}
+
+function updateBillingAddress($data)
+{
+    //create address if data available
+
+    $user = $this->userAccount->user();
+    $customer = $user->customer;
+
+    $billing = Address::findOrNew($customer->default_billing_address_id);
+
+    $billing->name  = $customer->firstname;
+    $billing->lines = $data['address'];
+    $billing->zip = $data['zip'];
+    $billing->city = $data['city'];
+    $billing->country_id = 159;
+    $billing->customer_id = $customer->id;
+    $billing->save();
+
+    $customer->default_shipping_address_id = $billing->id;
+    $customer->default_billing_address_id = $billing->id;
+    $customer->save();
+
+}
+
+
+function onUpdateEmail(){
+
+    $data = post();
+    $user = $this->userAccount->user();
+
+    $rules = [
+        'email' => 'required|email|unique:users,email,'.$user->id
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    $user->email = $data['email'];
+    $user->save();
+    Flash::success('Settings successfully saved!');
+}
+
+function onUpdateInvoiceDetails(){
+
+
+    $data = post();
+    $user = $this->userAccount->user();
+
+    $rules = [
+        'email' => 'email'
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    //update profile
+
+    $profile = Profile::getFromUser($user);
+
+    $profile->fill($data);
+
+    $profile->save();
+
+    Flash::success('Settings successfully saved!');
+}
+
+
+function onUpdatePassword(){
+
+    $data = post();
+    $user = $this->userAccount->user();
+
+    $rules = [
+        'current_password' => 'required',
+        'password' => [
+            'required',
+            'confirmed',
+            'min:8',
+        ],
+        'password_confirmation' => 'required_with:password',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    if (!$user->checkHashValue('password', $data['current_password'])) {
+        throw new ValidationException(['current_password' => Lang::get('rainlab.user::lang.account.invalid_current_pass')]);
+    }
+
+    $user->password = $data['password'];
+    $user->password_confirmation = $data['password'];
+    $user->save();
+
+    /*
+    * Password has changed, reauthenticate the user
+    */
+    Auth::login($user->reload(), true);
+
+    Flash::success('Settings successfully saved!');
+}
+?>
+==
+<!-- Card -->
+{% partial 'userAccount/personal-info' %}
+<!-- End Card -->
+
+<!-- Card -->
+{% partial 'userAccount/invoice-details' %}
+<!-- End Card -->
+
+<!-- Card -->
+{% partial 'userAccount/update-email' %}
+<!-- End Card -->
+
+<!-- Card -->
+{% partial 'userAccount/update-password' %}
+<!-- End Card -->

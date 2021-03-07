@@ -1,0 +1,133 @@
+description = "Reviews"
+
+[viewBag]
+snippetCode = "snippet-reviews"
+snippetName = "Reviews"
+snippetProperties[tekst1][title] = "1e Review | Tekst"
+snippetProperties[tekst1][type] = "string"
+snippetProperties[tekst1][default] = ""
+snippetProperties[tekst1][options][] = ""
+snippetProperties[auteur1][title] = "1e Review | Auteur"
+snippetProperties[auteur1][type] = "string"
+snippetProperties[auteur1][default] = ""
+snippetProperties[auteur1][options][] = ""
+snippetProperties[functie1][title] = "1e Review | Functie"
+snippetProperties[functie1][type] = "string"
+snippetProperties[functie1][default] = ""
+snippetProperties[functie1][options][] = ""
+snippetProperties[tekst2][title] = "2e Review | Tekst"
+snippetProperties[tekst2][type] = "string"
+snippetProperties[tekst2][default] = ""
+snippetProperties[tekst2][options][] = ""
+snippetProperties[auteur2][title] = "2e Review | Auteur"
+snippetProperties[auteur2][type] = "string"
+snippetProperties[auteur2][default] = ""
+snippetProperties[auteur2][options][] = ""
+snippetProperties[functie2][title] = "2e Review | Functie"
+snippetProperties[functie2][type] = "string"
+snippetProperties[functie2][default] = ""
+snippetProperties[functie2][options][] = ""
+snippetProperties[tekst3][title] = "3e Review | Tekst"
+snippetProperties[tekst3][type] = "string"
+snippetProperties[tekst3][default] = ""
+snippetProperties[tekst3][options][] = ""
+snippetProperties[auteur3][title] = "3e Review | Auteur"
+snippetProperties[auteur3][type] = "string"
+snippetProperties[auteur3][default] = ""
+snippetProperties[auteur3][options][] = ""
+snippetProperties[functie3][title] = "3e Review | Functie"
+snippetProperties[functie3][type] = "string"
+snippetProperties[functie3][default] = ""
+snippetProperties[functie3][options][] = ""
+==
+<!-- Testimonials Section -->
+<div class="{% if page.id == 'digitale-leeromgeving'%}bg-white{% else %}{%endif%}">
+    <div class="container space-bottom-2 space-top-1">
+    
+        <!-- Title -->
+        <div class="w-md-80 text-center mx-md-auto mb-5 mb-md-9" data-aos="fade-up">
+            <span class="d-block small font-weight-bold text-cap mb-2">Wat anderen zeggen</span>
+            <h2>Deze professionals gingen je voor</h2>
+        </div>
+        <!-- End Title -->
+    
+        <!-- Testimonials Section -->
+        <div class="row" >
+            <!-- Testimonials -->
+            <div class="col-md-6 col-lg-4 mb-3 mb-md-5 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="card h-100 p-2">
+                    <div class="card-body">
+    
+                        <div class="mb-auto">
+                            <p class="text-muted mb-0"><em>{{tekst1}}</em></p>
+                        </div>
+                    </div>
+    
+                    <div class="card-footer border-0 bg-transparent pt-0 px-5 pb-5">
+                        <div class="media align-items-center">
+                            <div class="avatar avatar-circle mr-3">
+                                <img class="avatar-img" src="{{'assets/img/100x100/img2.jpg'|theme}}" alt="Image Description">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="mb-0">{{auteur1}}</h4>
+                                <small class="d-block text-body">{{functie1}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Testimonials -->
+    
+            <!-- Testimonials -->
+            <div class="col-md-6 col-lg-4 mb-3 mb-md-5 mb-lg-0" data-aos="fade-up" data-aos-delay="600">
+                <div class="card h-100 p-2">
+                    <div class="card-body">
+    
+                        <div class="mb-auto">
+                            <p class="text-muted mb-0"><em>{{tekst2}}</em></p>
+                        </div>
+                    </div>
+    
+                    <div class="card-footer border-0 bg-transparent pt-0 px-5 pb-5">
+                        <div class="media align-items-center">
+                            <div class="avatar avatar-circle mr-3">
+                                <img class="avatar-img" src="{{'assets/img/100x100/img11.jpg'|theme}}" alt="Image Description">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="mb-0">{{auteur2}}</h4>
+                                <small class="d-block text-body">{{functie2}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Testimonials -->
+    
+            <!-- Testimonials -->
+            <div class="col-md-6 col-lg-4"data-aos="fade-up" data-aos-delay="900">
+                <div class="card h-100 p-2">
+                    <div class="card-body">
+    
+                        <div class="mb-auto">
+                            <p class="text-muted mb-0"><em>{{tekst3}}</em></p>
+                        </div>
+                    </div>
+    
+                    <div class="card-footer border-0 bg-transparent pt-0 px-5 pb-5">
+                        <div class="media align-items-center">
+                            <div class="avatar avatar-circle mr-3">
+                                <img class="avatar-img" src="{{'assets/img/100x100/img4.jpg'|theme}}" alt="Image Description">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="mb-0">{{auteur3}}</h4>
+                                <small class="d-block text-body">{{functie3}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Testimonials -->
+        </div>
+    </div>
+</div>
+<!-- End Testimonials Section -->

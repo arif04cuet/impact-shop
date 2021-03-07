@@ -1,0 +1,250 @@
+[viewBag]
+==
+<?php
+use OFFLINE\Mall\Models\Category;
+function onStart()
+{
+    $slugMap = (new Category)->getSlugMap();
+
+    $this['slugMap'] = array_flip($slugMap);
+	$this['categoryItems'] = Category::get()->chunk(10);
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- made by malana.studio -->
+    <title>Impact - {{ this.page.title }}</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700&display=swap" rel="stylesheet">
+    
+    <link href="{{ [
+    'assets/vendor/font-awesome/css/all.min.css',
+    'assets/vendor/aos/dist/aos.css',
+    'assets/css/theme.css',
+    'assets/font/flaticon.css',
+    'assets/vendor/leaflet/dist/leaflet.css',
+    'assets/vendor/select2/dist/css/select2.min.css',
+    'assets/vendor/fancybox/dist/jquery.fancybox.min.css',
+    'assets/vendor/ion-rangeslider/css/ion.rangeSlider.css',
+    'assets/vendor/slick-carousel/slick/slick.css'
+     ] | theme }}" rel="stylesheet">
+
+    {% styles %}
+</head>
+{% if this.page.id == '404'  %}
+	<body class="bg-img-hero-fixed" style="background-image: url({{'assets/svg/illustrations/error-404.svg'|theme}});">
+{% else %}
+	<body data-aos-duration='1500'>
+{% endif %}
+{% flash %}
+	<p data-control="flash-message" class="flash-message fade {{ type }}" data-interval="15">
+		{{ message }}
+	</p>
+{% endflash %}
+<!-- ========== HEADER ========== -->
+<header id="header" class="header">
+	<div class="header-section">
+		<div id="logoAndNav" class="container pb-3 pt-0 position-relative">
+		
+		
+		 <div class="d-flex align-items-center pt-0">
+
+
+          <div class="ml-auto">
+            <!-- Links -->
+            <div class="nav nav-sm nav-y-0 d-none d-sm-flex ml-sm-auto">
+            
+              <a class="btn btn-soft-secondary btn-sm btn-elo mr-2" href="https://www.impactkennis.nl" target="_blank"><i class="fas fa-user-circle"></i> Leeromgeving</a>
+              <a data-request="onGetCartItems"
+                                    data-request-update="'sidebar-cart/items':'#cart-items','sidebar-cart/total':'#cart-total'"
+                                    class="position-relative cart-button js-hs-unfold-invoker btn-sm btn-elo btn btn-soft-secondary"
+                                    href="javascript:;" data-hs-unfold-options='{
+                                      "target": "#sidebarContent",
+                                      "type": "css-animation",
+                                      "animationIn": "fadeInRight",
+                                      "animationOut": "fadeOutRight",
+                                      "hasOverlay": "rgba(55, 125, 255, 0.1)",
+                                      "smartPositionOff": true
+                                     }'>
+              <i class="fas fa-shopping-cart"></i>  
+              <span class="badge badge-pill badge-primary">
+                <span class="btn-status-initials" id="cart-item-count">{{cartItemCount}}</span>
+              </span>
+              
+              </a>
+            </div>
+            <!-- End Links -->
+          </div>
+        </div>
+		
+		
+			<!-- Nav -->
+			<nav class="js-mega-menu navbar navbar-expand-lg">
+				<!-- Logo -->
+				<a class="navbar-brand" href="/">
+					<img src="{{ 'assets/svg/logos/logo.svg' | theme }}" alt="Impact Training en Opleidingen" class="position-absolute top-0">
+				</a>
+				<!-- End Logo -->
+
+				{% if this.page.id != '404'  %}
+
+				<!-- Responsive Toggle Button -->
+				<button type="button" class="navbar-toggler btn btn-icon btn-sm rounded-circle"
+						aria-label="Toggle navigation"
+						aria-expanded="false"
+						aria-controls="navBar"
+						data-toggle="collapse"
+						data-target="#navBar">
+						<span class="navbar-toggler-default">
+						  <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+							<path fill="currentColor" d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z"/>
+						  </svg>
+						</span>
+								<span class="navbar-toggler-toggled">
+						  <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+							<path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+						  </svg>
+						</span>
+				</button>
+				<!-- End Responsive Toggle Button -->
+               
+				<!-- Navigation -->
+				<div id="navBar" class="collapse navbar-collapse">
+					<div class="navbar-body header-abs-top-inner">
+						<ul class="navbar-nav">
+
+	
+							<!-- Shop -->
+							<li class="hs-has-mega-menu navbar-nav-item"
+								data-hs-mega-menu-item-options='{
+					  "desktop": {
+						"position": "left",
+						"maxWidth": "300px"
+					  }
+					}'> <a id="courseMegaMenu" class="hs-mega-menu-invoker nav-link nav-link-toggle" href="/opleidingen" aria-haspopup="true" aria-expanded="false">Opleidingen</a>
+
+	 
+								<!-- Shop - Mega Menu -->
+								<div class="hs-mega-menu dropdown-menu courses-menu">
+									<div class="mega-menu-body pb-4">
+										<span class="d-block h5">Opleidingscategorieën</span>
+
+										<div class="row">
+											{% for chunk in categoryItems %}
+
+											<div class="col-sm-6">
+
+												{% for category in chunk %}
+												<a class="dropdown-item pb-0"
+												   href="{{ 'category'|page({ slug: slugMap[category.id] }) }}">{{category.name}}</a>
+												{% endfor %}
+
+											</div>
+
+
+											{% endfor %}
+
+										</div>
+									</div>
+
+									<!-- Mega Menu Banner -->
+									<div class="bg-light p-4">
+										<a class="btn btn-block btn-soft-primary transition-3d-hover" href="{{'catalog'|page}}">Bekijk alle opleidingen <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+									</div>
+									<!-- End Mega Menu Banner -->
+								</div>
+								<!-- End Shop - Mega Menu -->
+							   
+							</li>
+							<!-- End Shop -->
+
+							<li class="navbar-nav-item {% if this.page.id == 'examens' %}active{% endif %}">
+								<a class="nav-link" href="{{ 'examens'|staticPage }}">Examens</a>
+							</li>
+
+							<li class="navbar-nav-item {% if this.page.id == 'digitale-leeromgeving' %}active{% endif %}">
+								<a class="nav-link" href="{{ 'digitale-leeromgeving'|staticPage }}">Leeromgeving</a>
+							</li>
+
+
+							<li class="navbar-nav-item {% if this.page.id == 'incompany' %}active{% endif %}">
+								<a class="nav-link" href="{{ 'incompany'|staticPage }}">Incompany</a>
+							</li>
+
+							<li class="navbar-nav-item {% if this.page.id == 'over-impact' %}active{% endif %}">
+								<a class="nav-link" href="{{ 'over-impact'|staticPage }}">Over Impact</a>
+							</li>
+
+							<li class="navbar-nav-item">
+								<a class="nav-link" href="{{ 'contact'|staticPage }}">
+									Contact
+								</a>
+							</li>
+
+
+
+
+							{% if user %}
+							<li class="nav-item navbar-nav-last-item">
+								<a href="{{'account-settings'|page}}" class="btn btn-warning transition-3d-hover"><i
+										class="fa fa-user-circle"></i> Mijn account</a>
+							</li>
+
+							{% else %}
+							<li class="nav-item navbar-nav-last-item">
+								<button type="button" class="btn btn-warning transition-3d-hover" data-toggle="modal"
+										data-target="#loginModal"> Mijn account</button>
+							</li>
+							{% endif %}
+                        <!-- Shopping Cart
+                        <li class="list-inline-item">
+                            <div class="hs-unfold">
+                                <a data-request="onGetCartItems"
+                                    data-request-update="'sidebar-cart/items':'#cart-items','sidebar-cart/total':'#cart-total'"
+                                    class="cart-button js-hs-unfold-invoker btn btn-icon btn-ghost-secondary"
+                                    href="javascript:;" data-hs-unfold-options='{
+                                      "target": "#sidebarContent",
+                                      "type": "css-animation",
+                                      "animationIn": "fadeInRight",
+                                      "animationOut": "fadeOutRight",
+                                      "hasOverlay": "rgba(55, 125, 255, 0.1)",
+                                      "smartPositionOff": true
+                                     }'>
+                                    <i class="fas fa-shopping-cart"></i>
+
+
+                                    <span class="btn-status btn-primary">
+                                        <span class="btn-status-initials" id="cart-item-count">{{cartItemCount}}</span>
+                                    </span>
+
+                                </a>
+
+                            </div>
+                        </li>
+                        End Shopping Cart -->
+						</ul>
+					</div>
+				</div>
+				<!-- End Navigation -->
+
+				{% endif %}
+			
+			</nav>
+			<!-- End Nav -->
+		
+		</div>
+	</div>
+</header>
+<!-- ========== END HEADER ========== -->
+
+<!-- ========== SECONDARY CONTENTS ========== -->
+<!-- Shopping Cart Navigation -->
+{% partial 'sidebar-cart/default' %}
+<!-- End Shopping Cart Navigation -->
+<!-- ========== END SECONDARY CONTENTS ========== -->

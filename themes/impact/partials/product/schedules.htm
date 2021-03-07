@@ -1,0 +1,91 @@
+{%if schedules.count() %}
+
+{% for item in schedules %}
+
+
+{% set distance = item[0].distance %}
+{% set location =  item[0].location %}
+
+<div class="row align-items-center">
+    <div class="col-lg-2">
+        <h5 class="text-body"><i class="fa fa-map-marker-alt"></i>
+            {{ location.title }}</h5>
+        {% if distance is not null %}
+        <p class="small text-muted">{{distance}} km</p>
+        {% endif %}
+
+
+    </div>
+    <div class="col-lg-8">
+
+
+        {% for schedule in item %}
+
+        <div class="custom-control custom-radio custom-control-inline checkbox-outline checkbox-icon w-25 mr-1">
+            {% if not schedule.is_fully_booked %}
+            <input data-request="onSelectDate" data-request-update="'product/order-overview':'#order-overview'"
+                data-request-success="$('.js-leaflet').each(function () {
+
+                        var leaflet = $.HSCore.components.HSLeaflet.init($(this)[0]);
+
+                        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                            id: 'mapbox/light-v9'
+                        }).addTo(leaflet);
+
+                    }); $('html, body').animate({
+                        scrollTop: $('#order-overview').offset().top - 100 }, 1000);" type="radio"
+                id="pricingRadio{{schedule.id}}" name="slot" value="{{schedule.id}}"
+                class="custom-control-input checkbox-outline-input checkbox-icon-input" />
+            {% endif %}
+
+            <label
+                class="checkbox-outline-label {{ schedule.is_fully_booked ? 'booked':''}} mb-0 checkbox-icon-label w-100 rounded p-3 text-center"
+                for="pricingRadio{{schedule.id}}" style="min-height:90px">
+
+
+
+                {% if schedule.dates|length %}
+
+                <span class="d-block font-weight-normal">
+                    {% partial 'product/schedule-date' dates=schedule.dates %}
+                </span>
+                {% endif %}
+
+                <span class="d-block small">
+                    {% if not schedule.is_fully_booked %}
+                    {% if schedule.dates|length == 1 %}
+                    {{schedule.dates[0].start_time|date('H:i')}} - {{schedule.dates[0].end_time|date('H:i')}}
+                    {% endif %}
+                    {% else %}
+					<span><strong>VOL!</strong></span>
+                    {% endif %}
+                </span>
+
+
+
+
+            </label>
+        </div>
+
+        {% endfor %}
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <hr>
+    </div>
+</div>
+
+{% endfor %}
+
+{% else %}
+<p>{{'arstech.webshop::lang.label.no_location_found'|trans}}</p>
+{% endif %}
+
+<style>
+    .booked {
+        cursor: default;
+    }
+</style>

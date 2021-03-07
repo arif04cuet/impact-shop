@@ -1,0 +1,9 @@
+columns:
+    name:
+        label: Afdeling
+        type: text
+        searchable: true
+    is_active:
+        label: Actief
+        type: partial
+        path: $/mmid/team/controllers/_is_active_column.htm

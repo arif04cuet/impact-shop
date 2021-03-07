@@ -1,0 +1,6 @@
+plugin:
+    name: CMS
+    description: Content Management System
+    author: MMID
+    icon: oc-icon-adjust
+    homepage: ''

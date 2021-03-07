@@ -1,0 +1,95 @@
+title = "Nieuwsartikel"
+url = "/artikel/:category/:slug"
+layout = "layout_cms"
+is_hidden = 0
+
+[ArticlePage]
+slug = "{{ :slug }}"
+slug_required = 1
+smart_url_check = 0
+skip_error = 0
+==
+<?php
+function onStart(){
+    $this['currentPageUrl'] = $this->currentPageUrl();
+}
+?>
+==
+{% set obArticle = ArticlePage.get() %}
+
+{% if obArticle.preview_image is not empty %}
+ {% set newsImage = obArticle.preview_image.path %}
+{% else %}
+ {% set newsImage = '/storage/app/media/img2.jpg' %}
+{% endif %}
+
+<div class="gradient-y-overlay-impact bg-img-hero" style="background-image: url({{newsImage}});background-position:center">
+    <div class="container space-2 position-relative">
+        <div class="w-lg-75 mx-lg-auto">
+          <h1 class="font-size-4 text-white mb-2">{{ obArticle.title }}</h1>     
+          	<a href="/artikelen/{{ obArticle.category.slug }}" class="badge badge-warning text-white py-2 px-3">{{ obArticle.category.name }}</a>
+        		<small class="ml-2 text-white">{{ obArticle.published_start|localizeddate('long', 'none', 'nl_NL') }}</small>
+        		
+        		
+        		
+        </div>
+    </div>
+</div>
+<!-- ========== MAIN ========== -->
+<main id="content" role="main" class="bg-light">
+    <!-- Privacy Section -->
+    <div class="container space-bottom-1 space-top-1 overflow-hidden">
+        <div class="w-lg-75 mx-lg-auto">
+            <div class="card">
+                 
+                <!-- Content -->
+                <div class="card-body p-6 article-content">
+                        <p class="lead">{{ obArticle.preview_text}}</p>
+                        {{ obArticle.content|raw }}
+
+                        <div class="w-100">
+                            <hr>
+                            <div class="d-flex align-items-center">
+                                <span class="d-block small font-weight-bold text-muted text-cap mr-2">DEEL DIT ARTIKEL</span>
+
+                                <a class="btn btn-sm btn-icon btn-ghost-secondary rounded-circle mr-2" target="_blank" href="https://facebook.com/sharer.php?u={{currentPageUrl}}">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a class="btn btn-sm btn-icon btn-ghost-secondary rounded-circle mr-2" target="_blank" href="https://twitter.com/intent/tweet?url={{currentPageUrl}}">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-sm btn-icon btn-ghost-secondary rounded-circle mr-2"target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{currentPageUrl}}">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- End Content -->
+            </div>
+
+            <div class="mt-5">
+
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center ">
+                            <a class="btn btn-outline-secondary btn-pill transition-3d-hover px-5" href="/artikelen"><i class="fa fa-chevron-left mr-1"></i> Bekijk het nieuwsoverzicht</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Privacy Section -->
+</main>
+<!-- ========== END MAIN ========== -->
+<style>
+.article-content img {
+max-width:100%;
+}
+</style>

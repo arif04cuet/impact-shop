@@ -1,0 +1,116 @@
+title = "Product"
+url = "/opleiding/:slug/:variant?"
+layout = "layout_cms"
+is_hidden = 0
+
+[product]
+product = ":slug"
+variant = ":slug"
+redirectOnPropertyChange = 0
+currentVariantReviewsOnly = 0
+==
+<?php
+use Hashids\Hashids as Hasher;
+use OFFLINE\Mall\Models\Product;
+use OFFLINE\Mall\Models\Cart;
+use RainLab\User\Facades\Auth;
+use October\Rain\Exception\ValidationException;
+use OFFLINE\Mall\Classes\Exceptions\OutOfStockException;
+use Arstech\Webshop\Models\Schedule;
+use OFFLINE\Mall\Models\CustomFieldValue;
+use OFFLINE\Mall\Models\CustomField;
+
+function onSelectDate(){
+
+
+    $scheduleId = post('slot');
+
+    $this['schedule'] = Schedule::with('location')->find($scheduleId);
+
+    $this['product'] = $this->product->item;
+}
+
+
+function onFindCityByZipcode(){
+
+    $zip_city = post('zip_city');
+
+    $this['product'] = $product = $this->product->item;
+
+    $this['schedules'] = Schedule::getSchedulesSortedByDistance($product,$zip_city);
+
+    $this['product'] = $this->product->item;
+}
+
+function onFindCityByLatLong(){
+
+
+    $latitude = post('latitude');
+    $longitude = post('longitude');
+
+    $this['product'] = $product = $this->product->item;
+
+    $this['schedules'] = Schedule::getSchedulesSortedByDistanceLatLong($product,$latitude,$longitude);
+
+}
+
+
+function onAddToCart()
+{
+    $error = false;
+    $value = app(Hasher::class)->decode(post('product'));
+    $productId = $value[0] ?? null;
+
+    $product = Product::published()->findOrFail($productId);
+    $variant = null;
+    $values = null;
+
+    //save customfields
+    if($product->isCourseProduct())
+    {
+        $scheduleId = post('schedule_id');
+
+        if (!$schedule = Schedule::find($scheduleId)) {
+            throw new ValidationException(['schedule' => trans('arstech.webshop::lang.label.schedule_not_selected')]);
+        }
+
+        $sCustomField = CustomField::where('name','schedule_id')->first();
+
+        $value                         = new CustomFieldValue();
+        $value->value                  = $scheduleId;
+        $value->custom_field_id        = $sCustomField->id;
+        $value->custom_field_option_id = null;
+        $value->price                  = $value->priceForFieldOption($sCustomField);
+        $values = collect([$value]);
+    }
+
+    $cart     = Cart::byUser(Auth::getUser());
+    $quantity = (int)post('quantity', $product->quantity_default ?? 1);
+
+
+    if ($quantity < 1) {
+        throw new ValidationException(['quantity' => trans('offline.mall::lang.common.invalid_quantity')]);
+    }
+
+    try {
+        $cart->addProduct($product, $quantity, $variant, $values);
+    } catch (OutOfStockException $e) {
+        $error = true;
+        throw new ValidationException(['stock' => trans('offline.mall::lang.common.stock_limit_reached')]);
+
+    }
+
+    $this['error'] = $error;
+    $this['product'] = $product;
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+
+    //Flash::success(trans('offline.mall::frontend.cart.added'));
+
+}
+?>
+==
+{% if not item.isCourseProduct() %}
+{% partial 'product/product-simple' product=product %}
+{% else %}
+{% partial 'product/product-course' product=product%}
+{% endif %}

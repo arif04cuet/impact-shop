@@ -1,0 +1,192 @@
+description = "User layout"
+
+[session]
+security = "user"
+redirect = "catalog"
+==
+<?php
+use October\Rain\Auth\AuthException;
+use RainLab\User\Models\User as UserModel;
+use RainLab\User\Models\Settings as UserSettings;
+use OFFLINE\Mall\Models\Category;
+use Hashids\Hashids as Hasher;
+
+use OFFLINE\Mall\Models\Cart;
+use RainLab\User\Facades\Auth;
+use OFFLINE\Mall\Models\CartProduct;
+
+function onStart()
+{
+    $this['categoryItems'] = Category::get()->chunk(5);
+
+    $cart = Cart::byUser(Auth::getUser());
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+}
+
+function onGetCartItems()
+{
+    $cart = Cart::byUser(Auth::getUser());
+    $cart->load(['products']);
+    $this['cart'] = $cart;
+    return ['cart'=>$cart];
+}
+
+function onRemoveCartItem()
+{
+    $value = app(Hasher::class)->decode(input('id'));
+    $id = $value[0] ?? null;
+
+    $cart = Cart::byUser(Auth::getUser());
+
+    $product = $this->getProductFromCart($cart, $id);
+
+    $cart->removeProduct($product);
+
+
+    $this['cart'] = $cart->load(['products']);
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+    return ['cart'=>$cart->products->count()];
+
+}
+
+function getProductFromCart(Cart $cart, $id)
+{
+
+    return CartProduct::whereHas('cart', function ($query) use ($cart) {
+        $query->where('id', $cart->id);
+    })->where('id', $id)
+    ->firstOrFail();
+
+}
+
+
+
+?>
+==
+{% partial 'site/header' categories=categoryItems %}
+
+    <!-- Content -->
+    <section id="layout-content">
+
+        <main id="content" role="main" class="bg-light">
+            <!-- Breadcrumb Section -->
+            <div class="bg-navy" style="background-image: url("{{'assets/svg/components/abstract-shapes-20.svg'|theme}}");">
+                <div class="container space-1 space-top-lg-2 space-bottom-lg-3">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="d-none d-lg-block">
+                                <h1 class="h2 text-white">{{ this.page.title }}</h1>
+                            </div>
+
+                            <!-- Breadcrumb -->
+                            <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+                                <li class="breadcrumb-item">Account</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ this.page.title }}</li>
+                            </ol>
+                            <!-- End Breadcrumb -->
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="d-none d-lg-block">
+
+                                <a class="btn btn-soft-light " href="#" data-request="onLogout"
+                                    data-request-data="redirect: '/'">Uitloggen</a>
+                            </div>
+
+                            <!-- Responsive Toggle Button -->
+                            <button type="button" class="navbar-toggler btn btn-icon btn-sm rounde-circle d-lg-none"
+                                aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebarNav"
+                                data-toggle="collapse" data-target="#sidebarNav">
+                                <span class="navbar-toggler-default">
+                                    <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="currentColor"
+                                            d="M17.4,6.2H0.6C0.3,6.2,0,5.9,0,5.5V4.1c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,5.9,17.7,6.2,17.4,6.2z M17.4,14.1H0.6c-0.3,0-0.6-0.3-0.6-0.7V12c0-0.4,0.3-0.7,0.6-0.7h16.9c0.3,0,0.6,0.3,0.6,0.7v1.4C18,13.7,17.7,14.1,17.4,14.1z" />
+                                    </svg>
+                                </span>
+                                <span class="navbar-toggler-toggled">
+                                    <svg width="14" height="14" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill="currentColor"
+                                            d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z" />
+                                    </svg>
+                                </span>
+                            </button>
+                            <!-- End Responsive Toggle Button -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Breadcrumb Section -->
+
+            <!-- Content Section -->
+            <div class="container space-1 space-top-lg-0 mt-lg-n10">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Navbar -->
+                        <div class="navbar-expand-lg navbar-expand-lg-collapse-block navbar-light">
+                            <div id="sidebarNav" class="collapse navbar-collapse navbar-vertical">
+                                <!-- Card -->
+                                <div class="card mb-5">
+                                    <div class="card-body">
+                                        <!-- Avatar -->
+                                        <div class="d-none d-lg-block mb-5">
+                                            <p class="card-text font-size-1 mb-0">Welkom </p>
+                                            <h4 class="card-title mt-0">
+                                                {{ user.name ~ ' ' ~ user.infix ~ ' ' ~ user.surname}}
+                                            </h4>
+
+                                        </div>
+                                        <!-- End Avatar -->
+
+                                        <!-- List -->
+                                        <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2 mb-4">
+                                            <li class="nav-item">
+                                                <a class="nav-link {% if this.page.id == 'account-settings'%} active {% endif %}"
+                                                    href="{{'account-settings'|page}}">
+                                                    <i class="fas fa-id-card nav-icon"></i>
+                                                    Mijn account
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link {% if this.page.id == 'account-orders'%} active {% endif %}"
+                                                    href="{{'account-orders'|page}}">
+                                                    <i class="fas fa-shopping-basket nav-icon"></i>
+                                                    Mijn bestellingen
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-- End List -->
+
+                                        <div class="d-lg-none">
+                                            <div class="dropdown-divider"></div>
+
+                                            <!-- List -->
+                                            <ul class="nav nav-sub nav-sm nav-tabs nav-list-y-2">
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-primary" href="#">
+                                                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                                                        Uitloggen
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <!-- End List -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Card -->
+                            </div>
+                        </div>
+                        <!-- End Navbar -->
+                    </div>
+
+                    <div class="col-lg-9">
+                        {% page %}
+                    </div>
+
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Content Section -->
+        </main>
+        <!-- ========== END MAIN ========== -->
+    </section>
+{% partial 'site/footer' %}

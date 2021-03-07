@@ -1,0 +1,39 @@
+fields:
+    title:
+        label: Locatie naam
+        span: auto
+        required: 1
+        type: text
+    address:
+        label: Adres
+        span: auto
+        required: 1
+        type: text
+    zipcode:
+        label: Postcode
+        span: auto
+        required: 1
+        type: text
+    city:
+        label: Plaats
+        span: auto
+        required: 1
+        type: text
+    latitude:
+        label: 'Geo-locatie (breedtegraad)'
+        comment: 'latitude'
+        span: auto
+        required: 1
+        type: text
+    longitude:
+        label: 'Geo-locatie (lengtegraad)'
+        comment: 'longitude'
+        span: auto
+        required: 1
+        type: text
+    status:
+        label: Status
+        span: auto
+        default: 1
+        required: 1
+        type: switch

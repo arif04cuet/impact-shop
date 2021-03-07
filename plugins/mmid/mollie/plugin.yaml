@@ -1,0 +1,6 @@
+plugin:
+    name: 'Mollie'
+    description: 'Mollie Payment Gateway'
+    author: MMID
+    icon: oc-icon-credit-card
+    homepage: ''

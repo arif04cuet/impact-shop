@@ -1,0 +1,16 @@
+[viewBag]
+==
+{% if cart.products.count > 0 %}
+<!-- Footer -->
+<footer class="sidebar-footer border-top text-center py-4 px-7 bg-white">
+    <div class="mb-3">
+        <span class="d-block">Totaal</span>
+        <h5 class="mb-0">{{cart.totals.productPostTaxes| money }}</h5>
+    </div>
+    <div class="mb-2">
+        <a class="btn btn-warning transition-3d-hover" href="{{'checkout'|page}}">Nu bestellen</a>
+    </div>
+    <p class="small mb-0"><a class="link-underline" href="javascript:;">Verder winkelen</a></p>
+</footer>
+<!-- End Footer -->
+{% endif %}

@@ -1,0 +1,19 @@
+<div class="d-block font-size-1 mr-3">Korting</div>
+
+{% for entry in discounts %}
+<div class="media align-items-center pl-2">
+    <span class="d-block font-size-1 mr-3">
+        {{ entry.discount.name }}
+        {% if entry.discount.code %}
+        ({{ entry.discount.code }})
+        {% endif %}
+
+    </span>
+    <div class="media-body text-right">
+        <span> {{ entry.savings | money }}</span>
+    </div>
+</div>
+
+
+
+{% endfor %}

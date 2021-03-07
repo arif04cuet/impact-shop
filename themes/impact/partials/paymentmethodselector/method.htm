@@ -1,0 +1,18 @@
+<div class="custom-control custom-radio custom-control-inline checkbox-outline checkbox-icon w-100" id="pay_method_{{method.id}}" {% if method.id == 3 %}style="display:none;"{%endif%}>
+    <input type="radio" id="{{'method' ~ method.id}}" name="payment_method"
+        class="custom-control-input checkbox-outline-input checkbox-icon-input" {% if loop.first %} checked {% endif %}
+        value="{{method.id}}">
+    <label class="checkbox-outline-label checkbox-icon-label w-100 rounded p-4" for="{{'method' ~ method.id}}">
+        <span class="row">
+            <span class="col-sm-12 order-sm-1">
+                <span class="d-block h5 mb-1"><i class="fa fa-lock mr-1"></i> {{method.name}} </span>
+                <span class="d-block small uitleg">{{method.description | raw}}</span>
+            </span>
+        </span>
+    </label>
+</div>
+<style>
+    .uitleg p {
+        margin-bottom:0;
+    }
+</style>

@@ -1,0 +1,73 @@
+<li class="card card-bordered mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6 col-md mb-3 mb-md-0">
+                <small class="text-cap">Total</small>
+                <small class="text-dark font-weight-bold">{{ order.totalPostTaxes() | raw }}</small>
+            </div>
+            <div class="col-6 col-md mb-3 mb-md-0">
+                <small class="text-cap">Status</small>
+                <small class="text-dark font-weight-bold">{{order.order_state.name}}</small>
+            </div>
+            <div class="col-6 col-md">
+                <small class="text-cap">Order no.</small>
+                <small class="text-dark font-weight-bold"><span
+                        class="badge badge-primary">{{order.order_number}}</span></small>
+            </div>
+            <div class="col-6 col-md">
+                <small class="text-cap">Order date:</small>
+                <small class="text-dark font-weight-bold">{{ order.created_at | date('d M, Y') }}</small>
+            </div>
+        </div>
+        <!-- End Row -->
+
+        <hr>
+
+        <div class="media">
+            <div class="media-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="d-block text-dark font-weight-bold line-height-0">Test
+                        Course Title</span>
+                </div>
+                <span class="d-block">&euro; 10,00 </span>
+                <small class="d-block text-muted"><i class="fa fa-calendar-alt"></i>
+                    1 January 2021</small>
+                <small class="d-block text-muted"><i class="fa fa-map-marker-alt"></i> Location
+                    Name, Location
+                    City</small>
+            </div>
+        </div>
+        <hr>
+        <div class="media">
+            <div class="media-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="d-block text-dark font-weight-bold line-height-0">Another
+                        Course Title</span>
+                </div>
+                <span class="d-block">&euro; 10,00 </span>
+                <small class="d-block text-muted"><i class="fa fa-calendar-alt"></i>
+                    4 January 2021</small>
+                <small class="d-block text-muted"><i class="fa fa-map-marker-alt"></i> Location
+                    Name, Location
+                    City</small>
+            </div>
+        </div>
+        <hr>
+        <div class="media">
+            <div class="media-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="d-block text-dark font-weight-bold line-height-0">Yet
+                        Another Course Title</span>
+                </div>
+                <span class="d-block">&euro; 10,00 </span>
+                <small class="d-block text-muted"><i class="fa fa-calendar-alt"></i>
+                    7 January 2021</small>
+                <small class="d-block text-muted"><i class="fa fa-map-marker-alt"></i> Location
+                    Name, Location
+                    City</small>
+            </div>
+        </div>
+
+
+    </div>
+</li>

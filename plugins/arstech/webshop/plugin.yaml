@@ -1,0 +1,13 @@
+plugin:
+    name: 'arstech.webshop::lang.plugin.name'
+    description: 'arstech.webshop::lang.plugin.description'
+    author: Arstech
+    icon: oc-icon-adjust
+    homepage: ''
+permissions:
+    arstech.webshop.manage_locations:
+        tab: 'arstech.webshop::lang.plugin.name'
+        label: 'Manage Locations'
+    asrtech.webshop.manage_schedules:
+        tab: 'arstech.webshop::lang.plugin.name'
+        label: 'Manage Course Schedules'

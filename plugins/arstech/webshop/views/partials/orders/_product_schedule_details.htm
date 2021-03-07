@@ -1,0 +1,8 @@
+<?php $schedule = \Arstech\Webshop\Models\Schedule::find($field['display_value']) ; ?>
+<?php $dates = $schedule->dates ; ?>
+Start Date :
+<?= count($dates) == 1 ? date("d F, Y",strtotime($dates[0]['start_date'])) : date("d M",strtotime($dates[0]['start_date'])) .' - '.date("d M",strtotime($dates[count($dates)-1]['start_date'])) ?>
+<br>
+Start Time : <?= date("h:i",strtotime($schedule->start_date)); ?> <br>
+End Time : <?= date("h:i",strtotime($schedule->end_date)); ?> <br>
+Location: <?= $schedule->location->title; ?>

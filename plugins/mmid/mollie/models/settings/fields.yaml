@@ -1,0 +1,20 @@
+tabs:
+    fields:
+        payment_mode:
+            label: 'Payment Mode'
+            span: left
+            type: switch
+            comment: 'Test or Live'
+            on: Live
+            off: Test
+            tab: 'Settings'
+        test_api_key:
+            label: 'Test API Key'
+            span: left
+            type: text
+            tab: 'Settings'
+        live_api_key:
+            label: 'Live API Key'
+            span: left
+            type: text
+            tab: 'Settings'

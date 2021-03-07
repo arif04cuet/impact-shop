@@ -1,0 +1,35 @@
+<form data-request="onUpdateAddress" data-request-update="'checkout/details/address':'#billing-address'" method="POST"
+    accept-charset="UTF-8" data-request-flash data-request-validate
+    data-request-success="$('.details-screen-3 button.next').removeAttr('disabled').text('Next')">
+    {{form_token()}}
+    {{form_sessionKey()}}
+    <div class="form-group input-group-sm ">
+        <input type="text" class="form-control" name="address" id="address" placeholder="Straat en huisnummer"
+            aria-label="Your address" value="{{address.lines}}">
+        <span data-validate-for="address" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="input-group input-group-sm ">
+                <input type="text" class="js-masked-input form-control" name="zip" id="zip" placeholder="Postcode"
+                    aria-label="Your zip code" value="{{address.zip}}">
+                <span data-validate-for="zip" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="input-group input-group-sm ">
+                <input type="text" class="form-control" name="city" id="city" placeholder="Plaats" aria-label="Clarice"
+                    value="{{address.city}}">
+                <span data-validate-for="city" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <button data-attach-loading type="submit" class="btn btn-sm btn-primary btn-block">Opslaan</button>
+    </div>
+
+</form>

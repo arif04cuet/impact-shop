@@ -1,0 +1,23 @@
+<!-- Accordion -->
+<div id="shopCartAccordion" class="accordion card shadow-soft mb-4">
+    <!-- Card -->
+    <div class="card rounded">
+        <div class="card-header card-collapse" id="shopCartHeadingOneExample1">
+            <h3 class="mb-0">
+                <a class="btn btn-link btn-block card-btn font-weight-bold collapsed" href="javascript:;" role="button"
+                    data-toggle="collapse" data-target="#shopCartOneExample1" aria-expanded="false"
+                    aria-controls="shopCartOneExample1">
+                    Heb je een kortingscode?
+                </a>
+            </h3>
+        </div>
+        <div id="shopCartOneExample1" class="collapse" aria-labelledby="shopCartHeadingOneExample1"
+            data-parent="#shopCartAccordion">
+
+            {% partial __SELF__ ~ '::input' %}
+
+        </div>
+    </div>
+    <!-- End Card -->
+</div>
+<!-- End Accordion -->

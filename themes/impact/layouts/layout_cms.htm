@@ -1,0 +1,137 @@
+description = "CMS pagina's"
+
+[ContactForm]
+[FooterContactForm]
+[ExpertboxRequestForm]
+[account loginModal]
+redirect = "account-settings"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+activationPage="user-activation"
+
+[session]
+security = "all"
+
+[resetPassword forgotPassword]
+paramCode = "code"
+
+[mallDependencies]
+==
+<?php
+use October\Rain\Auth\AuthException;
+use RainLab\User\Models\User as UserModel;
+use RainLab\User\Models\Settings as UserSettings;
+use OFFLINE\Mall\Models\Category;
+use Hashids\Hashids as Hasher;
+
+use OFFLINE\Mall\Models\Cart;
+use RainLab\User\Facades\Auth;
+use OFFLINE\Mall\Models\CartProduct;
+
+function onStart()
+{
+    $this['categoryItems'] = Category::get()->chunk(5);
+
+    $cart = Cart::byUser(Auth::getUser());
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+}
+
+function onSignin()
+{
+    $data = post();
+
+    $rules = [
+        'login' => 'required|email',
+        'password' => 'required',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+
+    try {
+        return $this->loginModal->onSignin();
+    }
+    catch (AuthException $ex) {
+        Flash::error($ex->getMessage());
+    }
+}
+
+function onRegister()
+{
+    $data = post();
+
+    $rules = [
+        'initials' => 'required',
+        'name' => 'required',
+        'surname' => 'required',
+        'email'    => 'required|between:6,255|email|unique:users',
+        'password' => 'required|between:8,255|confirmed',
+        'password_confirmation' => 'required_with:password|between:8,255',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    try {
+
+        return $this->loginModal->onRegister();
+
+    }
+    catch (Exception $ex) {
+        Flash::error($ex->getMessage());
+    }
+
+
+}
+
+function onGetCartItems()
+{
+    $cart = Cart::byUser(Auth::getUser());
+    $cart->load(['products']);
+    $this['cart'] = $cart;
+    return ['cart'=>$cart];
+}
+
+function onRemoveCartItem()
+{
+    $value = app(Hasher::class)->decode(input('id'));
+    $id = $value[0] ?? null;
+
+    $cart = Cart::byUser(Auth::getUser());
+
+    $product = $this->getProductFromCart($cart, $id);
+
+    $cart->removeProduct($product);
+
+
+    $this['cart'] = $cart->load(['products']);
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+    return ['cart'=>$cart->products->count()];
+
+}
+
+function getProductFromCart(Cart $cart, $id)
+{
+
+    return CartProduct::whereHas('cart', function ($query) use ($cart) {
+        $query->where('id', $cart->id);
+    })->where('id', $id)
+    ->firstOrFail();
+
+}
+
+
+
+?>
+==
+{% partial 'site/header' %}
+{% page %}
+{% partial 'site/footer' %}

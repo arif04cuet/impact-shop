@@ -1,0 +1,14 @@
+{% if billingAddres %}
+<span class="d-block mb-2">
+    {{billingAddres.lines}} <br>
+    {{billingAddres.zip}} {{billingAddres.city}}<br>
+    {{user.email}}<br>
+    {{user.phone}}
+</span>
+{% else %}
+
+{% endif %}
+<a data-attach-loading data-request="onGetAddressForm"
+    data-request-update="'checkout/details/address-form':'#billing-address'" class="btn btn-xs btn-white" href="#">
+    <i class="fas fa-pencil-alt mr-1"></i> {{ billingAddres ? 'Bewerken' : 'Toevoegen'}}
+</a>

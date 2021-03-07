@@ -1,0 +1,82 @@
+description = "Hero 02"
+
+[viewBag]
+==
+<!-- Services Section -->
+    <div class="gradient-x-overlay-lg-navy bg-img-hero" style="background-image: url({{block.image|media}});">
+        <div class="container space-2 space-lg-3">
+            <!-- Title -->
+            <div class="w-md-80 w-lg-60 text-center mx-md-auto mb-9">
+
+                <div class="mb-5">
+                    <h1 class="display-4 mb-4 text-white" style="font-weight: 400" data-aos="fade-left">{{block.title}}</h1>
+                    <div class="lead text-white-70" data-aos="fade-left" data-aos-delay="150">{{block.subtitle|raw}}</div>
+                </div>
+
+            </div>
+            <!-- End Title -->
+
+            <div class="row justify-content-lg-center text-white">
+                <div class="col-md-6 col-lg-5 mb-3 mb-md-5 mb-lg-7" data-aos="fade-up" data-aos-delay="150">
+                    <!-- Icon Blocks -->
+                    <div class="media pr-lg-5">
+                        <figure class="w-100 max-w-8rem mr-4">
+                            <i class="fi fi-lg flaticon-premium-quality text-warning"></i>
+                        </figure>
+                        <div class="media-body">
+                            <h4 class="text-white">{{block.oneTitle}}</h4>
+                            {{block.oneText|raw}}
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+
+                <div class="col-md-6 col-lg-5 mb-3 mb-md-5 mb-lg-7" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Icon Blocks -->
+                    <div class="media pl-lg-5">
+                        <figure class="w-100 max-w-8rem mr-4">
+                            <i class="fi fi-lg flaticon-discount text-warning"></i>
+                        </figure>
+                        <div class="media-body">
+                            <h4 class="text-white">{{block.twoTitle}}</h4>
+                            {{block.twoText|raw}}
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="250">
+                    <!-- Icon Blocks -->
+                    <div class="media pr-lg-5">
+                        <figure class="w-100 max-w-8rem mr-4">
+                            <i class="fi fi-lg flaticon-chat text-warning"></i>
+                        </figure>
+                        <div class="media-body">
+                            <h4 class="text-white">{{block.threeTitle}}</h4>
+                            {{block.threeText|raw}}
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+
+                <div class="col-md-6 col-lg-5" data-aos="fade-up" data-aos-delay="300">
+                    <!-- Icon Blocks -->
+                    <div class="media pl-lg-5">
+                        <figure class="w-100 max-w-8rem mr-4">
+                            <i class="fi fi-lg flaticon-male text-warning"></i>
+                        </figure>
+                        <div class="media-body">
+                            <h4 class="text-white">{{block.fourTitle}}</h4>
+                            {{block.fourText|raw}}
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Services Section -->

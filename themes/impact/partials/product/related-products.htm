@@ -1,0 +1,21 @@
+<!-- Related Courses -->
+{% if item.accessories.count > 0 %}
+
+<div class="container space-bottom-2">
+    <div class="">
+        <h3 class="mb-4">Related products</h3>
+        <div class="row">
+
+
+            {% for ProductItem in item.accessories.take(3) %}
+            <div class="col-md-6 col-lg-4 mb-5">
+                {% partial 'product/single-item' product=ProductItem %}
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- End Related Courses -->

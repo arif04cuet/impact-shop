@@ -1,0 +1,77 @@
+<li class="card card-bordered mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6 col-md mb-3 mb-md-0">
+                <small class="text-cap">Totaal</small>
+                <small class="text-dark font-weight-bold">{{ order.totalPostTaxes() | raw }}</small>
+            </div>
+            <div class="col-6 col-md mb-3 mb-md-0">
+                <small class="text-cap">Status</small>
+
+                {% if order.isPaid %}
+                <small class="text-success font-weight-bold">{{ order.order_state.name }}</small>
+                {% else %}
+                <a href="{{paymentLink }}?order={{ order.hashId }}">
+                    {{ order.payment_state_label }}
+                </a>
+                {% endif %}
+
+            </div>
+            <div class="col-6 col-md">
+                <small class="text-cap">Ordernummer</small>
+                <small class="text-dark font-weight-bold"><span
+                        class="badge badge-primary">{{order.order_number}}</span></small>
+            </div>
+            <div class="col-6 col-md">
+                <small class="text-cap">Datum</small>
+                <small
+                    class="text-dark font-weight-bold">{{ order.created_at|localizeddate('long', 'none', 'nl_NL') }}</small>
+            </div>
+        </div>
+        <!-- End Row -->
+
+        <hr>
+
+        {% for product in order.products %}
+
+        <div class="media">
+            <div class="media-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span class="d-block text-dark font-weight-bold line-height-0">{{ product.name}}</span>
+                </div>
+                <span class="d-block">{{product.totalPostTaxes()}}</span>
+
+                {% set schedule = product.getSchedule() %}
+
+                {% if schedule %}
+                {% set location = schedule.location %}
+                <small class="d-block text-muted"><i class="fa fa-calendar-alt"></i>
+
+                    {% if schedule.dates|length %}
+
+                    {% partial 'product/schedule-date' dates=schedule.dates %}
+
+                    {% endif %}
+                </small>
+
+
+                <small class="d-block text-muted"><i class="fa fa-map-marker-alt"></i>
+                    {{ location.title}}
+                    {{ location.isOnline ? '':', ' ~ location.city }}
+                </small>
+
+                {% endif %}
+
+
+            </div>
+        </div>
+
+        {% if not loop.last %}
+        <hr>
+        {% endif %}
+
+        {% endfor %}
+
+
+    </div>
+</li>

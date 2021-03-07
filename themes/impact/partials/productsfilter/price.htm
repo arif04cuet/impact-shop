@@ -1,0 +1,19 @@
+<div class="mall-property-group">
+    <div class="mall-property-group__name mall-property-group__name--price">
+        <div>Prijs</div>
+
+    </div>
+    <div class="mall-property">
+        {% partial __SELF__ ~ '::range'
+                id  = 'price'
+                slug  = 'price'
+                min = priceRange[0]
+                max = priceRange[1] %}
+    </div>
+</div>
+
+<style>
+    .noUi-connect {
+        background-color: #D21650;
+    }
+</style>

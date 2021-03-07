@@ -1,0 +1,328 @@
+title = "Checkout"
+url = "/checkout/:step?"
+layout = "layout_cms"
+is_hidden = 0
+
+[signUp checkoutSignUp]
+redirect = "/checkout"
+
+[checkout]
+step = "{{ :step }}"
+==
+<?php
+use OFFLINE\Mall\Models\Address;
+use Arstech\Profile\Models\Profile;
+use OFFLINE\Mall\Models\Cart;
+
+function onStart()
+{
+    $products = optional(Cart::byUser(Auth::getUser()))->products;
+
+    if(!$products->count() && empty(input('order')))
+    {
+        //Flash::error("Cart is Emptry");
+        //return Redirect::to("/");
+    }
+    //redirect after activate user
+    if(!empty(input('activate')))
+        return Redirect::to('/checkout');
+
+    //check bsn products in cart
+    $bsnProducts = $products->filter(function($product){
+        return optional($product->data->getPropertyValueBySlug('bsn-required'))->value;
+    });
+    traceLog(count($bsnProducts));
+    $this['hasBsnProduct']= count($bsnProducts);
+
+}
+
+
+function onSelectPaymentMethod()
+{
+    $paymentMethodSelector = $this->paymentMethodSelector;
+
+    $paymentMethodSelector->onRun();
+
+    $rules = [
+        'payment_method' => 'required|exists:offline_mall_payment_methods,id',
+    ];
+
+    $validation = Validator::make(post(), $rules);
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    $id = post('payment_method');
+
+    $paymentMethodSelector->workingOnModel->payment_method_id = $id;
+    $paymentMethodSelector->workingOnModel->save();
+
+    $paymentMethodSelector->onRun();
+
+    return $paymentMethodSelector->onSubmit();
+}
+
+
+
+function onUpdateInvoiceDetails(){
+
+
+    $data = post();
+    $user = Auth::getUser();
+
+    $rules = [
+        'company' => 'required',
+        'address' => 'required',
+        'zip' => 'required',
+        'city' => 'required',
+        'invoice_email' => 'required',
+        'department' => 'required'
+
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    //update profile
+
+    $profile = Profile::getFromUser($user);
+
+    $profile->fill($data);
+
+    $profile->save();
+
+    Flash::success('Bedrijfsgegevens zijn opgeslagen!');
+}
+
+
+function onCheckout(){
+
+    try {
+
+        //handle failed payment. attemt to re payment
+        if (request()->get('order'))
+        {
+            return $this->onSelectPaymentMethod();
+        }
+
+        $this->onSelectPaymentMethod();
+        return $this->checkout->onCheckout();
+    }
+    catch (Exception $ex) {
+        Flash::error($ex->getMessage());
+    }
+}
+function onGetAddressForm()
+{
+    $this['user']= $user = Auth::getUser();
+    $this['address'] = $user->customer->billing_address;
+
+}
+function onUpdateAddress()
+{
+
+    $data = post();
+
+    $rules = [
+        'name' => 'required',
+        'address' => 'required',
+        'zip' => 'required',
+        'city' => 'required',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    $this['user']= $user = Auth::getUser();
+    $customer = $user->customer;
+
+    $billing = Address::findOrNew($customer->default_billing_address_id);
+
+    $billing->name  = $data['name'];
+    $billing->lines = $data['address'];
+    $billing->zip = $data['zip'];
+    $billing->city = $data['city'];
+    $billing->country_id = 159;
+    $billing->customer_id = $customer->id;
+    $billing->save();
+
+    //update customer address
+
+    $customer->default_shipping_address_id = $billing->id;
+    $customer->default_billing_address_id = $billing->id;
+    $customer->save();
+
+
+    //update address fields in user table
+
+    $user->address = $data['address'];
+    $user->zip = $data['zip'];
+    $user->city = $data['city'];
+
+    if(request()->phone)
+        $user->phone = $data['phone'];
+
+    $user->save();
+
+
+
+    $this['billingAddres'] = $billing;
+
+    //return $billing;
+}
+function onSignin()
+{
+
+    return $this->checkoutSignUp->onSignin();
+
+}
+
+function onRegister()
+{
+    $data = post();
+
+    $rules = [
+        'initials' => 'required',
+        'name' => 'required',
+        'surname' => 'required',
+        'address' => 'required',
+        'zip' => 'required',
+        'city' => 'required',
+        'email'    => 'required|between:6,255|email|unique:users',
+        'password' => 'required|between:8,255|confirmed',
+        'password_confirmation' => 'required_with:password|between:8,255',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    try {
+        $this->loginModal->setProperty('redirect', "");
+        $this->loginModal->setProperty('activationPage', "checkout");
+
+        return $this->loginModal->onRegister();
+
+    }
+    catch (Exception $ex) {
+        Flash::error($ex->getMessage());
+    }
+
+
+}
+?>
+==
+<main id="content" role="main" class="bg-light space-2">
+
+    <!-- Checkout Section -->
+    <div class="container">
+        {% if checkout.step == 'done' %}
+        <div class="row" id="myFinish">
+            {% partial 'checkout/finish/default' %}
+        </div>
+
+        {% elseif checkout.step == 'failed' %}
+        <div class="{{checkout.step}}">
+            {% partial 'checkout/failed/default' %}
+        </div>
+
+        {% else%}
+
+        <div class="row" id="stepsProcess">
+            <div class="col-lg-12">
+                <!-- Step -->
+                <ul id="defaultStep" class="step step-xl step-inline small mb-4">
+                    <li class="step-item step-cart">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Winkelwagen</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item step-details">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-primary text-white">2</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-primary">Gegevens</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item step-payment">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon border text-muted">3</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Betaling</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item step-finish">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon border text-muted">4</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Bevestigen</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- End Step -->
+
+            </div>
+            <div class="col-lg-8">
+
+                <!--- Inloggen -->
+
+                {% if not user %}
+                <div id="details" class="details-screen-1">
+
+                    {% partial 'checkout/details/default' %}
+                </div>
+                {% else %}
+                <!-- gegevens -->
+                <div id="customer-info" class="details-screen-3">
+                    {% partial 'checkout/details/customer-info' user=user %}
+
+                </div>
+                {% endif %}
+
+                <!-- gegevens -->
+
+                <!-- gegevens -->
+                <div class="card details-screen-2 d-none" id="myGegevens">
+                    {% partial 'checkout/details/signup-form' %}
+                </div>
+                <!-- gegevens -->
+
+                <!-- step betaling -->
+                <div class="card d-none payment-screen" id="payment">
+                    {% partial 'checkout/payment/default' cart=cart %}
+                </div>
+                <!-- end step betaling -->
+
+
+            </div>
+            <div class="col-lg-4 order-lg-2 mb-7 mb-lg-0" id="order-cart">
+
+                {% partial 'checkout/order-cart' cart=cart %}
+
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    <!-- End Checkout Section -->
+
+</main>
+
+{% partial 'checkout/scripts_navigation' %}

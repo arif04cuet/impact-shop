@@ -1,0 +1,141 @@
+title = "Opleidingscategorie"
+url = "/opleidingen/:slug*"
+layout = "layout_cms"
+is_hidden = 0
+
+[products]
+category = ":slug"
+filterComponent = "productsFilter"
+setPageTitle = 1
+includeVariants = 1
+includeChildren = 1
+perPage = 9
+paginate = 1
+==
+{% set category = products.category %}
+{% set blok =
+    {
+        'title'        : category.name,
+        'subtitle'     : category.description_short,
+        'expertbox'     : true,
+        'image'         : 'img2.jpg'
+    }
+%}
+{% partial 'blocks/hero_01' block=blok %}
+<main id="content" role="main">
+
+
+    <!-- Products & Filters Section -->
+    <div class="container space-top-1 space-top-md-2 space-bottom-2 space-bottom-lg-2">
+
+
+        <div class="row">
+            <div class="col-md-6 mb-5 mb-md-0">
+                <div class="pr-lg-4">
+                    <div>{{ category.description|raw}}</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-5 mb-md-0">
+                <div>{{ category.second_description|raw}}</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Products & Filters Section -->
+
+
+    <!-- Popular Categories Section -->
+    <div class="space-2"
+        style="background: url({{'assets/svg/components/abstract-shapes-9.svg'|theme}}) center no-repeat;">
+        <div class="position-relative">
+            <div class="container space-2">
+                <!-- Title -->
+                <div class="row align-items-md-center mb-7">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h2>Bekijk de opleidingen voor <br>{{ category.name}}</h2>
+                    </div>
+
+                    <div class="col-md-6 text-right">
+                        <a class="font-weight-bold" href="/opleidingen">Bekijk alle opleidingen <i
+                                class="fa fa-angle-right fa-sm ml-1"></i></a>
+                    </div>
+                </div>
+                <!-- End Title -->
+
+                {% if products.items.count %}
+                <div class="js-slick-carousel slick slick-equal-height slick-gutters-3 slick-center-mode-right slick-center-mode-right-offset"
+                    data-hs-slick-carousel-options='{
+             "prevArrow": "<span class=\"fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left slick-arrow-centered-y shadow-soft rounded-circle ml-sm-n2\"></span>",
+             "nextArrow": "<span class=\"fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right slick-arrow-centered-y shadow-soft rounded-circle mr-sm-2 mr-xl-4\"></span>",
+             "slidesToShow": 4,
+             "infinite": true,
+             "responsive": [{
+               "breakpoint": 1200,
+                 "settings": {
+                   "slidesToShow": 3
+                 }
+               }, {
+               "breakpoint": 992,
+                 "settings": {
+                   "slidesToShow": 4
+                 }
+               }, {
+               "breakpoint": 768,
+               "settings": {
+                 "slidesToShow": 2
+               }
+               }, {
+               "breakpoint": 554,
+               "settings": {
+                 "slidesToShow": 1
+               }
+             }]
+           }'>
+
+                    {% for product in products.items %}
+                    <!-- Article -->
+                    <article class="js-slide pt-2 ">
+                        <a class="card bg-primary w-100 min-h-270rem transition-3d-hover gradient-y-overlay-impact3"
+                            href="{{ productPage|page({slug: product.slug, variant: product.variantHashId}) }}"
+                            style="background-image: url('{{ product.image.thumb(400,auto) }}'); background-size:cover;">
+                            <div class="card-body">
+                                <h3 class="text-white">{{ product.name }}</h3>
+                            </div>
+                            <div class="card-footer border-0 bg-transparent pt-0">
+                                <span class="text-white font-size-1 font-weight-bold"><i
+                                        class="fa fa-chevron-right"></i> Meer info</span>
+                            </div>
+                        </a>
+                    </article>
+                    <!-- End Article -->
+                    {% endfor %}
+
+                </div>
+                {% else %}
+                <div>
+                    {{ 'offline.mall::frontend.category.empty' | trans }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="w-100 w-md-65 bg-light position-absolute top-0 right-0 bottom-0 rounded-left z-index-n1"></div>
+        </div>
+    </div>
+    <!-- End Popular Categories Section -->
+</main>
+
+
+{% set blok =
+{
+'title1'        : 'Altijd een examenlocatie bij jou in de buurt.',
+'title2'        : 'Al meer dan <span class="text-dark font-weight-bold">2.000</span> professionals gingen je voor.',
+'title3'        : 'Optimale voorbereiding die naadloos aansluit op het examen.',
+'bg_white'      : true
+}
+%}
+<div class="space-2">
+    {% partial 'blocks/stats_01' block=blok %}
+</div>
+
+{% partial 'blocks/contact_01.htm' %}

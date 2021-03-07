@@ -1,0 +1,39 @@
+description = "Referentie groot"
+
+[viewBag]
+==
+<!-- Testimonials Section -->
+<div class="overflow-hidden space-3">
+    <div class="container">
+        <div class="position-relative">
+
+            <div class="bg-light text-center rounded p-4 p-md-7">
+                <div class="mb-4" data-aos="fade-up">
+                    <img class="max-w-15rem max-w-33rem mx-auto" src="{{'assets/svg/clients-logo/vanbruggen-original.svg'|theme}}" alt="SVG Logo">
+                </div>
+
+                <!-- Blockquote -->
+                <div class="mx-md-auto mb-6" data-aos="fade-up" data-aos-delay="150">
+                    {{ref_big_quote|raw}}
+                </div>
+                <!-- End Blockquote -->
+
+                <!-- Reviewer -->
+                <div class="w-lg-50 mx-lg-auto" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="mb-0">{{ref_big_name}}</h4>
+                    <small>{{ref_big_title}}</small>
+                </div>
+                <!-- End Reviewer -->
+            </div>
+
+            <!-- SVG Element -->
+            <figure class="max-w-15rem w-100 position-absolute bottom-0 left-0">
+                <div class="mb-n7 ml-n7">
+                    <img class="img-fluid" src="{{'assets/svg/components/dots-1.svg'|theme}}" alt="Image Description">
+                </div>
+            </figure>
+            <!-- End SVG Element -->
+        </div>
+    </div>
+</div>
+<!-- End Testimonials Section -->

@@ -1,0 +1,668 @@
+title = "Checkout Html"
+url = "/checkout_html"
+layout = "layout_cms"
+is_hidden = 0
+==
+<main id="content" role="main" class="bg-light space-2">
+
+    <!-- Checkout Section -->
+    <div class="container">
+        <div class="row" id="stepsProcess">
+            <div class="col-lg-12">
+                <!-- Step -->
+                <ul id="defaultStep" class="step step-xl step-inline small mb-4">
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Cart</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-primary text-white">2</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-primary">Details</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon border text-muted">3</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Payment</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon border text-muted">4</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Finish</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- End Step -->
+                <!-- Step -->
+                <ul id="paymentStep" class="step step-xl step-inline small mb-4">
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Finish</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Details</span>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-primary text-white">3</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-primary">Payment</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon border text-muted">4</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Finish</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- End Step -->
+            </div>
+            <div class="col-lg-8">
+
+                <!--- Inloggen -->
+
+
+
+                <div class="card p-5 mb-4 login-choices">
+
+                    <h3>Login</h3>
+                    <p class="text-muted small">Log in to complete your order. The information known to us has already
+                        been entered for you.</p>
+                    <!-- Input Group -->
+                    <div class="js-form-message mb-2">
+                        <div class="input-group mb-2">
+                            <input type="email" class="form-control" name="email" id="signinEmail"
+                                placeholder="E-mail address" aria-label="Email" required
+                                data-msg="Please enter a valid email address.">
+                        </div>
+                    </div>
+                    <!-- End Input Group -->
+
+                    <!-- Input Group -->
+                    <div class="js-form-message mb-2">
+                        <div class="input-group  mb-2">
+                            <input type="password" class="form-control" name="password" id="signinPassword"
+                                placeholder="Password" aria-label="Password" required
+                                data-msg="Your password is invalid. Please try again.">
+                        </div>
+                    </div>
+                    <!-- End Input Group -->
+
+                    <button type="button" class="btn btn-warning transition-3d-hover w-sm-100 w-xl-30"
+                        id="btnInloggen">Login <i class="fa fa-chevron-right"></i></button>
+                </div>
+
+
+
+
+                <!-- end inloggen -->
+
+
+                <div class="card mb-5 login-choices">
+                    <div class="card-body">
+                        <h3>Sign Up</h3>
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-12">
+                                <p class="small text-muted">Create an account to complete your order. </p>
+                            </div>
+                            <div class="col-lg-4 col-sm-12">
+                                <button type="button" id="btnNewAccount"
+                                    class="btn btn-warning transition-3d-hover">Sign Up <i
+                                        class="fa fa-chevron-right"></i> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- gegevens -->
+                <div class="card" id="myAccountGegevens" style="display: none">
+                    <div class="card-body">
+                        <h3>My details</h3>
+                        <!-- Billing Form -->
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <span class="d-block small font-weight-bold text-cap mb-2 mt-4">Personal data</span>
+
+                                <span class="d-block mb-2">
+                                    Mr. T. Peters<br>
+                                </span>
+
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <span class="d-block small font-weight-bold text-cap mb-2 mt-4">Address data</span>
+
+                                <span class="d-block mb-2">
+                                    SW 8th Street 1234 <br>
+                                    2623 AX Delft<br>
+                                    jane.doe@gmail.com<br>
+                                    06-123456789
+                                </span>
+
+                                <a class="btn btn-xs btn-white" href="index.html#editAddressCard">
+                                    <i class="fas fa-pencil-alt mr-1"></i> Edit
+                                </a>
+                            </div>
+
+
+
+                            <div class="w-100"></div>
+
+
+
+                        </div>
+                        <!-- End Billing Form -->
+                    </div>
+                    <div class="card-footer bg-soft-light">
+
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-black-50"><i class="fa fa-chevron-left"></i>
+                                Previous</button>
+                            <div class="d-flex align-items-center ml-auto">
+                                <button type="button" class="btnGoBetaling btn btn-warning transition-3d-hover">Next <i
+                                        class="fa fa-chevron-right"></i> </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- gegevens -->
+
+                <!-- gegevens -->
+                <div class="card" id="myGegevens" style="display: none">
+                    <div class="card-body">
+                        <h3>Mijn gegevens</h3>
+                        <!-- Billing Form -->
+                        <span class="d-block small font-weight-bold text-cap mb-4 mt-4">Persoonsgegevens</span>
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <div class="form-check form-check-inline">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="customInlineRadio1" class="custom-control-input"
+                                            name="customInlineRadio">
+                                        <label class="custom-control-label" for="customInlineRadio1">De heer</label>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="customInlineRadio2"
+                                            class="custom-control-input indeterminate-checkbox" checked
+                                            name="customInlineRadio">
+                                        <label class="custom-control-label" for="customInlineRadio2">Mevrouw</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="tussenvogesel" placeholder="Initials"
+                                        aria-label="Jack" required data-msg="Please enter your frist name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-8 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="lastName" placeholder="First name"
+                                        aria-label="Wayley" required data-msg="Please enter your last name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-4 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="tussenvogesel"
+                                        placeholder="Surname Prefix" aria-label="Jack" required
+                                        data-msg="Please enter your frist name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-8 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="lastName" placeholder="Surname"
+                                        aria-label="Wayley" required data-msg="Please enter your last name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="w-100"></div>
+
+
+                            <div class="col-md-12 mb-2 mt-4">
+                                <span class="d-block small font-weight-bold text-cap mb-4">Contact Details</span>
+
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="streetAddress"
+                                        placeholder="Street and housenumber" aria-label="470 Lucy Forks" required
+                                        data-msg="Please enter a valid address.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="postcode" placeholder="Zip Code"
+                                        aria-label="99999" required data-msg="Please enter a postcode or zip code.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="cityAddress" placeholder="City"
+                                        aria-label="London" required data-msg="Please enter a valid address.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="email" class="form-control" name="emailAddress"
+                                        placeholder="E-mail address" aria-label="" required
+                                        data-msg="Please enter a valid email address.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" placeholder="Phone (optional)"
+                                        aria-label="+1 (062) 109-9222" data-msg="Please enter your last name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                        </div>
+                        <!-- End Billing Form -->
+                    </div>
+                    <div class="card-footer bg-soft-light">
+
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-black-50"><i class="fa fa-chevron-left"></i>
+                                Previous</button>
+                            <div class="d-flex align-items-center ml-auto">
+                                <button type="button" class="btnGoBetaling btn btn-warning transition-3d-hover">Next <i
+                                        class="fa fa-chevron-right"></i> </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- gegevens -->
+
+                <!-- step betaling -->
+                <div class="card" id="myBetaling" style="display: none">
+                    <div class="card-body">
+                        <h3>Payment details</h3>
+                        <!-- Billing Form -->
+                        <span class="d-block small font-weight-bold text-cap  mb-1 mt-4">Who pays the invoice?</span>
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <div class="form-check form-check-inline">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="factuur1" class="custom-control-input" name="wiebetaalt"
+                                            checked>
+                                        <label class="custom-control-label" for="factuur1">Myself</label>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="factuur2" class="custom-control-input"
+                                            name="wiebetaalt">
+                                        <label class="custom-control-label" for="factuur2">My employer</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mb-2 mt-4 showbedrijf">
+                                <span class="d-block small font-weight-bold text-cap mb-1">Company information</span>
+
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="tussenvogesel"
+                                        placeholder="Company Name" aria-label="Jack" required
+                                        data-msg="Please enter your frist name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-12 mb-2 showbedrijf">
+
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="streetAddress"
+                                        placeholder="Street and house number" aria-label="470 Lucy Forks" required
+                                        data-msg="Please enter a valid address.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-6 mb-2 showbedrijf">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="postcode" placeholder="Zip Code"
+                                        aria-label="99999" required data-msg="Please enter a postcode or zip code.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-6 mb-2 showbedrijf">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="cityAddress" placeholder="City"
+                                        aria-label="London" required data-msg="Please enter a valid address.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-12 mb-2 showbedrijf">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="email" class="form-control" name="emailAddress"
+                                        placeholder="Invoice email" aria-label="" required
+                                        data-msg="Please enter a valid email address.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+                            <div class="col-md-12 mb-1 showbedrijf">
+                                <!-- Input -->
+                                <div class="js-form-message">
+                                    <input type="text" class="form-control" name="lastName"
+                                        placeholder="Invoice department" aria-label="Wayley" required
+                                        data-msg="Please enter your last name.">
+                                </div>
+                                <!-- End Input -->
+                            </div>
+
+                            <div class="col-md-12 mb-1 mt-4">
+                                <span class="d-block small font-weight-bold text-cap mb-1">Payment Method</span>
+
+
+                                <!-- Pricing -->
+                                <div
+                                    class="custom-control custom-radio custom-control-inline checkbox-outline checkbox-icon w-100">
+                                    <input type="radio" id="pricingRadio1" name="pricingRadio1"
+                                        class="custom-control-input checkbox-outline-input checkbox-icon-input" checked>
+                                    <label class="checkbox-outline-label checkbox-icon-label w-100 rounded p-4"
+                                        for="pricingRadio1">
+                                        <span class="row">
+                                            <span class="col-sm-12 order-sm-1">
+                                                <span class="d-block h5 mb-1"><i class="fa fa-lock mr-1"></i> Online
+                                                    Payment </span>
+                                                <span class="d-block small">You will be redirected to the Mollie secure
+                                                    payment environment.</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <!-- End Pricing -->
+
+                                <!-- Pricing -->
+                                <div
+                                    class="custom-control custom-radio custom-control-inline checkbox-outline checkbox-icon w-100">
+                                    <input type="radio" id="pricingRadio2" name="pricingRadio1"
+                                        class="custom-control-input checkbox-outline-input checkbox-icon-input">
+                                    <label class="checkbox-outline-label checkbox-icon-label w-100 rounded p-4"
+                                        for="pricingRadio2">
+                                        <span class="row">
+                                            <span class="col-sm-12 order-sm-1">
+                                                <span class="d-block h5 mb-1"><i class="fa fa-envelope mr-1"></i> On
+                                                    account</span>
+                                                <span class="d-block small">Your employer will receive an invoice by
+                                                    e-mail</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <!-- End Pricing -->
+
+                            </div>
+
+
+                            <div class="col-12">
+                                <div class="bg-light p-2 pl-4 rounded">
+                                    <!-- Checkbox -->
+                                    <div class="js-form-message">
+                                        <div
+                                            class="custom-control custom-checkbox d-flex align-items-center text-muted">
+                                            <input type="checkbox" class="custom-control-input" id="termsCheckbox"
+                                                name="termsCheckbox" required
+                                                data-msg="Please accept our Terms and Conditions.">
+                                            <label class="custom-control-label" for="termsCheckbox">
+                                                <small>
+                                                    I agree with the Terms and Conditions
+                                                </small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- End Checkbox -->
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!-- End Billing Form -->
+                    </div>
+                    <div class="card-footer bg-soft-light">
+
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-link text-black-50"><i class="fa fa-chevron-left"></i>
+                                Previous</button>
+                            <div class="d-flex align-items-center ml-auto">
+                                <button type="button" id="btnFinishOrder"
+                                    class="btn btn-warning transition-3d-hover">Confirm Order <i
+                                        class="fa fa-chevron-right"></i> </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end step betaling -->
+
+
+            </div>
+            <div class="col-lg-4 order-lg-2 mb-7 mb-lg-0">
+                <div class="pl-lg-4">
+                    <!-- Order Summary -->
+                    <div class="card shadow-soft p-4 mb-4">
+                        <!-- Title -->
+                        <div class="border-bottom pb-4 mb-4">
+                            <h2 class="h3 mb-0">My order</h2>
+                        </div>
+                        <!-- End Title -->
+
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="d-block text-dark font-weight-normal line-height-0">My Awesome Product
+                                        Title</span>
+                                </div>
+                                <span class="d-block text-black font-weight-bold">&euro; 199,00</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="d-block text-dark font-weight-normal line-height-0">My Awesome Product
+                                        Title</span>
+                                </div>
+                                <span class="d-block text-black font-weight-bold">&euro; 59,00</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="media">
+                            <div class="media-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="d-block text-dark font-weight-normal line-height-0">My Awesome Product
+                                        Title </span>
+                                </div>
+                                <span class="d-block text-black font-weight-bold">&euro; 325,00</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- Fees -->
+                        <div class="media align-items-center">
+                            <span class="d-block font-size-1 mr-3">Discount</span>
+                            <div class="media-body text-right">
+                                <span>&euro; 0,00</span>
+                            </div>
+                        </div>
+                        <!-- End Fees -->
+                        <!-- Total -->
+                        <div>
+                            <div class="media align-items-center">
+                                <span class="d-block font-size-1 mr-3">Total</span>
+                                <div class="media-body text-right">
+                                    <span class="d-block text-black font-weight-bold">&euro; 583,00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Total -->
+                    </div>
+                    <!-- End Order Summary -->
+
+                    <!-- Accordion -->
+                    <div id="shopCartAccordion" class="accordion card shadow-soft mb-4">
+                        <!-- Card -->
+                        <div class="card rounded">
+                            <div class="card-header card-collapse" id="shopCartHeadingOneExample1">
+                                <h3 class="mb-0">
+                                    <a class="btn btn-link btn-block card-btn font-weight-bold collapsed"
+                                        href="javascript:;" role="button" data-toggle="collapse"
+                                        data-target="#shopCartOneExample1" aria-expanded="false"
+                                        aria-controls="shopCartOneExample1">
+                                        Have a coupon?
+                                        <i class="far fa-question-circle text-body ml-1" data-container="body"
+                                            data-toggle="popover" data-placement="top" data-trigger="hover"
+                                            title="Promo code"
+                                            data-content="Valid on full priced items only. Some products maybe excluded."></i>
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="shopCartOneExample1" class="collapse" aria-labelledby="shopCartHeadingOneExample1"
+                                data-parent="#shopCartAccordion">
+                                <form class="js-validate p-4">
+                                    <div class="input-group input-group-pill mb-3">
+                                        <input type="text" class="form-control" name="name" placeholder="Coupon"
+                                            aria-label="Promo code">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-block btn-primary btn-pill"><i
+                                                    class="fa fa-chevron-right mr-2 ml-2"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <!-- End Accordion -->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="myFinish" style="display: none">
+            <div class="col-lg-12">
+                <!-- Step -->
+                <ul class="step step-xl step-inline small mb-4">
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Cart</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Details</span>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-secondary text-white"><i class="fa fa-check"></i> </span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-muted font-weight-normal">Payment</span>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="step-item">
+                        <div class="step-content-wrapper">
+                            <span class="step-icon step-icon-primary text-white">4</span>
+                            <div class="step-content">
+                                <span class="step-inline-title text-primary">Finish</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- End Step -->
+
+                <!-- Order Completed -->
+                <div class="card mb-10 mt-10">
+                    <div class="w-md-100 w-lg-80 text-center mx-md-auto p-10">
+                        <i class="fas fa-check-circle text-success fa-5x mb-3"></i>
+                        <div class="mb-5">
+                            <h1 class="h2">Thanks for your order</h1>
+                            <p>Thank you for your confidence in Impact. Your order is in our system and your payment has
+                                been received by us. We will process your order as soon as possible. Do you have any
+                                questions in the meantime? Then you can always contact us.</p>
+                        </div>
+                        <a class="btn btn-primary btn-pill transition-3d-hover px-5" href="index.html">Back to Home</a>
+                    </div>
+                </div>
+
+
+
+                <!-- End Order Completed -->
+            </div>
+        </div>
+    </div>
+    <!-- End Checkout Section -->
+
+</main>

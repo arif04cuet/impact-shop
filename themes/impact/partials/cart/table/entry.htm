@@ -1,0 +1,21 @@
+{% set url = (productPage | page({slug: product.data.slug, variant: product.variant.hashId})) %}
+{% set image = product.variant ? product.variant.image : product.data.image %}
+{% set explain = (product.item.getPropertyValueBySlug('price-explain').value ) %}
+<div class="media">
+    <div class="media-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <span class="d-block text-dark font-weight-normal line-height-0">
+                {{ product.variant.name ?: product.data.name }}</span>
+        </div>
+        <span class="d-block text-black font-weight-bold">{{ product.price() | raw }}</span>
+							<p class="text-muted small">
+			{% if explain is empty %}
+			vrijgesteld van btw
+			{% else %}
+			{{ explain | nl2br }}
+			{% endif %}
+			</p>
+    </div>
+</div>
+
+<hr>

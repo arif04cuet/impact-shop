@@ -1,0 +1,44 @@
+description = "Stats 01"
+
+[viewBag]
+==
+<!-- Stats Section -->
+    <div class="{% if block.bg_white %}bg-white{%else%}bg-light{%endif%}">
+        <div class="container space-1">
+            <div class="row justify-content-lg-center">
+                <div class="col-md-4 mb-7 mb-lg-0">
+                    <!-- Stats -->
+                    <div class="text-center px-md-3 px-lg-7">
+                        <figure class="mb-3">
+                            <i class="fi fi-lg flaticon-building"></i>
+                        </figure>
+                        <span class="mb-0">{{block.title1|raw}}</span>
+                    </div>
+                    <!-- End Stats -->
+                </div>
+
+                <div class="col-md-4 mb-7 mb-lg-0">
+                    <!-- Stats -->
+                    <div class="text-center column-divider-md column-divider-20deg px-md-3 px-lg-7">
+                        <figure class="mb-3">
+                            <i class="fi fi-lg flaticon-employees"></i>
+                        </figure>
+                        <span class=" mb-0">{{block.title2|raw}}</span>
+                    </div>
+                    <!-- End Stats -->
+                </div>
+
+                <div class="col-md-4">
+                    <!-- Stats -->
+                    <div class="text-center column-divider-md column-divider-20deg px-md-3 px-lg-7">
+                        <figure class="mb-3">
+                            <i class="fi fi-lg flaticon-test"></i>
+                        </figure>
+                        <span class="mb-0">{{block.title3|raw}}</span>
+                    </div>
+                    <!-- End Stats -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Stats Section -->

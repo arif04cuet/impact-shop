@@ -1,0 +1,35 @@
+description = "Articles 01"
+
+[viewBag]
+==
+<!-- Articles Section -->
+{% if block.tiles|length > 0 %}
+<div class="container space-3">
+    <div class="row mx-n2 mx-lg-n3">
+        {% for article in block.tiles %}
+        <div class="col-sm-6 col-lg-4 px-2 px-lg-3 mb-3 mb-lg-0">
+            <!-- Card -->
+            <a class="card bg-primary text-left h-100 transition-3d-hover" href="{{article.button_url}}"{% if article.button_target%} target="_blank"{%endif%}>
+                <div class="card-body">
+                    <h3 class="text-white">{{article.title}}</h3>
+                    <p class="text-white">{{article.text}}</p>
+                    
+                    {% if article.items|length > 0 %}
+                    <ul class="list-unstyled text-white">
+                        {% for item in article.items %}
+                        <li><i class="fas fa-check-circle mt-1 mr-2 text-white-50"></i> {{item.item}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="card-footer border-0 bg-transparent pt-0">
+                    <span class="font-size-1 text-white font-weight-bold">{{article.button}} <i class="fas fa-angle-right fa-sm ml-1"></i></span>
+                </div>
+            </a>
+            <!-- End Card -->
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<!-- End Articles Section -->

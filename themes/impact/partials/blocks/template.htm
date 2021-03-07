@@ -1,0 +1,12 @@
+description = "Template loader"
+
+[viewBag]
+==
+{% if block.content %}
+    {% set loadPartial = 'features/' ~ block.content %}
+    {% if partial(loadPartial) %}
+        {% partial loadPartial %}
+    {% else %}
+        <code>Partial not found</code>
+    {% endif %}
+{% endif %}

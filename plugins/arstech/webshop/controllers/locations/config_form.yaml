@@ -1,0 +1,10 @@
+name: Locations
+form: $/arstech/webshop/models/location/fields.yaml
+modelClass: Arstech\Webshop\Models\Location
+defaultRedirect: arstech/webshop/locations
+create:
+    redirect: 'arstech/webshop/locations/update/:id'
+    redirectClose: arstech/webshop/locations
+update:
+    redirect: arstech/webshop/locations
+    redirectClose: arstech/webshop/locations

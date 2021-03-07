@@ -1,0 +1,11 @@
+fields:
+    name:
+        label: 'Naam afdeling'
+        span: auto
+        type: text
+    is_active:
+        label: Actief
+        span: auto
+        default: 1
+        type: switch
+        comment: 'Deze afdeling is zichtbaar'

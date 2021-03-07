@@ -1,0 +1,54 @@
+fields:
+    location:
+        label: Location
+        nameFrom: title
+        descriptionFrom: description
+        span: full
+        required: 1
+        type: relation
+    is_fully_booked:
+        label: 'Volgeboekt'
+        span: full
+        type: switch
+        on: Ja
+        off: Nee
+    max_participants:
+        label: 'arstech.webshop::lang.max_participants'
+        span: full
+        required: 1
+        default: '0'
+        trigger:
+            action: hide
+            field: is_fully_booked
+            condition: checked
+        type: number
+    dates:
+        label: 'arstech.webshop::lang.schedule_dates'
+        prompt: 'Nieuwe datum'
+        span: full
+        type: repeater
+        form:
+            fields:
+                start_date:
+                    label: 'arstech.webshop::lang.start_date'
+                    mode: date
+                    span: full
+                    required: 1
+                    type: datepicker
+                start_time:
+                    label: 'arstech.webshop::lang.start_time'
+                    mode: time
+                    span: auto
+                    required: 1
+                    type: datepicker
+                end_time:
+                    label: 'arstech.webshop::lang.end_time'
+                    mode: time
+                    span: auto
+                    required: 1
+                    type: datepicker
+                instructor:
+                    label: 'arstech.webshop::lang.instructor'
+                    span: auto
+                    showSearch: true
+                    type: dropdown

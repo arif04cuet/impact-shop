@@ -1,0 +1,13 @@
+static-pages:
+    main: {  }
+    examens: {  }
+    digitale-leeromgeving: {  }
+    organisaties:
+        organisaties-examinatie-op-locatie: {  }
+        organisaties-voortgangsinformatie: {  }
+        organisaties-incompany: {  }
+        organisaties-audits: {  }
+        organisaties-maatwerk: {  }
+    contact: {  }
+    algemene-voorwaarden: {  }
+    over-impact: {  }

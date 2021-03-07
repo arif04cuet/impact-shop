@@ -1,0 +1,5 @@
+title: Rangschikken
+modelClass: Mmid\Team\Models\Division
+#nameFrom: title
+toolbar:
+    buttons: reorder_toolbar

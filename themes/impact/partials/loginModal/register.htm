@@ -1,0 +1,61 @@
+{% if canRegister %}
+<div class="text-center mb-7">
+    <h3 class="mb-0">Registreren</h3>
+    <p>Nieuw bij Impact? Vul hieronder je gegevens in.</p>
+</div>
+
+<form data-request="onRegister" method="POST" accept-charset="UTF-8" data-request-flash data-request-validate>
+    {{form_token()}}
+    {{form_sessionKey()}}
+
+    <div class="form-group input-group-sm mb-2">
+        <input name="initials" type="text" class="form-control" id="registerName" placeholder="Voorletter(s)" />
+        <span data-validate-for="initials" class="text-danger"></span>
+    </div>
+
+    <div class="form-group input-group-sm mb-2">
+        <input name="name" type="text" class="form-control" id="name" placeholder="Voornaam" />
+        <span data-validate-for="name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group input-group-sm mb-2">
+        <input name="infix" type="text" class="form-control" id="infix" placeholder="Tussenvoegsel(s)" />
+        <span data-validate-for="infix" class="text-danger"></span>
+    </div>
+
+    <div class="form-group input-group-sm mb-2">
+        <input name="surname" type="text" class="form-control" id="surname" placeholder="Achternaam" />
+        <span data-validate-for="surname" class="text-danger"></span>
+    </div>
+
+    <div class="form-group input-group-sm mb-2">
+        <input name="email" type="email" class="form-control" id="registerEmail" placeholder="E-mail adres" />
+        <span data-validate-for="email" class="text-danger"></span>
+    </div>
+
+    {% if loginAttribute == "username" %}
+    <div class="form-group input-group-sm mb-2">
+        <input name="username" type="text" class="form-control" id="registerUsername" placeholder="Username" />
+        <span data-validate-for="username" class="text-danger"></span>
+    </div>
+    {% endif %}
+
+    <div class="form-group input-group-sm mb-2">
+        <input name="password" type="password" class="form-control" id="registerPassword" placeholder="Wachtwoord" />
+        <span data-validate-for="password" class="text-danger"></span>
+    </div>
+    <div class="form-group input-group-sm mb-2">
+        <input name="password_confirmation" type="password" class="form-control" id="password_confirmation"
+            placeholder="Confirm Password" />
+        <span data-validate-for="password_confirmation" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <button data-attach-loading type="submit" class="btn btn-sm btn-primary btn-block">Registreren</button>
+    </div>
+
+    {{ form_close() }}
+    {% else %}
+    <!-- Registration is disabled. -->
+    {% endif %}

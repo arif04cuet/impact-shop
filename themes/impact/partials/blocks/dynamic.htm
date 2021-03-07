@@ -1,0 +1,10 @@
+description = "Dynamic content loader"
+
+[viewBag]
+==
+{% if block.content %}
+    {% set loadContent =  block.content %}    
+    {% filter parseSnippets %}
+        {% content loadContent %}
+    {% endfilter %}
+{% endif %}

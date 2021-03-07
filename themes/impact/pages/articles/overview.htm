@@ -1,0 +1,128 @@
+title = "Artikel overzicht"
+url = "/artikelen/:slug?"
+layout = "layout_cms"
+is_hidden = 0
+
+[ArticleList]
+sorting = "publish|desc"
+
+[ArticleCategoryList]
+==
+<?php
+use Lovata\GoodNews\Models\Category;
+
+function onStart(){
+    $slug = $this->param('slug');
+    
+    if(!empty($slug)){
+        $model = Category::where('slug', $slug)->first();
+        
+        if($model){
+            $this['categoryId'] = $model->id;
+            $this['categoryName'] = $model->name;
+        }
+    }
+}
+?>
+==
+{% set obCategoryList = ArticleCategoryList.make().tree() %}
+<div class="gradient-y-overlay-impact bg-img-hero" style="background-image: url({{'assets/img/1920x1080/img20.jpg'|theme}});">
+    <div class="container space-1">
+        <div class="row align-items-center">
+            <div class="col">
+                <div class="d-none d-lg-block">
+                    <h1 class="font-size-4 text-white mb-0">Nieuwsberichten</h1>
+                </div>
+
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+                    <li class="breadcrumb-item"><a href="/"  class="link-underline-light">Home</a></li>
+                    {% if categoryId is not empty %}
+                    <li class="breadcrumb-item" aria-current="page"><a href="/artikelen" class="link-underline-light">Nieuws</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{categoryName}}</li>
+                    {% else %}
+                    <li class="breadcrumb-item active" aria-current="page">Nieuws</li>
+                    {% endif %}
+                </ol>
+                <!-- End Breadcrumb -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Section -->
+
+
+<!-- ========== MAIN ========== -->
+<main id="content" role="main" class="bg-light space-1">
+
+    <!-- Blogs Section -->
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-12 text-center mb-6">
+                
+                <ul class="nav nav-segment nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link {% if categoryId is empty %}active{%endif%}" href="/artikelen">Alle berichten</a>
+                    </li>
+                    {% if obCategoryList.isNotEmpty() %}
+                    {% for obCategory in obCategoryList %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if obCategory.id == categoryId %}active{%endif%}" href="/artikelen/{{ obCategory.slug }}">{{ obCategory.name }}</a>
+                        </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        
+    {% if categoryId is empty %}
+        {% set obArticleList = ArticleList.make().sort('publish|desc').published() %}
+    {% else %}
+        {% set obArticleList = ArticleList.make().category(categoryId).sort('publish|desc').published() %}
+    {% endif %}
+    {% if obArticleList.isNotEmpty() %}
+        <div class="row">
+            {% for obArticle in obArticleList%}
+            <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8">
+                <!-- Blog Card -->
+                <article class="card h-100 news-card">
+                    <div class="card-img-top position-relative">
+                        {% if obArticle.preview_image is not empty %}
+                        <a href="/artikel/{{ obArticle.category.slug }}/{{ obArticle.slug }}"><img src="{{ obArticle.preview_image.path }}" alt="{{ obArticle.preview_image.description }}" class="card-img-top" style="max-height:190px"></a>
+                        {% endif %}
+                        <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+                                <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"/>
+                            </svg>
+                        </figure>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-4">
+                            <div>
+                                <a href="/artikel/{{ obArticle.category.slug }}" class="badge badge-warning text-white py-2 px-3">{{ obArticle.category.name }}</a>
+                            </div>
+                            <div class="d-flex align-items-center ml-auto">
+                                <div class="small text-muted">
+                                    {{ obArticle.published_start|localizeddate('long', 'none', 'nl_NL') }}
+                                </div>
+                            </div>
+                        </div>
+                        <h3><a class="text-inherit text-brown" href="/artikel/{{ obArticle.category.slug }}/{{ obArticle.slug }}">{{ obArticle.title }}</a></h3>
+
+                    </div>
+
+                </article>
+                <!-- End Blog Card -->
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+
+    </div>
+    <!-- End Blogs Section -->
+
+</main>
+<!-- ========== END MAIN ========== -->

@@ -1,0 +1,11 @@
+name: Afdeling
+modelClass: Mmid\Team\Models\Division
+form: $/mmid/team/models/division/fields.yaml
+defaultRedirect: mmid/team/divisions
+create:
+    redirect: 'mmid/team/divisions/update/:id'
+    redirectClose: mmid/team/divisions
+update:
+    redirect: mmid/team/divisions
+    redirectClose: mmid/team/divisions
+preview: {  }

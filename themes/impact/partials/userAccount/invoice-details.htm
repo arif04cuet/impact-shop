@@ -1,0 +1,96 @@
+<form data-request="onUpdateInvoiceDetails" method="POST" accept-charset="UTF-8" data-request-flash
+    data-request-validate>
+    {{form_token()}}
+    {{form_sessionKey()}}
+
+    <div id="editAddressCard" class="card mb-3 mb-lg-5">
+        <div class="card-header">
+            <h5 class="card-title">Factuurgegevens</h5>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="company" class="col-sm-3 col-form-label input-label">Bedrijfsnaam</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="company" id="company" placeholder="Bedrijfsnaam"
+                        aria-label="Your address" value="{{user.profile.company}}">
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="department" class="col-sm-3 col-form-label input-label">Afdeling</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="department" id="department" placeholder="Ter attentie van (afdeling of betalingsplichtige)"
+                        aria-label="Your address" value="{{user.profile.department}}">
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="company_address" class="col-sm-3 col-form-label input-label">Straat en huisnummer</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="address" id="company_address"
+                        placeholder="Street and number" aria-label="Straat en huisnummer" value="{{user.profile.address}}">
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="zipCodeLabel" class="col-sm-3 col-form-label input-label">Postcode en plaats</label>
+
+                <div class="col-sm-3">
+                    <input type="text" class="js-masked-input form-control" name="zip" id="zipCodeLabel"
+                        placeholder="Postcode" aria-label="Your zip code" value="{{user.profile.zip}}"
+                        data-hs-mask-options='{
+                         "template": "0000 AA"
+                       }'>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="city" id="firstNameLabel" placeholder="Plaats"
+                            aria-label="Clarice" value="{{user.profile.city}}">
+                    </div>
+                </div>
+            </div>
+            <!-- End Form Group -->
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="invoice_email" class="col-sm-3 col-form-label input-label">E-mail adres
+                    facturatie</label>
+
+                <div class="col-sm-9">
+                    <input type="email" value="{{user.profile.invoice_email}}" class="form-control" name="invoice_email"
+                        id="invoice_email" placeholder="E-mail adres facturatie" aria-label="">
+                    <div><span class="text-danger" data-validate-for="email"></span></div>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+        </div>
+        <!-- End Body -->
+
+        <!-- Footer -->
+        <div class="card-footer d-flex justify-content-end">
+            <a class="btn btn-white" href="javascript:;">Annuleren</a>
+            <span class="mx-2"></span>
+
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+        </div>
+        <!-- End Footer -->
+    </div>
+
+</form>

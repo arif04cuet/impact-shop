@@ -1,0 +1,82 @@
+<!-- Login -->
+<div id="login">
+
+    <!-- Title -->
+    <div class="text-center mb-4">
+        <h3 class="mb-0">Inloggen bij Impact</h3>
+    </div>
+    <!-- End Title -->
+
+
+    <form data-request="onSignin" method="POST" accept-charset="UTF-8" data-request-flash data-request-validate>
+        {{form_token()}}
+        {{form_sessionKey()}}
+
+        <div class="form-group input-group-sm">
+
+            <input name="login" type="email" class="form-control" id="userSigninLogin"
+                placeholder="Vul je e-mailadres in" required />
+            <span data-validate-for="login" class="text-danger"></span>
+        </div>
+
+        <div class="form-group input-group-sm">
+
+            <input name="password" type="password" class="form-control" id="userSigninPassword"
+                placeholder="Vul je wachtwoord in" required />
+            <span data-validate-for="password" class="text-danger"></span>
+        </div>
+
+        {% if rememberLoginMode == 'ask' %}
+        <div class="form-group">
+            <div class="checkbox">
+                <label><input name="remember" type="checkbox" value="1">Blijf ingelogd</label>
+            </div>
+        </div>
+        {% endif %}
+
+
+        <div class="mb-3">
+            <button data-attach-loading class="btn btn-sm btn-primary btn-block">Inloggen</button>
+        </div>
+
+        {{ form_close() }}
+
+
+
+        <div class="d-flex justify-content-end mb-4">
+            <a class="js-animation-link small link-underline" href="javascript:;" data-hs-show-animation-options='{
+                     "targetSelector": "#forgotPassword",
+                     "groupName": "idForm"
+                   }'>Wachtwoord vergeten?</a>
+        </div>
+
+
+        <div class="text-center">
+            <span class="small text-muted">Nieuw bij Impact?</span>
+            <a class="js-animation-link small font-weight-bold" href="javascript:;" data-hs-show-animation-options='{
+                   "targetSelector": "#signup",
+                   "groupName": "idForm"
+                 }'>Registeren
+            </a>
+        </div>
+</div>
+
+
+
+
+<!-- Signup -->
+<div id="signup" style="display: none; opacity: 0;">
+
+
+    {% partial 'loginModal::register'%}
+
+    <div class="text-center">
+        <span class="small text-muted">Already registered?</span>
+        <a class="js-animation-link small font-weight-bold" href="javascript:;" data-hs-show-animation-options='{
+                   "targetSelector": "#login",
+                   "groupName": "idForm"
+                 }'>Login
+        </a>
+    </div>
+</div>
+<!-- End Signup -->

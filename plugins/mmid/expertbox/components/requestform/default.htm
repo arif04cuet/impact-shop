@@ -1,0 +1,127 @@
+<form 
+    data-request="ExpertboxRequestForm::onSubmit" 
+    data-request-validate 
+    data-request-files 
+    data-request-flash 
+    action="javascript: void(0);" method="post">
+    <div id="modalExpertbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalExpertbox" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-top-cover bg-warning text-center">
+                    <h2 class="text-white mt-4 mb-0">
+                        <i class="fa fa-comment-dots"></i> Expertbox
+                    </h2>
+                    <figure class="position-absolute right-0 left-0" style="bottom: -3px;">
+                        <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+                            <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"/>
+                        </svg>
+                    </figure>
+                    <div class="modal-close">
+                        <button type="button" class="btn btn-icon btn-sm btn-ghost-light" data-dismiss="modal" aria-label="Close">
+                            <svg width="16" height="16" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="pl-4 pr-4">
+                        <p>
+                            <strong>
+                                Hieronder kun je vaktechnische vragen en gerichte vragen over praktijkcasussen stellen.<br>We werken daarentegen geen volledige casussen uit en geven geen klantadviezen.
+                            </strong>
+                        </p>
+                        <ul class="list-unstyled">
+                            <li>
+                                <i class="fas fa-check-circle mt-2 mr-2 text-success"></i>
+                                Je ontvangt binnen 3 werkdagen een reactie van één van onze vakspecialisten
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle mt-2 mr-2 text-success"></i>
+                                De kosten bedragen € {{ fees }} incl. btw
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle mt-2 mr-2 text-success"></i>
+                                Heb je een abonnement op onze leeromgeving? Log in en stel je vraag daar voor slechts € 19,95.
+                            </li>
+                        </ul>
+                        <p class="small text-muted">
+                            <i>
+                                Expertvragen worden door Impact Opleiding & Training met de grootst mogelijke zorgvuldigheid beantwoord. Desondanks kunnen Impact Opleiding & Training en de aan haar gelieerde bedrijven op geen enkele wijze aansprakelijk worden gesteld voor eventuele onjuistheden of onvolledigheden in de beantwoording van de vragen. De adviseur blijft te allen tijde zelf verantwoordelijk voor het gegeven advies en de (financiële) gevolgen die hieruit voortvloeien.
+                            </i>
+                        </p>
+                    </div>
+                    <div class="bg-light p-4">
+                        <div class="row form-group">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input name="company" type="text" class="form-control" placeholder="Bedrijfsnaam (optioneel)">
+                                    <span data-validate-for="company" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <select name="gender" class="form-control">
+                                        <option value="M">De heer</option>
+                                        <option value="F">Mevrouw</option>
+                                    </select>
+                                </div>
+                                <span data-validate-for="gender" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input name="first_name" type="text" class="form-control" placeholder="Voornaam" aria-label="Clarice">
+                                </div>
+                                <span class="text-danger" data-validate-for="first_name"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input name="last_name" type="text" class="form-control" placeholder="Achternaam">
+                                </div>
+                                <span class="text-danger" data-validate-for="last_name"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input name="email" type="text" class="form-control" placeholder="E-mail adres" aria-label="Clarice">
+                                </div>
+                                <span class="text-danger" data-validate-for="email"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input name="phone" type="text" class="form-control" placeholder="Telefoonnummer">
+                                </div>
+                                <span class="text-danger" data-validate-for="phone"></span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <textarea name="question" class="form-control" rows="4" placeholder="Typ hier uw vraag..."></textarea>
+                                </div>
+                                <span class="text-danger" data-validate-for="question"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="custom-file mt-4">
+                                    <input name="attachment" type="file" class="custom-file-input" data-toggle="custom-file-input" id="expertbox-attachment">
+                                    <label class="custom-file-label" for="expertbox-attachment">
+                                        Bijlage (optioneel)
+                                    </label>
+                                </div>
+                                <span class="text-danger" data-validate-for="attachment"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-attach-loading>
+                        Stel mijn vraag
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

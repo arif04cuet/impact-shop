@@ -1,0 +1,11 @@
+name: Schedules
+modelClass: Arstech\Webshop\Models\Schedule
+form: $/arstech/webshop/models/schedule/fields.yaml
+defaultRedirect: arstech/webshop/schedules
+create:
+    redirect: 'arstech/webshop/schedules/update/:id'
+    redirectClose: arstech/webshop/schedules
+update:
+    redirect: arstech/webshop/schedules
+    redirectClose: arstech/webshop/schedules
+preview: {  }

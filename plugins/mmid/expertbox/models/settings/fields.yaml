@@ -1,0 +1,24 @@
+tabs:
+    fields:
+        fees:
+            label: Fees
+            span: auto
+            type: number
+            tab: Expertbox
+        description:
+            label: Mollie betaalomschrijving
+            span: auto
+            type: text
+            tab: Expertbox
+        mail_receivers:
+            label: Mail ontvangers
+            span: auto
+            type: repeater
+            prompt: Ontvanger toevoegen
+            form:
+                fields:
+                    email:
+                        label: E-mail adres
+                        span: full
+                        type: text
+            tab: Expertbox

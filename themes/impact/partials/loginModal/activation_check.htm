@@ -1,0 +1,9 @@
+{% if not user.is_activated %}
+
+    <h3>Uw account is nog niet bevestigd</h3>
+    <p>
+        U dient uw account te verifiëren, anders kan het worden verwijderd. Controleer uw e-mail om dit te verifiëren.
+        <a href="javascript:;" data-request="onSendActivationEmail">Stuur de verificatie-e-mail opnieuw</a>.
+    </p>
+
+{% endif %}

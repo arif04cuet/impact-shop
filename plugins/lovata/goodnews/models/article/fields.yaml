@@ -1,0 +1,81 @@
+fields:
+    title:
+        label: 'lovata.toolbox::lang.field.title'
+        oc.commentPosition: ''
+        span: left
+        required: 1
+        type: text
+    slug:
+        label: 'lovata.toolbox::lang.field.slug'
+        oc.commentPosition: ''
+        span: right
+        required: 1
+        preset:
+            field: title
+            type: slug
+        type: text
+tabs:
+    fields:
+        status_id:
+            label: 'lovata.toolbox::lang.field.status'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            span: left
+            type: dropdown
+        category:
+            label: 'lovata.toolbox::lang.field.category'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            oc.commentPosition: ''
+            nameFrom: name
+            descriptionFrom: description
+            span: left
+            type: relation
+            emptyOption: 'lovata.toolbox::lang.field.empty'
+        published_start:
+            label: 'lovata.goodnews::lang.field.published_start'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            oc.commentPosition: ''
+            mode: datetime
+            span: left
+            type: datepicker
+        published_stop:
+            label: 'lovata.goodnews::lang.field.published_stop'
+            tab: 'lovata.toolbox::lang.tab.settings'
+            oc.commentPosition: ''
+            mode: datetime
+            span: left
+            type: datepicker
+        preview_text:
+            label: 'lovata.toolbox::lang.field.preview_text'
+            size: large
+            oc.commentPosition: ''
+            span: full
+            type: textarea
+            tab: 'lovata.toolbox::lang.tab.description'
+        content:
+            label: 'lovata.goodnews::lang.field.content'
+            size: giant
+            oc.commentPosition: ''
+            span: full
+            type: richeditor
+            tab: 'lovata.toolbox::lang.tab.description'
+        preview_image:
+            label: 'lovata.toolbox::lang.field.preview_image'
+            oc.commentPosition: ''
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: left
+            type: fileupload
+            tab: 'lovata.toolbox::lang.tab.images'
+        images:
+            label: 'lovata.toolbox::lang.field.images'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: left
+            type: fileupload
+            tab: 'lovata.toolbox::lang.tab.images'

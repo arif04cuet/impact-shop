@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-md-7 align-items-md-center">
+
+        <div class="ml-5 mt-5 mb-5">
+
+            <div class="media mb-4">
+                <span class="icon icon-xs icon-soft-primary icon-circle mr-3">
+                    <i class="fas fa-check"></i>
+                </span>
+                <div class="media-body font-weight-bold text-dark">
+                    {{product.name}}
+                </div>
+            </div>
+			<div class="shadow-soft p-3 mb-5 bg-white rounded">
+			<table class="table small">
+			<tbody>
+            {% for date in schedule.dates %}
+			    <tr>
+				  <th{% if loop.first %} style="border:0;"{%endif%} scope="row" class="text-primary"><i class="fa fa-calendar-alt mr-2"></i> {{date.start_date|localizeddate('none', 'none', 'nl_NL',null,'d MMMM Y')}}</th>
+				  <td{% if loop.first %} style="border:0;"{%endif%}>{{schedule.dates[0].start_time|date('H:i')}} - {{schedule.dates[0].end_time|date('H:i')}}</td>
+				  <td{% if loop.first %} style="border:0;"{%endif%}>
+					  
+					  {% if schedule.findInstructor(date.instructor).image().first %}
+					  	{% set member_img = schedule.findInstructor(date.instructor).image().first.thumb(200, auto) %}
+					  {% else %}
+					  	{% set member_img = 'assets/img/others/default-person.png'|theme %}
+					  {% endif %}
+					  <span class="avatar avatar-xs avatar-circle mr-1"><img class="avatar-img" src="{{ member_img }}"></span>
+
+					  <a href="/over-impact#goteam" target="_blank" class="text-body">{{ schedule.findInstructor(date.instructor).full_name }}
+					  
+					  </td>
+				</tr>
+            {% endfor %}
+			</tbody>
+			</table>
+			</div>
+						
+
+
+            <div class="product-detail-price mt-4">
+                <span class="text-primary pl-4 pr-4">{{ product.price()}}</span>
+                <button data-attach-loading class="btn btn-primary btn-lg btn-pill pr-4" data-request="onAddToCart"
+                    data-request-update="'sidebar-cart/item-count':'#cart-item-count','product/name':'#addtocart-modal-name'"
+                    data-request-success="data.added && $.publish('mall.cart.productAdded', data)"
+                    data-request-data="product: '{{ product.productHashId }}', variant: '{{ product.variantHashId }}',schedule_id:'{{schedule.id}}'"
+                    data-request-flash class="btn btn-block btn-warning btn-lg transition-3d-hover" data-toggle="modal"
+                    data-target="#addedToCart"><i class="fas fa-cart-plus ml-0 mr-2"></i> In winkelwagen</button>
+            </div>
+        </div>
+    </div>
+
+    {% set location = schedule.location %}
+    {% if location.zipcode %}
+    {% set address = location.address ~ ',' ~ location.zipcode ~ ',' ~  location.city %}
+    <div class="col-md-5">
+        <div class="bg-white">
+            <!-- Gmap -->
+            <div>
+                <div id="mapExample1" style="height: 10rem" class="js-leaflet mb-4" data-hs-leaflet-options='{
+       "map": {
+
+         "scrollWheelZoom": false,
+         "coords": [ {{ location.latitude}}, {{ location.longitude}} ],
+         "zoom": 16
+       },
+       "marker": [
+         {
+           "coords": [  {{ location.latitude}}, {{ location.longitude}} ],
+           "icon": {
+             "iconUrl": "{{'assets/img/others/marker-icon.png'|theme}}",
+             "iconSize": [25, 41]
+           },
+           "popup": {
+             "text": "{{ location.title}}, {{ location.zipcode }} {{ location.city}}",
+             "title": "Address"
+           }
+         }
+       ]
+      }'></div>
+            </div>
+            <!-- End Gmap -->
+
+            <div class="pl-5 pr-5 pb-5">
+                <span class="font-weight-bold">{{ location.title }}</span>
+				<div class="text-muted mb-3">{{ location.address}}<br>{{ location.zipcode}} {{ location.city}}</div>
+                <a class="btn btn-sm btn-soft-secondary mr-2" href="https://www.google.com/maps/dir/?api=1&travelmode=car&destination={{address|urlencode}}"><i class="fa fa-car-side"></i> Auto</a>
+                <a class="btn btn-sm btn-soft-secondary" href="https://9292.nl/?naar={{address|urlencode}}" target="_blank"><i class="fa fa-bus"></i> OV</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>

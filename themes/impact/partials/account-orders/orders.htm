@@ -1,0 +1,21 @@
+{% if orders.count > 0 %}
+
+<ul class="list-unstyled">
+
+    {% for order in orders %}
+    {% partial 'account-orders/order' order=order %}
+    {% endfor %}
+
+</ul>
+
+{% partial 'site/pagination' paginator=orders %}
+{% else %}
+    <!-- Empty State -->
+    <div class="text-center space-1">
+        <img class="avatar avatar-xl mb-3" src="{{'assets/svg/components/empty-state-no-data.svg'|theme}}"
+             alt="Image Description">
+        <p class="card-text">Geen bestellingen gevonden</p>
+        <a class="btn btn-sm btn-white" href="/opleidingen">Bekijk onze opleidingen</a>
+    </div>
+    <!-- End Empty State -->
+{% endif %}

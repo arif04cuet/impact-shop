@@ -1,0 +1,10 @@
+<?= count($value) ? date("j F Y",strtotime($value[0]['start_date'])):'' ?>
+<br>
+
+<?php if(count($value) and isset($value[0]['start_time']))
+    echo '('.date("H:i",strtotime($value[0]['start_time']));
+?>
+
+<?php if(count($value) and isset($value[0]['end_time']))
+    echo ' - '. date("H:i",strtotime($value[0]['end_time'])).')';
+?>

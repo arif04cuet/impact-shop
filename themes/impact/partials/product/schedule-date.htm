@@ -1,0 +1,7 @@
+{% if dates|length == 1 %}
+{{dates[0].start_date|localizeddate('none', 'none', 'nl_NL', null, 'd MMMM') }}
+{% else  %}
+{{dates[0].start_date|localizeddate('none', 'none', 'nl_NL', null, 'd MMM')}}
+-
+{{dates[dates|length-1].start_date|localizeddate('none', 'none', 'nl_NL', null, 'd MMM')}}
+{% endif %}

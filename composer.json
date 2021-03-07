@@ -1,0 +1,5 @@
+{
+    "require": {
+        "rainlab/debugbar-plugin": "^3.1"
+    }
+}

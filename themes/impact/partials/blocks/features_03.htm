@@ -1,0 +1,42 @@
+description = "Features 03"
+
+[viewBag]
+==
+<!-- Features Section -->
+<div class="{% if block.bg_color %}bg-light{%endif%}">
+    <div class="container space-2">
+        <div class="row justify-content-lg-between align-items-lg-center">
+            <div class="col-lg-6 mb-9 mb-lg-0"  data-aos="fade-up">
+                <div class="mb-6">
+                    <span class="d-block small font-weight-bold text-cap mb-2">{{block.subtitle}}</span>
+                    <h2 class="mb-4 h1">{{block.title}}</h2>
+                    {{block.content|raw}}
+                </div>
+
+                <div>
+                    {% for btn in block.buttons %}
+                        {% if btn.type == 'primary' %}
+                        <a class="btn btn-primary btn-wide transition-3d-hover" href="{{btn.url}}"{% if btn.target%} target="_blank"{%endif%}>{{btn.text}}</a>
+                        {% elseif btn.type == 'link' %}
+                        <a class="btn btn-link btn-wide" href="{{btn.url}}"{% if btn.target%} target="_blank"{%endif%}>{{btn.text}} <i class="fas fa-angle-right fa-sm ml-1"></i></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="col-lg-5 ">
+
+                {% if block.content_template_right %}
+                    {% set contentRight = 'features/' ~ block.content_template_right %}
+                    {% if partial(contentRight) %}
+                        {% partial contentRight %}
+                    {% else %}
+                        <code>Partial not found</code>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Features Section -->

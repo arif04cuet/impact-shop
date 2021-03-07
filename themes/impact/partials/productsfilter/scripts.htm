@@ -1,0 +1,140 @@
+{% put scripts %}
+<script>
+    $(function () {
+
+
+        // load data on page load
+
+        $.request('onFilterUpdate', {
+            loading: $('body').find('.mall-loader').show(),
+            update: { "{{__SELF__}}::products": '#products' },
+            complete: function (response) {
+
+                $('body').find('.mall-loader').hide();
+
+                // get categories selections from url and checked box accordingly
+                if (getUrlVars()['c']) {
+                    var categories = getUrlVars()['c'].split(',')
+                    checkedCategories($propertiesForm, categories);
+                    $propertiesForm.trigger('submit');
+                }
+            },
+        })
+
+        var $propertiesForm = $('.mall-products-filter');
+        var $body = $('body');
+
+
+        $body.on('click', '.course_place,.categories,.course_points', function () {
+
+            $propertiesForm.trigger('submit');
+        });
+
+        $body.on('click', '.clear-filter', function () {
+
+            $propertiesForm.trigger('reset');
+
+            //slider reset
+            $('.mall-slider-handles')[0].noUiSlider.reset();
+            $("input[data-min='price']").removeAttr('value');
+            $("input[data-max='price']").removeAttr('value');
+            $propertiesForm.trigger('submit')
+        });
+
+        //submit search field
+
+        $body.on('search', '#search', function (e) {
+
+            $propertiesForm.trigger('submit');
+
+        });
+
+
+        $propertiesForm.on('submit', function (e) {
+            e.preventDefault();
+
+            //add search field value to form
+            $(this).append('<input type="hidden" name="q" value="' + $('#search').val() + '" />');
+
+            $.publish('mall.products.load.start')
+            $(this).request('onFilterUpdate', {
+
+                loading: $('body').find('.mall-loader').show(),
+                complete: function (response) {
+
+                    $('body').find('.mall-loader').hide();
+                },
+                error: function () {
+
+                    $.publish('mall.products.load.error')
+                }
+            });
+        });
+
+
+        $('.mall-slider-handles').each(function () {
+            var el = this;
+            noUiSlider.create(el, {
+                start: [el.dataset.start, el.dataset.end],
+                connect: true,
+                format: {
+                    // 'to' the formatted value. Receives a number.
+                    to: function (value) {
+                        return parseInt(value);
+                    },
+                    // 'from' the formatted value.
+                    // Receives a string, should return a number.
+                    from: function (value) {
+                        return Number(value.replace(',-', ''));
+                    }
+                },
+                tooltips: true,
+                range: {
+                    min: [parseFloat(el.dataset.min)],
+                    max: [parseFloat(el.dataset.max)]
+                },
+                pips: {
+                    mode: 'steps',
+                    density: 20
+                }
+            }).on('change', function (values) {
+                $('[data-min="' + el.dataset.target + '"]').val(values[0])
+                $('[data-max="' + el.dataset.target + '"]').val(values[1])
+                $propertiesForm.trigger('submit');
+            });
+        })
+
+        function wNumb(value) {
+
+            return value;
+        }
+
+
+
+        function checkedCategories($form, $values) {
+
+            $form.find('input[type="checkbox"].categories').each(function () {
+                var state = $.inArray(this.value, $values) != -1;
+
+                $(this).prop('checked', state);
+            });
+        }
+
+        // Read a page's GET URL variables and return them as an associative array.
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+
+
+
+    })
+</script>
+{% endput %}

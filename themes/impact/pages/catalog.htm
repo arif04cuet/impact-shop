@@ -1,0 +1,28 @@
+title = "Opleidingen"
+url = "/opleidingen"
+layout = "layout_cms"
+is_hidden = 0
+
+[Arstech\Webshop\Components\ProductsFilter productsFilter]
+
+[CmsSettings]
+
+[Webshop]
+==
+{% set blok = {
+  'title'        : 'Opleidingen',
+  'expertbox'     : true,
+  'image'         : 'img2.jpg',
+  'course_index'  : true
+}
+%}
+
+{% partial 'blocks/hero_01' block=blok %}
+
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" role="main">
+
+    {% component 'productsFilter' %}
+
+
+</main>

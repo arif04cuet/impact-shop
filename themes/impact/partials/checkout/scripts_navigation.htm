@@ -1,0 +1,102 @@
+{% put scripts %}
+<script>
+    $(function () {
+        var $body = $('body');
+        var $overlay = $('.mall-overlay');
+
+        var step = window.location.pathname.split("/").pop();
+        var order = "{{ order.id }}";
+
+        if (step == 'confirm') {
+            gotoPaymentStep();
+        }
+        if (step == 'payment' && order) {
+            gotoPaymentStep();
+        }
+
+        $(".showbedrijf").hide();
+        $("#factuur1").click(function () {
+            $(".showbedrijf").hide();
+            $(".hidebedrijf").show();
+			$("#pay_method_3").hide();
+		    $( "#method4" ).prop( "checked", true );
+        });
+        $("#factuur2").click(function () {
+            $(".showbedrijf").show();
+            $(".hidebedrijf").hide();
+			$("#pay_method_3").show();
+        });
+        $("#paymentStep").hide();
+        $("#btnFinishOrder").click(function () {
+            $("#myFinish").show();
+            $("#stepsProcess").hide();
+        });
+        $("#btnInloggen").click(function () {
+            $("#myAccountGegevens").show();
+            $(".login-choices").hide();
+        });
+
+
+        $(".details-screen-1 .signup-btn").click(function () {
+            $('.details-screen-1').addClass('d-none');
+            $('.details-screen-2').removeClass('d-none');
+
+        });
+
+        $(".details-screen-2 .back").click(function () {
+            $('.details-screen-2').addClass('d-none');
+            $('.details-screen-1').removeClass('d-none');
+
+        });
+
+        //activate payment step
+        $(".details-screen-3 button.next").click(function () {
+
+            gotoPaymentStep();
+
+        });
+
+        $(".payment-screen button.back").click(function () {
+            $('.payment-screen').addClass('d-none');
+            $('.details-screen-3').removeClass('d-none');
+            //stepRemaining('step-payment');
+            //stepActive('step-details');
+
+        });
+
+
+        function gotoPaymentStep() {
+            $('.details-screen-1').addClass('d-none');
+            $('.details-screen-2').addClass('d-none');
+            $('.details-screen-3').addClass('d-none');
+            $('#payment').removeClass('d-none');
+
+            stepDone('step-details');
+            stepActive('step-payment');
+        }
+
+        function stepDone(step) {
+            $("." + step + ">div>span").removeClass().addClass("step-icon step-icon-secondary text-white");
+            $("." + step + ">div>span").empty().append("<i></i>");
+            $("." + step + ">div>span>i").removeClass().addClass("fa fa-check");
+            $("." + step + ">div>div>span").removeClass().addClass("step-inline-title text-muted font-weight-normal");
+        }
+        function stepActive(step) {
+            $("." + step + ">div>span").removeClass().addClass("step-icon step-icon-primary text-white");
+            //$("." + step + ">div>span").empty();
+            $("." + step + ">div>div>span").removeClass().addClass("step-inline-title text-muted font-weight-normal");
+        }
+
+        function stepRemaining(step) {
+            $("." + step + ">div>span").removeClass().addClass("step-icon border text-muted");
+            //$("." + step + ">div>span").empty();
+            $("." + step + ">div>div>span").removeClass().addClass("step-icon border text-muted");
+        }
+
+        $('input#termsCheckbox').change(function () {
+            $('button.mall-btn-checkout').attr('disabled', !this.checked)
+        });
+
+    })
+</script>
+{% endput %}

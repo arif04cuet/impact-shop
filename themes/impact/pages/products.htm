@@ -1,0 +1,23 @@
+title = "Products"
+url = "/products"
+layout = "layout_cms"
+is_hidden = 0
+
+[products]
+setPageTitle = 1
+includeVariants = 1
+includeChildren = 1
+perPage = 9
+
+==
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-4">
+            {% component 'productsFilter' %}
+        </div>
+        <div class="col-12 col-md-8">
+            <h2>{{ products.category.name }}</h2>
+            {% component 'products' %}
+        </div>
+    </div>
+</div>

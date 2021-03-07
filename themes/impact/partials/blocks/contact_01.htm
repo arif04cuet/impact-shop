@@ -1,0 +1,31 @@
+description = "Contact blok footer"
+
+[viewBag]
+==
+<div class="bg-light position-relative overflow-hidden">
+    <img src="{{'assets/img/bg-shapes/oval2.svg'|theme}}" class="position-absolute oval-left z-index-2"  alt="">
+    <div class="container space-2 position-relative">
+        <img src="{{ 'assets/img/others/footer-rob.png'|theme }}" data-aos="fade-left" alt="" style="width: 521px; left:100px; position: absolute; bottom: 0;">
+        
+        <div class="row">
+            <div class="col-lg-6 mb-9 mb-lg-0" data-aos="fade-left">
+                <div class="mb-0 w-90">
+                    <span class="d-block small font-weight-bold text-cap mb-2" >
+                        Advies nodig?
+                    </span>
+                    <h2 class="display-5 mb-4">
+                        Onze experts staan klaar
+                    </h2>
+                    <p>
+                        Heb je vragen over het aanbod van Impact of heb je advies nodig? Bel naar 024-3243113 of vul vrijblijvend het contactformulier hiernaast in. Wij nemen binnen 3 werkdagen contact met je op.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6"  data-aos="fade-up" data-aos-delay="150">
+                <div class="ml-lg-5">
+                    {% component 'FooterContactForm' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

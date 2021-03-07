@@ -1,0 +1,16 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+
+schedules:
+    label: 'arstech.webshop::lang.label.schedules'
+    view:
+        list: $/arstech/webshop/models/schedule/columns.yaml
+        toolbarButtons: create|remove
+    manage:
+        form: $/arstech/webshop/models/schedule/fields.yaml
+        recordsPerPage: 10
+        showSearch: true
+    deferredBinding: true
+

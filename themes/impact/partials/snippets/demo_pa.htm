@@ -1,0 +1,108 @@
+[viewBag]
+snippetCode = "snippet-demo"
+snippetName = "Demo leeromgeving"
+snippetProperties[demoTitle][title] = "Titel"
+snippetProperties[demoTitle][type] = "string"
+snippetProperties[demoTitle][default] = "default title"
+snippetProperties[demoTitle][options][] = ""
+snippetProperties[demoIntro][title] = "Introductie"
+snippetProperties[demoIntro][type] = "string"
+snippetProperties[demoIntro][default] = ""
+snippetProperties[demoIntro][options][] = ""
+snippetProperties[ctaText][title] = "CTA tekst"
+snippetProperties[ctaText][type] = "string"
+snippetProperties[ctaText][default] = ""
+snippetProperties[ctaText][options][] = ""
+snippetProperties[ctaBtn][title] = "CTA button tekst"
+snippetProperties[ctaBtn][type] = "string"
+snippetProperties[ctaBtn][default] = ""
+snippetProperties[ctaBtn][options][] = ""
+snippetProperties[ctaUrl][title] = "CTA button link"
+snippetProperties[ctaUrl][type] = "string"
+snippetProperties[ctaUrl][default] = ""
+snippetProperties[ctaUrl][options][] = ""
+==
+<!-- Features Section -->
+<div class="bg-light">
+    <div class="container space-2">
+        <!-- Title -->
+        <div class="w-md-80 text-center mx-md-auto mb-md-4">
+            <h2>{{demoTitle}}</h2>
+            <p class="lead">{{demoIntro}}</p>
+        </div>
+        <!-- End Title -->
+
+        <!-- Nav -->
+        <div class="text-center">
+            <ul class="nav nav-segment nav-pills scrollbar-horizontal mb-7" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-one-code-features-example1-tab" data-toggle="pill" href="#pills-one-code-features-example1" role="tab" aria-controls="pills-one-code-features-example1" aria-selected="true">Permanent Actueel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-two-code-features-example1-tab" data-toggle="pill" href="#pills-two-code-features-example1" role="tab" aria-controls="pills-two-code-features-example1" aria-selected="false">Opleidingsdossier</a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Nav -->
+
+        <!-- Tab Content -->
+        <div class="tab-content pr-lg-4">
+            <div class="tab-pane fade show active" id="pills-one-code-features-example1" role="tabpanel" aria-labelledby="pills-one-code-features-example1-tab">
+                <!-- Device Mockup -->
+                <div class="device-wrapper">
+                    <div class="device">
+                        <img class="img-fluid" src="{{'assets/svg/components/macbook.svg' | theme }}" alt="Image Description">
+                        <img class="device-macbook-screen" src="{{'assets/img/1618x1010/screen_pa.jpg' | theme }}" alt="Image Description">
+                    </div>
+                    <!--<div class="device device-iphone-x">
+                        <img class="device-iphone-x-frame" src="{{'assets/svg/components/iphone-x.svg' | theme }}" alt="Image Description">
+                        <img class="device-iphone-x-screen" src="{{'assets/img/1618x1010/screen_mobile_pa.jpg' | theme }}" alt="Image Description">
+                    </div>-->
+                </div>
+                <!-- End Device Mockup -->
+            </div>
+
+            <div class="tab-pane fade" id="pills-two-code-features-example1" role="tabpanel" aria-labelledby="pills-two-code-features-example1-tab">
+                <!-- Device Mockup -->
+                <div class="device-wrapper">
+                    <div class="device">
+                        <img class="img-fluid" src="{{'assets/svg/components/macbook.svg' | theme }}" alt="Image Description">
+                        <img class="device-macbook-screen" src="{{'assets/img/1618x1010/screen_opleidingsdossier.jpg' | theme }}" alt="Image Description">
+                    </div>
+                    <!--<div class="device device-iphone-x">
+                        <img class="device-iphone-x-frame" src="{{'assets/svg/components/iphone-x.svg' | theme }}" alt="Image Description">
+                        <img class="device-iphone-x-screen" src="{{'assets/img/1618x1010/screen_mobile_od.jpg' | theme }}" alt="Image Description">
+                    </div>-->
+                </div>
+                <!-- End Device Mockup -->
+            </div>
+
+        </div>
+        <!-- End Tab Content -->
+
+        <!-- CTA Section -->
+        <div class="container">
+            <div class="w-lg-85 mx-lg-auto mt-10">
+                <div class="card overflow-hidden p-5">
+                    <div class="row justify-content-md-start align-items-md-center text-center text-md-left">
+                        <div class="col-md-8 col-lg-5 offset-lg-3 mb-3 mb-md-0">
+                            <h3 class="h4 mb-0">{{ctaText}}</h3>
+                        </div>
+
+                        <div class="col-md-4 text-md-right">
+                            <a class="btn btn-primary transition-3d-hover" href="{{ctaUrl}}">{{ctaBtn}}</a>
+                        </div>
+                    </div>
+
+                    <!-- SVG Component -->
+                    <figure class="w-35 position-absolute top-0 left-0 mt-n11 ml-n11">
+                        <img class="img-fluid" src="{{'assets/svg/components/half-circle-2.svg' | theme }}" alt="Image Description">
+                    </figure>
+                    <!-- End SVG Component -->
+                </div>
+            </div>
+        </div>
+        <!-- End CTA Section -->
+    </div>
+</div>
+<!-- End Features Section -->

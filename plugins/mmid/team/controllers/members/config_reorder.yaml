@@ -1,0 +1,5 @@
+title: Teamleden
+modelClass: Mmid\Team\Models\Member
+nameFrom: full_name
+toolbar:
+    buttons: reorder_toolbar

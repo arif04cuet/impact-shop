@@ -1,0 +1,23 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table arstech_webshop_locations'
+    - builder_table_create_arstech_webshop_locations.php
+1.0.3:
+    - 'Created table arstech_webshop_schedules'
+    - builder_table_create_arstech_webshop_schedules.php
+1.0.4:
+    - 'add description field to category model'
+    - migration104.php
+1.0.5:
+    - 'Created table arstech_webshop_location_product'
+    - builder_table_create_arstech_webshop_location_product.php
+1.0.6:
+    - 'Drop table arstech_webshop_location_product'
+    - builder_table_delete_arstech_webshop_location_product.php
+1.0.7:
+    - 'Updated table arstech_webshop_schedules'
+    - builder_table_update_arstech_webshop_schedules.php
+1.0.8:
+    - 'add products column to mall discount table'
+    - migration108.php

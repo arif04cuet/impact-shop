@@ -1,0 +1,54 @@
+<form data-request="checkoutSignUp::onSignin" data-request-validate data-request-flash>
+    <div class="card p-5 mb-4 login-choices login">
+
+        <h3>Ik heb al een account
+        </h3>
+        <p class="text-muted small">Log in om je bestelling af te ronden. De bij ons bekende gegevens zijn al voor je ingevuld.
+
+        </p>
+        <!-- Input Group -->
+        <div class="js-form-message mb-2">
+            <div class="input-group mb-2">
+                <input type="email" class="form-control" name="login" id="signin_email" placeholder="E-mail adres"
+                    aria-label="Email" required data-msg="Please enter a valid email address.">
+
+            </div>
+            <div data-validate-for="login"></div>
+        </div>
+        <!-- End Input Group -->
+
+        <!-- Input Group -->
+        <div class="js-form-message mb-2">
+            <div class="input-group  mb-2">
+                <input type="password" class="form-control" name="password" id="signin_password" placeholder="Wachtwoord"
+                    aria-label="Password" required data-msg="Your password is invalid. Please try again.">
+            </div>
+            <div data-validate-for="password"></div>
+        </div>
+        <!-- End Input Group -->
+
+        <button type="submit" class="btn btn-warning transition-3d-hover w-sm-100 w-xl-30 details-login-next">Inloggen <i
+                class="fa fa-chevron-right"></i></button>
+    </div>
+
+</form>
+
+
+<!-- end inloggen -->
+
+
+<div class="card mb-5 login-choices signup">
+    <div class="card-body">
+        <h3>Ik ben nieuw bij Impact
+        </h3>
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <p class="small text-muted">Maak een account aan om je bestelling af te ronden. Je krijgt direct toegang tot je Impact-account.</p>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+                <button type="button" id="btnNewAccount" class="btn btn-warning transition-3d-hover signup-btn">Account aanmaken
+                    <i class="fa fa-chevron-right "></i> </button>
+            </div>
+        </div>
+    </div>
+</div>

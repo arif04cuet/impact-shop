@@ -1,0 +1,61 @@
+tabs:
+    fields:
+        is_active:
+            label: Actief
+            span: full
+            default: 1
+            type: switch
+            comment: 'Dit teamlid is zichtbaar'
+            tab: Algemeen
+        firstname:
+            label: Voornaam
+            span: auto
+            required: 1
+            type: text
+            tab: Algemeen
+        lastname:
+            label: Achternaam
+            span: auto
+            required: 1
+            type: text
+            tab: Algemeen
+        title:
+            label: Ondertitel
+            span: full
+            required: 1
+            type: text
+            tab: Algemeen
+        content:
+            label: Beschrijving
+            size: small
+            span: full
+            type: richeditor
+            tab: Algemeen
+        divisions:
+            label: Afdelingen
+            commentAbove: Selecteer bijbehorende afdelingen
+            type: relation
+            tab: Algemeen
+        image:
+            label: Foto
+            mode: image
+            imageWidth: '200'
+            imageHeight: '200'
+            fileTypes: 'jpg,jpeg,png'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Foto
+        email:
+            label: 'E-mail adres'
+            span: full
+            type: text
+            tab: Contact
+        linkedin:
+            label: 'LinkedIn URL'
+            span: full
+            type: text
+            tab: Contact

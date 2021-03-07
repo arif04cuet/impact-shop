@@ -1,0 +1,169 @@
+<form data-request="onRegister" method="POST" accept-charset="UTF-8" data-request-flash data-request-validate>
+    {{form_token()}}
+    {{form_sessionKey()}}
+    <input type="hidden" name="redirect" value="checkout">
+
+    <div class="card-body">
+        <h3>Mijn gegevens</h3>
+        <!-- Billing Form -->
+        <span class="d-block small font-weight-bold text-cap mb-4 mt-4">Persoonsgegevens</span>
+        <div class="row">
+            <div class="col-md-12 mb-2">
+                <div class="form-check form-check-inline">
+                    <div class="custom-control custom-radio">
+                        <input checked type="radio" id="customInlineRadio1" class="custom-control-input" name="salution"
+                            value="Mr.">
+                        <label class="custom-control-label" for="customInlineRadio1">De heer</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="customInlineRadio2" class="custom-control-input indeterminate-checkbox"
+                            name="salution" value="Mrs.">
+                        <label class="custom-control-label" for="customInlineRadio2">Mevrouw</label>
+                    </div>
+                    <span data-validate-for="salution" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input name="initials" type="text" class="form-control" name="initials" placeholder="Voorletter(s)"
+                        aria-label="Jack" required data-msg="Vul je initialen in">
+                </div>
+                <span data-validate-for="initials" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-8 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" class="form-control" name="name" placeholder="Voornaam" aria-label="Wayley"
+                        required data-msg="Please enter your last name.">
+                </div>
+                <span data-validate-for="name" class="text-danger" required></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-4 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" class="form-control" name="infix" placeholder="Tussenvoegsel" aria-label="Jack"
+                        data-msg="Please enter your frist name.">
+                </div>
+                <span data-validate-for="infix" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-8 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" class="form-control" name="surname" placeholder="Achternaam" aria-label="Wayley"
+                        required data-msg="Please enter your last name." required>
+                </div>
+                <span data-validate-for="surname" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="w-100"></div>
+
+
+            <div class="col-md-12 mb-2 mt-4">
+                <span class="d-block small font-weight-bold text-cap mb-4">Contactgegevens</span>
+
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" class="form-control" name="address" placeholder="Straat en huisnummer"
+                        aria-label="470 Lucy Forks" required data-msg="Please enter a valid address." required>
+                </div>
+                <span data-validate-for="address" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" class="form-control" name="zip" placeholder="Postcode" aria-label="99999"
+                        required data-msg="Please enter a postcode or zip code." required>
+                </div>
+                <span data-validate-for="zip" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" class="form-control" name="city" placeholder="Plaats" aria-label="London" required
+                        data-msg="Please enter a valid address." required>
+                </div>
+                <span data-validate-for="city" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail adres" aria-label=""
+                        required data-msg="Please enter a valid email address." required>
+                </div>
+                <span data-validate-for="email" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="text" name="phone" class="form-control" placeholder="Phone (optional)"
+                        aria-label="+1 (062) 109-9222" data-msg="Please enter your last name.">
+                </div>
+                <span data-validate-for="phone" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+
+            <div class="col-md-12 mb-2 mt-4">
+                <span class="d-block small font-weight-bold text-cap mb-4">Kies een wachtwoord</span>
+
+            </div>
+
+
+                <div class="col-md-6 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="password" name="password" class="form-control" placeholder="Wachtwoord" aria-label=""
+                        data-msg="Please enter your password." required>
+                </div>
+                <span data-validate-for="password" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <!-- Input -->
+                <div class="js-form-message">
+                    <input type="password" name="password_confirmation" class="form-control"
+                        placeholder="Wachtwoord bevestigen" aria-label="" data-msg="Confirm Password" required>
+                </div>
+                <span data-validate-for="password_confirmation" class="text-danger"></span>
+                <!-- End Input -->
+            </div>
+
+
+
+        </div>
+        <!-- End Billing Form -->
+    </div>
+    <div class="card-footer bg-soft-light">
+
+        <div class="d-flex align-items-center">
+            <button class="btn btn-link text-black-50 back"><i class="fa fa-chevron-left"></i>
+                Vorige</button>
+            <div class="d-flex align-items-center ml-auto">
+                <button data-attach-loading type="submit" class="btn btn-warning transition-3d-hover next">Volgende
+                    <i class="fa fa-chevron-right"></i> </button>
+            </div>
+        </div>
+
+    </div>
+
+</form>

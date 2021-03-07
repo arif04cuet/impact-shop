@@ -1,0 +1,171 @@
+description = "Service Layout"
+
+[staticPage]
+useContent = 1
+default = 0
+
+[ContactForm]
+[FooterContactForm]
+[ExpertboxRequestForm]
+[account loginModal]
+redirect = "account-settings"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+activationPage="user-activation"
+
+[session]
+security = "all"
+
+[resetPassword forgotPassword]
+paramCode = "code"
+
+[mallDependencies]
+==
+<?php
+use October\Rain\Auth\AuthException;
+use RainLab\User\Models\User as UserModel;
+use RainLab\User\Models\Settings as UserSettings;
+use OFFLINE\Mall\Models\Category;
+use Hashids\Hashids as Hasher;
+
+use OFFLINE\Mall\Models\Cart;
+use RainLab\User\Facades\Auth;
+use OFFLINE\Mall\Models\CartProduct;
+
+function onStart()
+{
+    $this['categoryItems'] = Category::get()->chunk(5);
+
+    $cart = Cart::byUser(Auth::getUser());
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+}
+
+function onSignin()
+{
+    $data = post();
+
+    $rules = [
+        'login' => 'required|email',
+        'password' => 'required',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+
+    try {
+        return $this->loginModal->onSignin();
+    }
+    catch (AuthException $ex) {
+        Flash::error($ex->getMessage());
+    }
+}
+
+function onRegister()
+{
+    $data = post();
+
+    $rules = [
+        'initials' => 'required',
+        'name' => 'required',
+        'surname' => 'required',
+        'email'    => 'required|between:6,255|email|unique:users',
+        'password' => 'required|between:8,255|confirmed',
+        'password_confirmation' => 'required_with:password|between:8,255',
+    ];
+
+    $validation = Validator::make($data, $rules);
+
+    if ($validation->fails()) {
+        throw new ValidationException($validation);
+    }
+
+    try {
+
+        return $this->loginModal->onRegister();
+
+    }
+    catch (Exception $ex) {
+        Flash::error($ex->getMessage());
+    }
+
+
+}
+
+function onGetCartItems()
+{
+    $cart = Cart::byUser(Auth::getUser());
+    $cart->load(['products']);
+    $this['cart'] = $cart;
+    return ['cart'=>$cart];
+}
+
+function onRemoveCartItem()
+{
+    $value = app(Hasher::class)->decode(input('id'));
+    $id = $value[0] ?? null;
+
+    $cart = Cart::byUser(Auth::getUser());
+
+    $product = $this->getProductFromCart($cart, $id);
+
+    $cart->removeProduct($product);
+
+
+    $this['cart'] = $cart->load(['products']);
+    $this['cartItemCount'] = optional($cart->products)->count() ?? 0;
+    return ['cart'=>$cart->products->count()];
+
+}
+
+function getProductFromCart(Cart $cart, $id)
+{
+
+    return CartProduct::whereHas('cart', function ($query) use ($cart) {
+        $query->where('id', $cart->id);
+    })->where('id', $id)
+    ->firstOrFail();
+
+}
+
+
+
+?>
+==
+{% partial 'site/header' %}
+<!-- ========== MAIN ========== -->
+<main id="content" role="main" class="bg-light">
+<!-- Privacy Section -->
+<div class="container space-bottom-2 space-top-2 space-bottom-lg-3 overflow-hidden">
+  <div class=" mx-lg-auto">
+    <div class="card">
+      <!-- Hero -->
+      <div class="position-relative bg-primary space-1 space-md-2 p-4 px-md-7 px-md-9">
+        <h1 class="text-white">{{ title }}</h1>
+
+        <!-- SVG Bottom Shape -->
+        <figure class="position-absolute right-0 bottom-0 left-0 mb-n1">
+          <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1" width="100%" height="32">
+            <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"/>
+          </svg>
+        </figure>
+        <!-- End SVG Bottom Shape Section -->
+      </div>
+      <!-- End Hero -->
+
+      <!-- Content -->
+      <div class="card-body p-4 p-md-9">
+          {% page %}
+      </div>
+      <!-- End Content -->
+    </div>
+  </div>
+</div>
+<!-- End Privacy Section -->
+</main>
+<!-- ========== END MAIN ========== -->
+{% partial 'site/footer' %}

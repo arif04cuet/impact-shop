@@ -1,0 +1,28 @@
+{{ form_ajax('onSignin') }}
+
+<div class="form-group input-group-sm">
+
+    <input name="login" type="text" class="form-control" id="userSigninLogin"
+        placeholder="Vul je e-mailadres in" />
+</div>
+
+<div class="form-group input-group-sm">
+
+    <input name="password" type="password" class="form-control" id="userSigninPassword"
+        placeholder="Vul je wachtwoord in" />
+</div>
+
+{% if rememberLoginMode == 'ask' %}
+<div class="form-group">
+    <div class="checkbox">
+        <label><input name="remember" type="checkbox" value="1">Blijf ingelogd</label>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="mb-3">
+    <button type="submit" class="btn btn-sm btn-primary btn-block">Inloggen</button>
+</div>
+
+{{ form_close() }}

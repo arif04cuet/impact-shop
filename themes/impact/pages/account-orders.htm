@@ -1,0 +1,101 @@
+title = "Mijn bestellingen"
+url = "/account/orders"
+layout = "user-dashboard"
+is_hidden = 0
+==
+<?php
+use OFFLINE\Mall\Models\Order;
+use OFFLINE\Mall\Models\OrderState;
+use OFFLINE\Mall\Models\GeneralSettings;
+
+
+
+function onStart()
+{
+
+    $user = Auth::getUser();
+    if (!$user) {
+        return;
+    }
+
+
+    $this['allOrders'] = Order
+            ::byCustomer($user->customer)
+            ->with(['products', 'products.variant'])
+            ->whereHas('order_state',function($q){
+                $q->where('name','!=',OrderState::FLAG_CANCELLED);
+            })
+            ->orderBy('created_at', 'DESC')
+            ->paginate();
+
+    //cacelled orders
+    $this['cancelledOrders'] = Order
+            ::byCustomer($user->customer)
+            ->with(['products', 'products.variant'])
+            ->whereHas('order_state',function($q){
+                $q->where('name',OrderState::FLAG_CANCELLED);
+            })
+            ->orderBy('created_at', 'DESC')
+            ->paginate();
+
+    // payment link
+
+    $this['paymentLink'] = $this->getPaymentLink();
+
+}
+
+function getPaymentLink()
+{
+    $page = GeneralSettings::get('checkout_page');
+
+    return $this->controller->pageUrl($page, ['step' => 'payment']);
+}
+?>
+==
+<!-- Card -->
+<div class="card">
+    <!-- Header -->
+    <div class="card-header">
+        <form class="input-group input-group-merge input-group-borderless">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <input type="search" class="form-control" placeholder="Zoek bestelling" aria-label="Search orders">
+        </form>
+    </div>
+    <!-- End Header -->
+
+    <!-- Body -->
+    <div class="card-body">
+        <!-- Nav -->
+        <ul class="nav nav-segment nav-fill mb-5" id="editUserTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="all-orders-tab" data-toggle="tab" href="#all-orders"
+                    role="tab">Bestellingen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="cenceled-orders-tab" data-toggle="tab" href="#cenceled-orders"
+                    role="tab">Geannuleerd</a>
+            </li>
+        </ul>
+        <!-- End Nav -->
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="my-orders">
+
+            <div class="tab-pane fade show active" id="all-orders" role="tabpanel" aria-labelledby="all-orders-tab">
+                {% partial 'account-orders/orders' orders=allOrders %}
+            </div>
+
+            <div class="tab-pane fade" id="cenceled-orders" role="tabpanel" aria-labelledby="cenceled-orders-tab">
+                {% partial 'account-orders/orders' orders=cancelledOrders %}
+            </div>
+
+
+        </div>
+        <!-- End Tab Content -->
+    </div>
+    <!-- End Body -->
+</div>

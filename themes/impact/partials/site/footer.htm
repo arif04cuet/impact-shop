@@ -1,0 +1,136 @@
+[viewBag]
+==
+<?php
+use OFFLINE\Mall\Models\Category;
+function onStart()
+{
+$slugMap = (new Category)->getSlugMap();
+$this['slugMap'] = array_flip($slugMap);
+$this['categoryItems'] = Category::get()->chunk(10);
+}
+?>
+==
+<!-- ========== FOOTER ========== -->
+<footer class="border-top">
+    <div class="container">
+        <div class="row justify-content-lg-between space-top-2">
+            <div class="col-lg-4 mb-5">
+                <h5>Impact Opleiding &amp; Training</h5>
+
+                <!-- Nav Link -->
+                <ul class="nav nav-x-0 flex-column">
+                    <li class="nav-item"><a class="nav-link" href="/contact">Weegbree 34, 6601 HC Wijchen</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <span class="media align-items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span class="media-body">024-3243113</span>
+                          </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mailto:info@impact.nu">
+                          <span class="media align-items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span class="media-body">info@impact.nu</span>
+                          </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/company/30607905" target="_blank">
+                          <span class="media align-items-center">
+                            <i class="fab fa-linkedin-in mr-2"></i>
+                            <span class="media-body">Volg ons op LinkedIn</span>
+                          </span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Nav Link -->
+                <div class="d-flex align-items-start flex-column h-100 mt-4">
+                    <div class="w-100 mb-lg-auto">
+                        <img class="brand" src="{{ 'assets/svg/logos/logo.svg'|theme}}" alt="Impact Logo">
+                        <img class="crkbo ml-4" src="{{ 'assets/img/logos/crkbo.jpg'|theme}}" alt="CRKBO">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3 mb-5 mb-lg-0">
+                <h5>Opleidingscategorieën</h5>
+
+
+                {% for chunk in categoryItems %}
+                <!-- Nav Link -->
+                <ul class="nav nav-x-0 flex-column float-left mr-10">
+                    {% for category in chunk %}
+                    <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ 'category'|page({ slug: slugMap[category.id] }) }}">{{category.name}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!-- End Nav Link -->
+
+                {% endfor %}
+
+            </div>
+            <div class="col-3">
+                <h5>Ander aanbod</h5>
+
+                <!-- Nav Link -->
+                <ul class="nav  nav-x-0 flex-column">
+                    <li class="nav-item"><a class="nav-link" href="{{ 'examens' | staticPage }}">Examens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ 'examens' | staticPage }}">Leeromgeving</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ 'organisaties' | staticPage }}">Voor organisaties</a></li>
+                </ul>
+            
+            </div>
+
+            <div class="col-6 col-md-2 col-lg-2 mb-5 mb-lg-0">
+                <h5>Impact</h5>
+
+                <!-- Nav Link -->
+                <ul class="nav nav-x-0 flex-column">
+                    <li class="nav-item"><a class="nav-link" href="{{ 'over-impact' | staticPage }}">Over Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/over-impact#goteam">Ons team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ 'articles/overview' | page }}">Nieuws</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ 'contact' | staticPage }}">Contact</a></li>
+                </ul>
+                <!-- End Nav Link -->
+            </div>
+
+
+        </div>
+
+        <hr class="my-0">
+
+        <div class="row align-items-md-center space-1">
+            <div class="col-md-6 mb-4 mb-md-0">
+   <small>  &copy; 2021 Impact Opleiding & Training. Alle rechten voorbehouden.</small>
+              
+              </div>
+
+            <div class="col-md-6 text-md-right">
+                <!-- Links -->
+                <ul class="nav nav-sm justify-content-md-end">
+                    <li class="nav-item">
+                        <a class="nav-link pl-0" href="{{ 'algemene-voorwaarden' | staticPage }}">Algemene voorwaarden</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/storage/app/media/pdf/Privacyverklaring_Impact.pdf" target="_blank">Privacy verklaring</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ========== END FOOTER ========== -->
+
+
+<!-- ========== SECONDARY CONTENTS ========== -->
+{% partial 'modals/expertbox' %}
+{% partial 'add-to-cart-modal' %}
+{% partial 'login-registration-modal' %}
+<!-- ========== END SECONDARY CONTENTS ========== -->
+{% partial 'site/footer-script' %}
+</body>
+</html>

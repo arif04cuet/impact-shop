@@ -1,0 +1,5 @@
+{% if checkout.step == 'payment' %}
+{% partial 'checkout/payment/select-method' %}
+{% else %}
+{% partial 'checkout/payment/confirm' %}
+{% endif %}

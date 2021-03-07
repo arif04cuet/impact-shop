@@ -1,0 +1,587 @@
+hero_01:
+    name: Hero 01
+    description: Hero
+    icon: icon-header
+    fields:
+        _heading:
+            label: Hero 01
+            type: section
+        title:
+            label: Titel
+            type: text
+            span: full
+            required: true
+        subtitle:
+            label: Subtitle
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: full
+        image:
+            label: "Achtergrond foto"
+            type: mediafinder
+            mode: image
+            imageWidth: 100
+            span: left
+        expertbox:
+            label: Expertbox 
+            type: switch
+            default: true
+            comment: Button naar expertbox weergeven
+            span: right
+            on: AAN
+            off: UIT
+hero_02:
+    name: Hero 02
+    description: Hero
+    icon: icon-header
+    fields:
+        _heading:
+            label: Hero 02
+            type: section
+        title:
+            label: Titel
+            type: text
+            span: full
+            required: true
+        subtitle:
+            label: Subtitle
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: full
+        image:
+            label: "Achtergrond foto"
+            type: mediafinder
+            mode: image
+            imageWidth: 100
+            span: left
+        oneTitle:
+            label: Tekst kolom 1
+            type: text
+            span: left
+            required: true
+        twoTitle:
+            label: Tekst kolom 2
+            type: text
+            span: right
+            required: true
+        oneText:
+            label: Subtitel kolom 1
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|insertLink
+            span: left
+            size: small
+        twoText:
+            label: Subtitel kolom 2
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|insertLink
+            span: right
+            size: small
+        threeTitle:
+            label: Tekst kolom 3
+            type: text
+            span: left
+            required: true
+        fourTitle:
+            label: Tekst kolom 4
+            type: text
+            span: right
+            required: true
+        threeText:
+            label: Subtitel kolom 3
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|insertLink
+            span: left
+            size: small
+        fourText:
+            label: Subtitel kolom 4
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|insertLink
+            span: right
+            size: small
+hero_home:
+    name: Homepage - Header
+    description: Hero
+    icon: icon-header
+    fields:
+        _heading:
+            label: Homepage - Header
+            type: section
+        title:
+            label: Titel
+            type: text
+            span: left
+            required: true
+        image:
+            label: "Achtergrond foto"
+            type: mediafinder
+            mode: image
+            imageWidth: 100
+            span: right
+        subtitle:
+            label: Subtitel
+            type: text
+            span: left
+            required: true
+home_about:
+    name: Homepage - Over Impact
+    description: Hero
+    icon: icon-header
+    fields:
+        _heading:
+            label: Homepage - Over Impact
+            type: section
+        subtitle:
+            label: Subtitel
+            type: text
+            span: full
+            required: true
+        title:
+            label: Titel
+            type: text
+            span: full
+            required: true
+        content:
+            label: Tekst
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|insertLink
+            span: full
+            size: large
+        oneTitle:
+            label: Titel 1e item
+            type: text
+            span: left
+            required: true
+        twoTitle:
+            label: Titel 2e item
+            type: text
+            span: right
+            required: true
+        oneText:
+            label: Tekst 1e item
+            type: textarea
+            span: left
+            size: small
+        twoText:
+            label: Tekst 2e item
+            type: textarea
+            span: right
+            size: small
+        threeTitle:
+            label: Titel 3e item
+            type: text
+            span: left
+            required: true
+        fourTitle:
+            label: Titel 4e item
+            type: text
+            span: right
+            required: true
+        threeText:
+            label: Tekst 3e item
+            type: textarea
+            span: left
+            size: small
+        fourText:
+            label: Tekst 4e item
+            type: textarea
+            span: right
+            size: small
+stats_01:
+    name: Stats 01
+    description: Stats
+    icon: icon-star
+    fields:
+        _heading:
+            label: Stats 01
+            type: section
+        title1:
+            label: Tekst links
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|align|html
+            span: full
+            size: small
+        title2:
+            label: Tekst midden
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|align|html
+            span: full
+            size: small
+        title3:
+            label: Tekst rechts
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|align|html
+            span: full
+            size: small
+features_01:
+    name: Features 01
+    description: Features
+    icon: icon-star
+    fields:
+        _heading:
+            label: Features 01
+            type: section
+        title_left:
+            label: Titel links
+            type: text
+            span: left
+            required: true
+        title_right:
+            label: Titel rechts
+            type: text
+            span: right
+            required: true
+        content_left:
+            label: Content links
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: left
+        content_right:
+            label: Content rechts
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: right
+        button_text:
+            label: Button tekst
+            type: text
+        button_url:
+            label: Button URL
+            type: text
+        button_target:
+            label: Open button in nieuw scherm
+            type: checkbox
+        bg_color:
+            label: Achtergrond lichtgrijs
+            type: checkbox
+            default: false
+features_02:
+    name: Features 02
+    description: Features
+    icon: icon-star
+    fields:
+        _heading:
+            label: Features 02
+            type: section
+        title:
+            label: Titel
+            type: text
+            required: 1
+        subtitle:
+            label: Ondertitel
+            type: text
+        nav:
+            label: Items
+            type: repeater
+            maxItems: 3
+            prompt: 'Item toevoegen'
+            form:
+                fields:
+                    title:
+                        label: Titel
+                        type: text
+                        span: left
+                        required: true
+                    content_template:
+                        label: Content Template
+                        type: dropdown
+                        span: right
+                        options: getTemplateList
+                    text:
+                        label: Tekst
+                        type: textarea
+                        size: tiny
+                        span: left
+                    icon:
+                        label: "Icoon"
+                        type: mediafinder
+                        mode: image
+                        imageWidth: 100
+                        span: right                        
+        bg_color:
+            label: Achtergrond lichtgrijs
+            type: checkbox
+            default: false
+features_03:
+    name: Features 03
+    description: Features
+    icon: icon-star
+    fields:
+        _heading:
+            label: Features 03
+            type: section
+        title:
+            label: Titel 
+            type: text
+            span: left
+            required: true
+        subtitle:
+            label: Subtitel
+            type: text
+            span: right
+            required: true
+        content:
+            label: Content
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: left
+        content_template_right:
+            label: Content Template Rechts
+            type: dropdown
+            span: right
+            options: getTemplateList
+        buttons:
+            label: Buttons
+            type: repeater
+            maxItems: 2
+            prompt: 'Button toevoegen'
+            form:
+                fields:
+                    text:
+                        label: Tekst
+                        type: text
+                        span: left
+                    url:
+                        label: URL
+                        type: text
+                        span: right
+                    type: 
+                        label: Type
+                        type: dropdown
+                        options: getButtons
+                        span: left
+                    target:
+                        label: Open in nieuw scherm
+                        type: checkbox
+                        span: right
+        bg_color:
+            label: Achtergrond lichtgrijs
+            type: checkbox
+            default: false
+features_04:
+    name: Features 04
+    description: Features
+    icon: icon-star
+    fields:
+        _heading:
+            label: Features 04
+            type: section
+        title:
+            label: Titel 
+            type: text
+            span: full
+            required: true
+        content:
+            label: Content
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: full
+        buttons:
+            label: Buttons
+            type: repeater
+            maxItems: 2
+            prompt: 'Button toevoegen'
+            form:
+                fields:
+                    text:
+                        label: Tekst
+                        type: text
+                        span: left
+                    url:
+                        label: URL
+                        type: text
+                        span: right
+                    type: 
+                        label: Type
+                        type: dropdown
+                        options: getButtons
+                        span: left
+                    target:
+                        label: Open in nieuw scherm
+                        type: checkbox
+                        span: right
+        bg_color:
+            label: Achtergrond lichtgrijs
+            type: checkbox
+            default: false
+features_05:
+    name: Features 05
+    description: Features
+    icon: icon-star
+    fields:
+        _heading:
+            label: Features 05
+            type: section
+        subtitle:
+            label: Subtitel 
+            type: text
+            span: full
+            required: true
+        title:
+            label: Titel 
+            type: text
+            span: full
+            required: true
+        content:
+            label: Content
+            type: richeditor
+            toolbarButtons: bold|italic|underline|color|paragraphFormat|align|formatOL|formatUL|insertLink|insertTable|html|fullscreen
+            span: full
+        image:
+            label: "Afbeelding"
+            type: mediafinder
+            mode: image
+            imageWidth: 100
+            span: right 
+        buttons:
+            span: left
+            label: Buttons
+            type: repeater
+            maxItems: 2
+            prompt: 'Button toevoegen'
+            form:
+                fields:
+                    text:
+                        label: Tekst
+                        type: text
+                        span: left
+                    url:
+                        label: URL
+                        type: text
+                        span: right
+                    type: 
+                        label: Type
+                        type: dropdown
+                        options: getButtons
+                        span: left
+                    target:
+                        label: Open in nieuw scherm
+                        type: checkbox
+                        span: right
+        bg_color:
+            label: Achtergrond lichtgrijs
+            type: checkbox
+            default: false
+articles_01:
+    name: Articles 01
+    description: Articles
+    icon: icon-header
+    fields:
+        _heading:
+            label: Articles 01
+            type: section
+        tiles:
+            label: Tegels
+            type: repeater
+            maxItems: 3
+            prompt: 'Tegel toevoegen'
+            form:
+                fields:
+                    title:
+                        label: Titel
+                        type: text
+                        span: left
+                        required: true
+                    items:
+                        label: Items
+                        type: repeater
+                        span: right
+                        prompt: 'Item toevoegen'
+                        form:
+                            fields:
+                                item:
+                                    label: Item
+                                    type: text
+                    text:
+                        label: Tekst
+                        type: textarea
+                        size: tiny
+                        span: left
+                    button:
+                        label: Button tekst
+                        type: text
+                        span: left                        
+                    button_url:
+                        label: Button URL
+                        type: text
+                        span: left
+                    button_target:
+                        label: Open link in nieuw scherm
+                        type: checkbox
+                        span: left
+        bg_color:
+            label: Achtergrond lichtgrijs
+            type: checkbox
+            default: false
+icon_blocks_01:
+    name: Icon Blocks 01
+    description: Articles
+    icon: icon-cubes
+    fields:
+        _heading:
+            label: Icon Blocks 01
+            type: section
+        title:
+            label: Titel 
+            type: text
+            span: left
+            required: true
+        subtitle:
+            label: Subtitel
+            type: text
+            span: right
+            required: true
+        items:
+            label: Items
+            type: repeater
+            maxItems: 6
+            prompt: 'Item toevoegen'
+            form:
+                fields:
+                    title:
+                        label: Titel
+                        type: text
+                        span: left
+                        required: true
+                    icon:
+                        label: "Icoon"
+                        type: mediafinder
+                        mode: image
+                        imageWidth: 100
+                        span: right 
+                    text:
+                        label: Tekst
+                        type: textarea
+                        size: tiny
+                        span: left
+                        required: true
+                    link:
+                        label: Link URL
+                        type: text
+                        span: left  
+placeholder_01:
+    name: Placeholder 01
+    description: Placeholder 01
+    icon: icon-header
+template:
+    name: Template
+    description: Pre-defined template
+    icon: icon-file-code-o
+    fields:
+        _heading:
+            label: Template
+            type: section
+        content:
+            label: Template file
+            type: dropdown
+            options: getTemplateList
+dynamic:
+    name: Gedeelde content
+    description: Pre-defined dynamic content
+    icon: icon-file-code-o
+    fields:
+        _heading:
+            label: Gedeelde Content
+            type: section
+        content:
+            label: Content file
+            type: dropdown
+            options: getContentList

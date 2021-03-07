@@ -1,0 +1,161 @@
+description = "Team pagina"
+
+[viewBag]
+==
+<!-- Team Section -->
+    <div class="ons-team" id="goteam" data-aos="fade-up">
+        <div class="container space-2">
+            <!-- Title -->
+            <div class="w-md-80 w-lg-60 text-center mx-md-auto mb-5 mb-md-9">
+                <span class="d-block small font-weight-bold text-cap mb-2">Ons team</span>
+                <h2>Wij zijn Impact</h2>
+            </div>
+            <!-- End Title -->
+
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <!-- Navbar Vertical -->
+                    <div class="navbar-vertical" id="team-filter">
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-body text-left">
+                                <h6 class="text-cap small">Filter</h6>
+
+                                <!-- List -->
+                                <ul class="nav nav-sub nav-tabs nav-list-y-2">
+                                    <li class="nav-item">
+                                        <a class="nav-link active division-all" href="javascript:;">
+                                            Bekijk alle teamleden
+                                        </a>
+                                    </li>
+                                    <li><hr></li>
+                                    {% for division in team_divisions %} 
+                                    <li class="nav-item">
+                                        <a class="nav-link division-link" data-filter="division_{{division.id|md5}}" href="javascript:;">
+                                        {{division.name}}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                <!-- End List -->
+
+
+                                <!-- End List -->
+                            </div>
+                        </div>
+                        <!-- End Card -->
+                    </div>
+                    <!-- End Navbar Vertical -->
+                </div>
+                <div class="col-lg-9">
+                
+           
+                   
+                        <div id="members" class="row">
+                            {% for member in team_members %}
+                                <div class="col-md-4 {{ member.division_classes|raw }} member">
+                                    <div class="mb-3 mb-sm-5">
+                
+                                        <div class="card h-100 transition-3d-hover border-light border" style="min-height:417px">
+                                            <div class="card-body text-left">
+                                                <span class="avatar avatar-xxxl mb-5 avatar-circle">
+                                                {% if member.image().first %}
+                                                    {% set member_img = member.image().first.thumb(200, auto) %}
+                                                {% else %}
+                                                    {% set member_img = 'assets/img/others/default-person.png'|theme %}
+                                                {% endif %}
+                                                <img class="avatar-img" src="{{ member_img }}">
+                                                </span>
+                                                <h4 class="text-lh-sm mb-0 memName">{{member.fullname}}</h4>
+                                                <span class="text-body small font-weight-normal">{{member.title}}</span>
+                                                
+                                                <div class="memContent">{{member.content|raw}}</div>
+                                                <div class="memMail">mailto:{{member.email}}</div>
+                                                <div class="memLinkedin">{{member.linkedin}}</div>
+                                            </div>
+                                            <div class="card-footer border-0 pt-0 text-left">
+                                                {% spaceless %}
+                                                <a class="btn btn-soft-primary btn-icon btn-sm" href="javascript:void(0);">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                                {% if member.linkedin %}
+                                                <a class="ml-1 btn btn-icon btn-soft-secondary btn-sm rounded" href="{{member.linkedin}}" target="_blank">
+                                                    <i class="fab fa-linkedin-in"></i>
+                                                </a>
+                                                {% endif %}
+
+                                                {% endspaceless %}
+                                            </div>
+                                        </div>
+                                        <!-- End Icon Blocks -->
+                                    </div>
+                                </div>
+                              
+                    
+                         
+                         
+                            {% endfor %}
+                        </div>
+              
+                    
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- End Team Section -->
+
+<div id="memberModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalCenterTitle"><span id="memberModalName">[member.name]</h4>
+                <button type="button" class="btn btn-xs btn-icon btn-soft-secondary" data-dismiss="modal" aria-label="Close">
+                    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M11.5,9.5l5-5c0.2-0.2,0.2-0.6-0.1-0.9l-1-1c-0.3-0.3-0.7-0.3-0.9-0.1l-5,5l-5-5C4.3,2.3,3.9,2.4,3.6,2.6l-1,1 C2.4,3.9,2.3,4.3,2.5,4.5l5,5l-5,5c-0.2,0.2-0.2,0.6,0.1,0.9l1,1c0.3,0.3,0.7,0.3,0.9,0.1l5-5l5,5c0.2,0.2,0.6,0.2,0.9-0.1l1-1 c0.3-0.3,0.3-0.7,0.1-0.9L11.5,9.5z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span id="memberModalContent"></span>
+            </div>
+            <div class="modal-footer">
+                <!-- Social Networks -->
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a class="btn btn-icon btn-soft-secondary rounded" href="#" id="memberLinkedin" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="btn btn-icon btn-soft-secondary rounded" href="#" id="memberMail">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- End Social Networks -->
+            </div>
+        </div>
+    </div>
+</div>
+{% put endscripts %}
+<script>
+$(document).ready(function(){
+    $(".member").click(function(){
+        var memContent = $(this).find('.memContent').html();
+        var memName = $(this).find('.memName').html();
+        var memMail = $(this).find('.memMail').html();
+        var memLinkedin = $(this).find('.memLinkedin').html();
+        $('#memberModalName').html(memName);
+        $('#memberModalContent').html(memContent);
+        $('#memberMail').attr("href", memMail);
+        $('#memberLinkedin').attr("href", memLinkedin);
+        $("#memberModal").modal();
+    });
+});
+</script>
+{% endput %}

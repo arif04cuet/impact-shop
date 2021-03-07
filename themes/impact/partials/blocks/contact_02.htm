@@ -1,0 +1,90 @@
+description = "Algemene contactpagina"
+
+[viewBag]
+==
+<div class="bg-primary bg-img-hero" style="background-image: url(/storage/app/media/img33.jpg);">
+	<div style="background-image: linear-gradient(138deg, #D21650 0%, rgba(255,153,0,0.26) 100%);">
+    <div class="container space-top-2 space-bottom-2">
+        <div class="row">
+            <div class="col-7 text-white">
+                {% page %}
+                {% component 'ContactForm' %}
+            </div>
+            <div class="col-4 offset-1">
+                <div class="card bg-white position-relative z-index-999 p-5 p-sm-7">
+                    <div class="mb-5">
+                        <span class="d-block font-size-2 text-dark font-weight-bold text-lh-sm">
+                            Contactgegevens
+                        </span>
+                    </div>
+                    <div class="media mb-5">
+                        <span class="icon  icon-soft-primary icon-circle mr-3">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <div class="media-body">
+                            <h5 class=" mb-1">
+                                Bellen
+                            </h5>
+                            <span class="d-block text-body">
+                                <a href="tel:+31243243113" class="text-body">
+                                    024-3243113
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="media mb-5">
+                        <span class="icon icon-soft-primary icon-circle mr-3">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <div class="media-body text-truncate">
+                            <h5 class=" mb-1">
+                                Stuur een e-mail
+                            </h5>
+                            <span class="d-block text-body">
+                                <a href="mailto:info@impact.nu" class="text-body">
+                                    info@impact.nu
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <span class="icon icon-soft-primary icon-circle mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </span>
+                        <div class="media-body">
+                            <h5 class=" mb-1">
+                                Bezoek ons
+                            </h5>
+                            <span class="d-block text-body">
+                                <a href="https://goo.gl/maps/bDTyeqpgWrLNL3oE8" target="_blank" class="text-body">
+                                    Weegbree 34<br> 6601 HC Wijchen
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="mapExample1" class="min-h-270rem h-100 rounded mt-4" data-hs-leaflet-options='{
+                        "map": {
+                            "scrollWheelZoom": false,
+                            "coords": [51.81620788574219,5.738501071929932]
+                        },
+                        "marker": [{
+                            "coords": [51.81620788574219,5.738501071929932],
+                            "icon": {
+                                "iconUrl": "../../assets/svg/components/map-pin.svg",
+                                "iconSize": [50, 45]
+                            },
+                            "popup": {
+                                "text": "153 Williamson Plaza, Maggieberg",
+                                "title": "Address"
+                            }
+                        }]
+                    }'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+<!-- Pagination -->
+<nav class="d-flex justify-content-end mt-5" aria-label="Page navigation">
+
+
+    {{ paginator.render|raw }}
+
+
+</nav>
+<!-- End Pagination -->
+
+{% put scripts %}
+<script>
+    $('.pagination li').addClass('page-item');
+    $('.pagination li a').addClass('page-link');
+    $('.pagination span').addClass('page-link');
+</script>
+{% endput%}

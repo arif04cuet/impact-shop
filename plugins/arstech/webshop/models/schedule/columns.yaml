@@ -1,0 +1,19 @@
+columns:
+    locationName:
+        label: Location
+        type: text
+        select: title
+        relation: location
+    dates:
+        label: Date + Time
+        type: partial
+        path: $/arstech/webshop/models/schedule/_datetimecol.htm
+        sortable: false
+    max_participants:
+        label: 'arstech.webshop::lang.max_participants'
+        type: number
+
+    is_fully_booked:
+        label: 'Volgeboekt'
+        type: switch
+

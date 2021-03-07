@@ -1,0 +1,89 @@
+<form data-request="onUpdateInvoiceDetails" data-request-update="'checkout/details/address':'#billing-address'"
+    method="POST" accept-charset="UTF-8" data-request-flash data-request-validate data-request-success="">
+    {{form_token()}}
+    {{form_sessionKey()}}
+
+    <div class="row">
+
+        <div class="col-md-12 mb-2 mt-4 showbedrijf">
+            <span class="d-block small font-weight-bold text-cap mb-1">Bedrijfsgegevens</span>
+
+            <!-- Input -->
+            <div class="js-form-message">
+                <input type="text" class="form-control" name="company" placeholder="Bedrijfsnaam" aria-label="Jack"
+                    required data-msg="Please enter your frist name." required value="{{user.profile.company}}">
+            </div>
+            <span data-validate-for="company" class="text-danger"></span>
+            <!-- End Input -->
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 mb-2 showbedrijf">
+
+            <!-- Input -->
+            <div class="js-form-message">
+                <input type="text" class="form-control" name="address" placeholder="Straat en huisnummer"
+                    aria-label="470 Lucy Forks" required data-msg="Please enter a valid address." required
+                    value="{{user.profile.address}}">
+            </div>
+            <span data-validate-for="address" class="text-danger"></span>
+            <!-- End Input -->
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-2 showbedrijf">
+            <!-- Input -->
+            <div class="js-form-message">
+                <input type="text" class="form-control" name="zip" placeholder="Postcode" aria-label="99999" required
+                    data-msg="Please enter a postcode or zip code." required value="{{user.profile.zip}}">
+            </div>
+            <span data-validate-for="zip" class="text-danger"></span>
+            <!-- End Input -->
+        </div>
+        <div class="col-md-6 mb-2 showbedrijf">
+            <!-- Input -->
+            <div class="js-form-message">
+                <input type="text" class="form-control" name="city" placeholder="Plaats" aria-label="London" required
+                    data-msg="Please enter a valid address." required value="{{user.profile.city}}">
+            </div>
+            <span data-validate-for="city" class="text-danger"></span>
+            <!-- End Input -->
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6 mb-2 showbedrijf">
+            <!-- Input -->
+            <div class="js-form-message">
+                <input type="email" class="form-control" name="invoice_email" placeholder="Facturatie e-mail adres" aria-label=""
+                    required data-msg="Please enter a valid email address." required
+                    value="{{user.profile.invoice_email}}">
+            </div>
+            <span data-validate-for="invoice_email" class="text-danger"></span>
+            <!-- End Input -->
+        </div>
+        <div class="col-md-6 mb-1 showbedrijf">
+            <!-- Input -->
+            <div class="js-form-message">
+                <input type="text" class="form-control" name="department" placeholder="Ter attentie van (afdeling of betalingsplichtige)"
+                    aria-label="Wayley" required data-msg="Please enter your last name." required
+                    value="{{user.profile.department}}">
+            </div>
+            <span data-validate-for="department" class="text-danger"></span>
+            <!-- End Input -->
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12 mb-1 showbedrijf text-right" class="">
+            <button data-attach-loading type="submit" class="btn btn-sm btn-primary">Opslaan</button>
+        </div>
+    </div>
+
+
+</form>

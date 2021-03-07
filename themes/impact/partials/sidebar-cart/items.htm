@@ -1,0 +1,16 @@
+<!-- Content -->
+{% if cart.products.count < 1 %}
+<p class="text-center">{{ 'offline.mall::frontend.cart.empty' | trans }}</p>
+{% else %}
+
+{% for product in cart.products %}
+
+{% partial 'sidebar-cart/item' product=product %}
+
+{% if not loop.last %}
+<hr>
+{% endif %}
+
+{% endfor %}
+
+{% endif %}

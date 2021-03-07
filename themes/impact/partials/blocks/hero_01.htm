@@ -1,0 +1,54 @@
+description = "Hero 01"
+
+[viewBag]
+==
+<!-- Hero Section -->
+<div class="bg-img-hero home-slider position-relative" style="background-image: url({{block.image|media}});background-position:center">
+        <div style="background-image: linear-gradient(138deg, #D21650 0%, rgba(255,153,0,0.26) 100%);">
+
+            <img src="{{'assets/img/bg-shapes/oval.svg'|theme}}" class="position-absolute oval-left z-index-2" alt="">
+            <img src="{{'assets/img/bg-shapes/oval.svg'|theme}}" class="position-absolute oval-right z-index-2" alt="">
+             <div class="container space-2 position-relative" style="z-index:100">
+                <div class="row justify-content-md-between">
+                    <div class="col-md-7">
+                        <h1 class="font-size-4 text-white mb-5" data-aos="fade-left">{{block.title}}</h1>
+                        {% if block.subtitle %}
+                        <div class="lead text-white" data-aos="fade-left" data-aos-delay="150">{{block.subtitle|raw}}</div>
+                        {% endif %}
+                        
+                        {% if block.course_index %}
+                            <!-- Text/Links -->
+                            <div class="input-group input-group-merge mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="askQuestions">
+                                      <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                                <input id="search" type="search" class="form-control" placeholder="Zoek in ons aanbod..."
+                                       name="q" autocomplete="off">
+                            </div>
+                            <p class="text-white">
+                                Populaire onderwerpen:
+                                {% for populair in populair_courses %}
+                                    <a class="text-white font-weight-bold link-underline mr-1" href="{{ populair.link }}">{{ populair.title }}{% if not loop.last	%},{%endif%}</a>
+                                    
+                                {% endfor %}
+                            </p>
+                            <!-- End Text/Links -->
+          
+                        {% endif %}
+                    </div>
+                
+                    {% if block.expertbox %}
+                    <div class="position-absolute right-0">
+                        <button type="button" class="btn btn-outline-light btn-pill btn-lg transition-3d-hover" data-toggle="modal" data-target="#modalExpertbox">
+                            <i class="fa fa-comment-dots"></i> Expertbox
+                        </button>
+                    </div>  
+                    {% endif %}
+	
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End Hero Section -->

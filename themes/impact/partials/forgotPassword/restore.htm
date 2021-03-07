@@ -1,0 +1,17 @@
+<div class="text-center mb-4">
+    <h3 class="mb-2">Wachtwoord vergeten?</h3>
+    <p class="line-height-0">Je ontvangt per e-mail instructies om een nieuw wachtwoord in te stellen.</p>
+</div>
+<form data-request="{{ __SELF__ }}::onRestorePassword"
+    data-request-update="'{{ __SELF__ }}::reset': '#partialUserResetForm'" data-request-flash data-request-validate>
+    <div class="form-group input-group-sm mb-2">
+        <input name="email" type="email" class="form-control" id="userRestoreEmail" placeholder="E-mail">
+        <span data-validate-for="email" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-sm btn-primary btn-block">Verzenden</button>
+    </div>
+
+</form>

@@ -1,0 +1,152 @@
+description = "Home Sections"
+
+[viewBag]
+
+[ArticleList]
+sorting = "publish|desc"
+
+[products]
+filterComponent = "productsFilter"
+setPageTitle = 1
+includeVariants = 1
+includeChildren = 1
+perPage = 9
+paginate = 1
+==
+<!-- Popular Categories Section -->
+    <div class="space-2" style="background: url({{'assets/svg/components/abstract-shapes-9.svg'|theme}}) center no-repeat;">
+        <div class="position-relative">
+            <div class="container space-2">
+                <!-- Title -->
+                <div class="row align-items-md-center mb-7">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h2 class="h1">Opleidingen</h2>
+                    </div>
+
+                    <div class="col-md-6 text-right">
+                        <a class="font-weight-bold" href="/opleidingen">Bekijk alle opleidingen <i class="fa fa-angle-right fa-sm ml-1"></i></a>
+                    </div>
+                </div>
+                <!-- End Title -->
+
+                {% if products.items.count %}
+                <div class="js-slick-carousel slick slick-equal-height slick-gutters-3"
+                     data-hs-slick-carousel-options='{
+             "prevArrow": "<span class=\"fa fa-arrow-left slick-arrow slick-arrow-primary-white slick-arrow-left slick-arrow-centered-y shadow-soft rounded-circle ml-sm-n2\"></span>",
+             "nextArrow": "<span class=\"fa fa-arrow-right slick-arrow slick-arrow-primary-white slick-arrow-right slick-arrow-centered-y shadow-soft rounded-circle mr-sm-2 mr-xl-4\"></span>",
+             "slidesToShow": 3,
+             "infinite": true,
+             "responsive": [{
+               "breakpoint": 1100,
+                 "settings": {
+                   "slidesToShow": 3
+                 }
+               }, {
+               "breakpoint": 992,
+                 "settings": {
+                   "slidesToShow": 4
+                 }
+               }, {
+               "breakpoint": 768,
+               "settings": {
+                 "slidesToShow": 2
+               }
+               }, {
+               "breakpoint": 554,
+               "settings": {
+                 "slidesToShow": 1
+               }
+             }]
+           }'>
+
+                    {% for product in products.items %}
+                    <!-- Article -->
+                    <article class="js-slide pt-2 ">
+                        <a class="card bg-primary w-100 min-h-270rem transition-3d-hover gradient-y-overlay-impact3"
+                           href="{{ productPage|page({slug: product.slug, variant: product.variantHashId}) }}"
+                           style="background-image: url('{{ product.image.thumb(400,auto) }}');background-size:cover;">
+                            <div class="card-body">
+                                <h3 class="text-white">{{ product.name }}</h3>
+                            </div>
+                            <div class="card-footer border-0 bg-transparent pt-0">
+                                <span class="text-white font-size-1 font-weight-bold"><i
+                                        class="fa fa-chevron-right"></i> Meer info</span>
+                            </div>
+                        </a>
+                    </article>
+                    <!-- End Article -->
+                    {% endfor %}
+
+                </div>
+                {% else %}
+                <div>
+                    {{ 'offline.mall::frontend.category.empty' | trans }}
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div class="w-100 w-md-65 bg-light position-absolute top-0 right-0 bottom-0 rounded-left z-index-n1"></div>
+        </div>
+    </div>
+    <!-- End Popular Categories Section -->
+    <!-- news -->
+<div class="space-1">
+    <div class="container">
+        <!-- Title -->
+        <div class="mx-md-auto mb-4">
+            <span class="d-block small font-weight-bold text-cap ">Actualiteiten op een rij</span>
+            <h2 class="h1">Nieuwsberichten</h2>
+        </div>
+        <!-- End Title -->
+        {% set obArticleList = ArticleList.make().sort('publish|desc').published()%}
+
+        {% if obArticleList.isNotEmpty() %}
+
+            <div class="row">
+                {% for obArticle in obArticleList| slice(0,3)%}
+                <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8">
+                    <!-- Blog Card -->
+                    <article class="card h-100 news-card">
+                        <div class="card-img-top position-relative">
+                            {% if obArticle.preview_image is not empty %}
+                            <a href="/artikel/{{ obArticle.category.slug }}/{{ obArticle.slug }}"><img src="{{ obArticle.preview_image.path }}" alt="{{ obArticle.preview_image.description }}" class="card-img-top"></a>
+                            {% endif %}
+                            <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+                                    <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"/>
+                                </svg>
+                            </figure>
+                        </div>
+    
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-4">
+                                <div>
+                                    <a href="/artikel/{{ obArticle.category.slug }}" class="badge badge-warning text-white py-2 px-3">{{ obArticle.category.name }}</a>
+                                </div>
+                                <div class="d-flex align-items-center ml-auto">
+                                    <div class="small text-muted">
+                                        {{ obArticle.published_start|localizeddate('long', 'none', 'nl_NL') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <h3><a class="text-inherit text-brown" href="/artikel/{{ obArticle.category.slug }}/{{ obArticle.slug }}">{{ obArticle.title }}</a></h3>
+    
+                        </div>
+    
+                    </article>
+                    <!-- End Blog Card -->
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <!-- Title -->
+        <div class="w-md-75 w-lg-50 text-center mx-md-auto mb-6">
+            <a href="/artikelen" class="btn btn-outline-secondary pl-6 pr-6">Bekijk het nieuwsoverzicht</a>
+        </div>
+        <!-- End Title -->
+    </div>
+</div>
+<!-- end news -->

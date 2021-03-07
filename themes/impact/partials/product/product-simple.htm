@@ -1,0 +1,185 @@
+{% set item = product.item%}
+<main id="content" role="main">
+    <div class="position-relative">
+        <!-- Hero Section -->
+        {% if  item.all_images.count() > 0  %}
+
+        {% set image = item.all_images.first() %}
+
+        {% endif %}
+        <div class="gradient-x-overlay-lg-navy bg-img-hero space-2"  style="background-image: url({{image.path}});background-position:center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-lg-8">
+                        <h1 class="text-lh-sm text-white">
+                            {{ item.name}}
+                        </h1>
+
+                        <!-- Breadcrumb -->
+                        <ol class="breadcrumb breadcrumb-light breadcrumb-no-gutter mb-0">
+                            <li class="breadcrumb-item " aria-current="page">
+                                <a href="/" class="link-underline-light">Home</a>
+                            </li>
+
+                            <li class="breadcrumb-item " aria-current="page">
+                                <a href="/opleidingen" class="link-underline-light">Opleidingen</a>
+                            </li>
+
+                            {% for category in item.categories %}
+
+                            <li class=" breadcrumb-item active" aria-current="page">
+                                <a href="{{ 'category'|page({ slug: category.slug }) }}"
+                                   class="link-underline-light">{{ category.name}}</a>
+                            </li>
+
+
+                            {% endfor %}
+
+                        </ol>
+                        <!-- End Breadcrumb -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Hero Section -->
+
+        <!-- Sidebar Content Section -->
+        <div class=" container space-top-md-2 position-md-absolute top-0 right-0 left-0">
+            <div class="row justify-content-end">
+                <div id="stickyBlockStartPoint" class="col-md-5 col-lg-4 position-relative z-index-2">
+                    <div class="js-sticky-block card border" data-hs-sticky-block-options='{
+                   "parentSelector": "#stickyBlockStartPoint",
+                   "breakpoint": "md",
+                   "startPoint": "#stickyBlockStartPoint",
+                   "endPoint": "#stickyBlockEndPoint",
+                   "stickyOffsetTop": 12,
+                   "stickyOffsetBottom": 12
+                 }'>
+                        <div class="position-relative p-1">
+                            <!-- Video Popup -->
+                            <a href="javascript:;">
+
+                                {% if  item.all_images.count() > 0  %}
+
+                                {% set image = item.all_images.first() %}
+
+                                <a class="mall-product__image" href="{{ image.path }}" data-fancybox="product"
+                                    data-caption="{{ image.title }}">
+                                    <img src="{{ image.thumb(340, 230,'crop') }}" alt="{{ image.title }}" />
+                                </a>
+
+
+                                {% else %}
+                                <img class="card-img-top" src="{{'assets/images/others/placeholder.png'|theme}}"
+                                    alt="Image Description" height="204">
+
+                                {% endif %}
+
+                            </a>
+                            <!-- End Video Popup -->
+                        </div>
+
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <span class="lead text-muted text-lh-sm mr-1">vanaf</span>
+
+                                <span class="h2 text-lh-sm mb-0">{{ item.price()}}</span>
+                                <p class="text-muted">vrijgesteld van btw</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <button data-request="onAddToCart"
+                                    data-request-update="'sidebar-cart/item-count':'#cart-item-count','product/name':'#addtocart-modal-name'"
+                                    data-request-success="data.added && $.publish('mall.cart.productAdded', data)"
+                                    data-request-error="$('#addedToCart').modal('hide');"
+                                    data-request-data="product: '{{ item.productHashId }}', variant: '{{ item.variantHashId }}'"
+                                    data-request-flash class="btn btn-block btn-warning btn-lg transition-3d-hover"
+                                    data-toggle="modal" data-target="#addedToCart"><i
+                                        class="fas fa-cart-plus ml-0 mr-2"></i> In winkelwagen</button>
+
+
+
+                            </div>
+
+
+
+                            <!-- Icon Block -->
+                            <div class="media text-body mb-2">
+                                <div class="min-w-3rem text-center mr-3">
+                                    <i class="fa fa-book-reader"></i>
+                                </div>
+                                <div class="media-body">
+
+                                    {{item.getPropertyValueBySlug('course-place').value }}
+                                </div>
+                            </div>
+                            <!-- End Icon Block -->
+
+                            <!-- Icon Block -->
+                            <div class="media text-body mb-2">
+                                <div class="min-w-3rem text-center mr-3">
+                                    <i class="fa fa-clock"></i>
+                                </div>
+                                <div class="media-body">
+                                    {{item.getPropertyValueBySlug('course-study-hours').value }} studieuren
+                                </div>
+                            </div>
+                            <!-- End Icon Block -->
+
+                            <!-- Icon Block -->
+                            <div class="media text-body  mb-2">
+                                <div class="min-w-3rem text-center mr-3">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <div class="media-body">
+                                    {{item.getPropertyValueBySlug('course-points').value }}
+                                </div>
+                            </div>
+                            <!-- End Icon Block -->
+
+                        </div>
+
+                        <!-- Button trigger modal -->
+                        <a class="card-footer text-center font-weight-bold py-3" data-toggle="modal"
+                            data-target="#copyToClipboardModal" href="javascript:;">
+                            <i class="fa fa-share mr-1"></i>
+                            Delen
+                        </a>
+                        <!-- End Button trigger modal -->
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar Content Section -->
+    </div>
+
+    <!-- Description Section -->
+    <div class="container space-top-2 space-top-md-1">
+        <div class="row">
+            <div class="col-md-7 col-lg-8">
+                <!-- Info -->
+                <div class="pt-0 mt-0" style="min-height:300px">
+                    <h3 class="mb-4">Inhoud</h3>
+
+                    <div>{{ item.description | raw }}</div>
+
+                </div>
+                <!-- End Info -->
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Description Section -->
+
+    <!-- Sticky Block End Point -->
+    <div id="stickyBlockEndPoint"></div>
+    <div class="space-top-1"></div>
+
+    {% partial 'product/related-products' item=item %}
+
+</main>

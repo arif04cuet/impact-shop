@@ -1,0 +1,28 @@
+plugin:
+    name: Team
+    description: 'Impact Team'
+    author: MMID
+    icon: oc-icon-users
+    homepage: ''
+permissions:
+    mmid.team.manage:
+        tab: 'mmid.team::lang.plugin.name'
+        label: 'Beheer team en instellingen'
+navigation:
+    team:
+        label: Team
+        url: mmid/team/members
+        icon: icon-users
+        sideMenu:
+            team-members:
+                label: Leden
+                url: mmid/team/members
+                icon: icon-users
+                permissions:
+                    - mmid.team.manage
+            team-divisions:
+                label: Afdelingen
+                url: mmid/team/divisions
+                icon: icon-sitemap
+                permissions:
+                    - mmid.team.manage

@@ -1,0 +1,51 @@
+tabs:
+    fields:
+        mail_receivers:
+            label: Contactformulier ontvangers
+            span: left
+            type: repeater
+            prompt: Ontvanger toevoegen
+            form:
+                fields:
+                    email:
+                        label: E-mail adres
+                        span: full
+                        type: text
+            tab: Contactformulier
+        populair_courses:
+            label: Populaire onderwerpen
+            commentAbove: Wordt weergeven op opleidingenpagina
+            span: left
+            type: repeater
+            prompt: Link toevoegen
+            form:
+                fields:
+                    title:
+                        label: Titel
+                        span: left
+                        type: text
+                    link:
+                        label: URL
+                        span: right
+                        type: text
+            tab: Opleidingen
+        ref_big_section:
+            label: Referentie (groot)
+            type: section
+            comment: Groot referentie blok
+            tab: Referenties
+        ref_big_name:
+            label: Naam 
+            type: text
+            span: left
+            tab: Referenties
+        ref_big_title:
+            label: Ondertitel 
+            type: text
+            span: right
+            tab: Referenties
+        ref_big_quote:
+            type: richeditor
+            toolbarButtons: bold|italic
+            size: large
+            tab: Referenties

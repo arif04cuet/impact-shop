@@ -1,0 +1,244 @@
+// user-variables.scss
+
+/*-------------------------
+ * Custom Impact
+ -------------------------*/
+
+$impact-orange: #FF9900;
+$impact-red: #D21650;
+$impact-brown: #a98157;
+$impact-brown-secondary: #7C6755;
+
+/*-------------------------
+ * Use this to overwrite Bootstrap and Front variables
+ -------------------------*/
+
+$primary: $impact-red;
+$font-family-base: "Nunito Sans", Helvetica, Arial, sans-serif !default;
+$line-height-base: 1.9 !default;
+$header-navbar-brand-width: 12rem !default;
+$headings-color: $primary !default;
+$input-label-color: $dark !default;
+
+h1, .h1 {
+  color: $impact-red;
+}
+
+h4.text-lh-sm {
+  color: $dark;
+}
+
+.header .nav-link {
+  font-size: 1.1rem;
+}
+
+.crkbo {
+  width: 100%;
+  max-width: 4.5rem;
+}
+
+footer h5 {
+  color: $primary;
+}
+
+.nav-segment .nav-link {
+  font-size:1rem;
+}
+
+.gradient-impact::before {
+  background-image: linear-gradient(to right, rgb(210, 25, 81 ,0.99) 0%, rgb(255 ,153, 0,0.6) 100%);
+  background-repeat: repeat-x;
+}
+.product-detail-price {
+  display: flex;
+}
+.product-detail-price span {
+  background: transparent;
+  -webkit-border-top-left-radius: 6.1875rem;
+  -webkit-border-bottom-left-radius: 6.1875rem;
+  -moz-border-radius-topleft: 6.1875rem;
+  -moz-border-radius-bottomleft: 6.1875rem;
+  border-top-left-radius: 6.1875rem;
+  border-bottom-left-radius: 6.1875rem;
+  border:1px #e7eaf3 solid;
+  font-size: 1.25rem;
+  padding: 1.125rem 1.125rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight:800;
+  background:#fff;
+  height: 100%;
+  margin-right: -4px;
+  object-fit: contain;
+}
+.product-detail-price button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.line-height-0 {
+  line-height:1.5rem;
+}
+
+.avatar-img {
+  height: auto !important;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.home-slider {
+  overflow:hidden;
+}
+.oval-left {
+  width: 600px;
+  left: -350px;
+  bottom: -250px;
+  z-index: 1;
+  opacity: 0.6;
+}
+.oval-right {
+  width: 800px;
+  right: -300px;
+  bottom: -300px;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.custom-block {
+  padding: 0;
+}
+.home-shared {
+  top:-80px;
+  width:100%;
+  box-shadow: 0 22px 62px 0 rgba(44,43,43,0.20) !important;
+}
+.custom-block .custom-control-label {
+  width: 100%;
+  padding: .75rem;
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.custom-block .custom-control-label:hover {
+  border-color: #cbd3da;
+}
+
+.custom-block .custom-control-label::before, .custom-block .custom-control-label::after {
+  display: none;
+}
+
+.custom-block .custom-block-indicator {
+  position: absolute;
+  display: none;
+  top: -.5rem;
+  right: -.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  color: #fff;
+  font-size: .75rem;
+  text-align: center;
+  background-color: #9fadba;
+  border-radius: .75rem;
+  z-index: 1;
+}
+.home-filter-list .custom-control {
+  padding-left:0;
+}
+.custom-block .custom-control-input:checked ~ .custom-control-label {
+  background-color: #e9ecef;
+  border-color: #9fadba;
+}
+
+.custom-block .custom-control-input:focus ~ .custom-control-label {
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.custom-block .custom-control-input:checked ~ .custom-block-indicator {
+  display: block;
+}
+
+.custom-control-label::before {
+  border: none;
+}
+
+.custom-control-label::after {
+  transition: -webkit-transform .15s ease-out;
+  transition: transform .15s ease-out;
+  transition: transform .15s ease-out, -webkit-transform .15s ease-out;
+}
+
+.custom-control-success .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #82b54b;
+}
+
+.custom-control-success .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(130, 181, 75, 0.25);
+}
+
+.custom-control-success .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+  background-color: #b4d393;
+}
+
+.custom-control-success .custom-control-label::before {
+  background-color: #d7e8c6;
+}
+
+.custom-control-success.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #82b54b;
+}
+
+.custom-control-success.custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::before {
+  background-color: #82b54b;
+}
+
+.custom-control-success.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #82b54b;
+}
+
+.custom-control-success.custom-block .custom-block-indicator {
+  background-color: #82b54b;
+}
+
+.custom-control-success.custom-block .custom-control-input:checked ~ .custom-control-label {
+  background-color: #d7e8c6;
+  border-color: #82b54b;
+}
+
+.custom-control-success.custom-block .custom-control-input:focus ~ .custom-control-label {
+  box-shadow: 0 0 0.75rem rgba(130, 181, 75, 0.25);
+}
+
+.text-brown {
+  color:$impact-brown;
+}
+a.text-brown {
+  color:$impact-brown;
+}
+a.text-brown:hover {
+  color:$impact-brown-secondary;
+}
+.lead-2 {
+  font-size:1.10rem;
+}
+.news-card h3 {
+  font-size:1.15rem;
+}
+span.d-block.small {
+  color:#A7A7A7 !important;
+  font-size: 95% ;
+}
+.fi {
+  font-family:"Flaticon";
+  line-height:1;
+}
+.fi:before {
+  color: $impact-red;
+  margin-left: 0 !important;
+}
+.fi-lg:before {
+  font-size: 64px !important;
+}

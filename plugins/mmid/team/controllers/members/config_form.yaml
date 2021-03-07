@@ -1,0 +1,15 @@
+name: Teamleden
+modelClass: Mmid\Team\Models\Member
+form: $/mmid/team/models/member/fields.yaml
+defaultRedirect: mmid/team/members
+create:
+    title: 'NIeuw teamlid'
+    redirect: 'mmid/team/members/update/:id'
+    redirectClose: mmid/team/members
+update:
+    title: 'Bewerk teamlid'
+    redirect: mmid/team/members
+    redirectClose: mmid/team/members
+    flashSave: 'Teamlid opgeslagen'
+    flashDelete: 'Teamlid verwijderd'
+preview: {  }

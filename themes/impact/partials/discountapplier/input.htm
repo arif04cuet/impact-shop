@@ -1,0 +1,12 @@
+<form data-request="onApplyDiscount" data-request-validate data-request-flash
+    data-request-success="$.publish('mall.discount.applied')" class="js-validate p-4">
+    <div class="input-group input-group-pill mb-3">
+        <input type="text" class="form-control" name="code" id="code" placeholder="Coupon" aria-label="Promo code">
+
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-block btn-primary btn-pill"><i
+                    class="fa fa-chevron-right mr-2 ml-2"></i></button>
+        </div>
+    </div>
+    <div data-validate-for="code" class="text-danger"></div>
+</form>

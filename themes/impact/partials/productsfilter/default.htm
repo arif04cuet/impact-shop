@@ -1,0 +1,37 @@
+<!-- Products & Filters Section -->
+<div class="container space-top-1 space-top-md-2 space-bottom-2 space-bottom-lg-3">
+
+    <div class="row">
+        <!-- Filters -->
+        <div class="col-lg-4">
+            <div class="bg-light p-5">
+
+                <form class="mall-products-filter" data-request-update="'{{ __SELF__ }}::products': '#products'">
+
+                    {% partial 'productsfilter/filters' data = filters %}
+
+                </form>
+
+            </div>
+        </div>
+        <!-- End Filters -->
+        <div class="col-lg-8">
+            <div class="text-center">{% partial __SELF__ ~ '::loader' %}</div>
+            <!-- Products -->
+            <div class="row mx-n2 mb-5">
+                <div class="col-md-12" id="products">
+
+                </div>
+            </div>
+            <!-- End Products -->
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+{% partial 'productsfilter/scripts' %}

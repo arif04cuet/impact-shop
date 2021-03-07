@@ -1,0 +1,72 @@
+<div class="card-body">
+    <h3>Betaalgegevens</h3>
+    <!-- Billing Form -->
+    <span class="d-block small font-weight-bold text-cap  mb-1 mt-4">WIE BETAALT DE FACTUUR?</span>
+    <div class="row">
+        <div class="col-md-12 mb-2">
+            <div class="form-check form-check-inline">
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="factuur1" class="custom-control-input" name="wiebetaalt" checked>
+                    <label class="custom-control-label" for="factuur1">Ikzelf</label>
+                </div>
+            </div>
+            <div class="form-check form-check-inline">
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="factuur2" class="custom-control-input" name="wiebetaalt">
+                    <label class="custom-control-label" for="factuur2">Mijn bedrijf / werkgever</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+
+            {% partial 'checkout/payment/company-form' %}
+
+        </div>
+
+        <div class="col-md-12 mb-1 mt-4">
+            <span class="d-block small font-weight-bold text-cap mb-1">BETAALWIJZE</span>
+
+            {% component 'paymentMethodSelector' %}
+
+        </div>
+
+
+        <div class="col-12">
+            <div class="bg-light p-2 pl-4 rounded">
+                <!-- Checkbox -->
+                <div class="js-form-message">
+                    <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+                        <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox"
+                            required data-msg="Please accept our Terms and Conditions.">
+                        <label class="custom-control-label" for="termsCheckbox">
+                            <small>
+                                Ik heb de <a href="{{'algemene-voorwaarden'|staticPage}}" target="_blank">algemene voorwaarden</a> van Impact Opleiding en Training gelezen, begrepen en ga akkoord
+
+                            </small>
+                        </label>
+                    </div>
+                </div>
+                <!-- End Checkbox -->
+            </div>
+        </div>
+
+    </div>
+    <!-- End Billing Form -->
+</div>
+
+
+<div class="card-footer bg-soft-light">
+
+    <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center">
+            <button class="btn btn-link text-black-50 back"><i class="fa fa-chevron-left"></i>
+                Vorige</button>
+
+        </div>
+        <div class="d-flex align-items-center ml-auto">
+            <button type="button" id="checkoutBtn"
+                class="js-mall-checkout mall-btn-checkout btn btn-warning transition-3d-hover next" disabled>Bevestigen <i class="fa fa-chevron-right"></i> </button>
+        </div>
+    </div>
+
+</div>

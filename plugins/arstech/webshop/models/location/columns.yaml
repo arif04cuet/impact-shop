@@ -1,0 +1,24 @@
+columns:
+    title:
+        label: title
+        type: text
+        searchable: true
+    address:
+        label: address
+        type: text
+    zipcode:
+        label: zipcode
+        type: text
+    city:
+        label: city
+        type: text
+        searchable: true
+    latitude:
+        label: latitude
+        type: text
+    longitude:
+        label: longitude
+        type: text
+    status:
+        label: status
+        type: switch

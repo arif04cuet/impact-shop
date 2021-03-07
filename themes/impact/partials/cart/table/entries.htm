@@ -1,0 +1,9 @@
+{% for product in cart.products %}
+{% partial __SELF__ ~ '::table/entry' product=product %}
+{% endfor %}
+
+
+
+
+{% partial __SELF__ ~ '::table/discounts'  discounts=cart.totals.appliedDiscounts %}
+{% partial __SELF__ ~ '::table/grandtotal' totals=cart.totals %}

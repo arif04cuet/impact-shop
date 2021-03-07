@@ -1,0 +1,190 @@
+<form data-request="onUpdatePersonalInfo" method="POST" accept-charset="UTF-8" data-request-flash data-request-validate>
+    {{form_token()}}
+    {{form_sessionKey()}}
+
+
+    <div class="card mb-3 mb-lg-5">
+        <div class="card-header">
+            <h5 class="card-title">Persoonlijke gegevens en adres</h5>
+        </div>
+
+        <!-- Body -->
+        <div class="card-body">
+
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label class="col-sm-3 col-form-label input-label">Aanhef</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group input-group-md-down-break">
+                        <!-- Custom Radio -->
+                        <div class="form-control">
+
+                            <div class="form-check">
+                                <input {% if user.salution == 'Mr.'%} checked {% endif %} class="form-check-input"
+                                    type="radio" name="salution" value="Mr.">
+                                <label class="form-check-label">
+                                    Dhr.
+                                </label>
+                            </div>
+
+                        </div>
+                        <!-- End Custom Radio -->
+
+                        <!-- Custom Radio -->
+                        <div class="form-control">
+                            <div class="form-check">
+                                <input {% if user.salution == 'Mrs.'%} checked {% endif %} class="form-check-input"
+                                    type="radio" name="salution" value="Mrs.">
+                                <label class="form-check-label">
+                                    Mevr.
+                                </label>
+                            </div>
+
+                        </div>
+                        <!-- End Custom Radio -->
+
+                    </div>
+                    <span data-validate-for="salution" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- End Form Group -->
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Voorletter(s) en voornaam
+                </label>
+
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="initials" id="initials"
+                            placeholder="Voorletter(s)" aria-label="Clarice" value="{{user.initials}}">
+                        <span data-validate-for="initials" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Voornaam"
+                            aria-label="Clarice" value="{{user.name}}">
+                        <span data-validate-for="name" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- End Form Group -->
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="firstNameLabel" class="col-sm-3 col-form-label input-label">Tussenvoegsel(s) en achternaam
+                </label>
+
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="infix" id="infix" placeholder="Tussenvoegsel(s)"
+                            aria-label="Clarice" value="{{user.infix}}">
+                        <span data-validate-for="infix" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="surname" id="surname" placeholder="Achternaam"
+                            aria-label="Clarice" value="{{user.surname}}">
+                        <span data-validate-for="surname" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="address" class="col-sm-3 col-form-label input-label">Straat en huisnummer</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="address" id="address"
+                        placeholder="Straat en huisnummer" aria-label="Your address" value="{{user.address}}">
+                    <span data-validate-for="address" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="zipCodeLabel" class="col-sm-3 col-form-label input-label">Postcode en plaats</label>
+
+                <div class="col-sm-3">
+                    <input type="text" class="js-masked-input form-control" name="zip" id="zip" placeholder="Postcode"
+                        aria-label="Your zip code" value="{{user.zip}}" data-hs-mask-options='{
+                         "template": "0000 AA"
+                       }'>
+                    <span data-validate-for="zip" class="text-danger"></span>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="city" id="city" placeholder="Plaats"
+                            aria-label="Clarice" value="{{user.city}}">
+                        <span data-validate-for="city" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="ffp_number" class="col-sm-3 col-form-label input-label">FFP nummer</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="ffp_number" id="ffp_number" placeholder="FFP nummer"
+                        aria-label="Your ffp_number" value="{{user.ffp_number}}">
+                    <span data-validate-for="ffp_number" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="seh_number" class="col-sm-3 col-form-label input-label">SEH nummer</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="seh_number" id="seh_number" placeholder="SEH nummer"
+                        aria-label="Your seh_number" value="{{user.seh_number}}">
+                    <span data-validate-for="seh_number" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+            <!-- Form Group -->
+            <div class="row form-group">
+                <label for="bsn_number" class="col-sm-3 col-form-label input-label">BSN nummer</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="bsn_number" id="bsn_number" placeholder="BSN nummer"
+                        aria-label="Your bsn_number" value="{{user.bsn_number}}">
+                    <span data-validate-for="bsn_number" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- End Form Group -->
+
+
+
+
+        </div>
+        <!-- End Body -->
+
+        <!-- Footer -->
+        <div class="card-footer d-flex justify-content-end">
+            <a class="btn btn-white" href="javascript:;">Annuleren</a>
+            <span class="mx-2"></span>
+
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+        </div>
+        <!-- End Footer -->
+
+
+    </div>
+
+</form>

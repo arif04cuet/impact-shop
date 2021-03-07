@@ -1,0 +1,55 @@
+# ------------------------------------------------------------------------------
+# .gitignore for OctoberCMS (http://octobercms.com/)
+# Based on https://gist.github.com/salcode/b515f520d3f8207ecd04 for WordPress
+# ------------------------------------------------------------------------------
+# By default all files are ignored.
+#
+# At the end of the file you will need to whitelist themes and plugins you want
+# to include in the repo.
+#
+# Update the {PLACEHOLDERS} to reflect your setup.
+# ------------------------------------------------------------------------------
+
+# October-specific rules
+# ----------------------------------------------------------
+
+# Ignore everything in the root except the "plugins" and "themes" directories
+/*
+!themes/
+!plugins/
+
+# Ignore node depenencies
+node_modules/
+
+# Ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Whitelist rules
+# ----------------------------------------------------------
+
+# Misc
+!.gitignore
+!.editorconfig
+!composer.json
+!package.json
+
+# Themes
+!themes/samiti/
+
+# Plugins
+# If all of your plugins are private and you didn't uncomment line 31,
+# then you don't need these rules
+!plugins/{AUTHOR_NAMESPACE}/private-plugin-one/
+!plugins/{AUTHOR_NAMESPACE}/private-plugin-two/

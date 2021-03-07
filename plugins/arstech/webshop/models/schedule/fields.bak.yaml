@@ -1,0 +1,33 @@
+fields:
+    start_date:
+        label: 'Start Date'
+        mode: date
+        span: auto
+        required: 1
+        type: datepicker
+        ignoreTimezone: true
+    location:
+        label: Location
+        nameFrom: title
+        descriptionFrom: description
+        span: auto
+        required: 1
+        type: relation
+    start_time:
+        label: 'Start Time'
+        mode: time
+        span: auto
+        required: 1
+        type: datepicker
+        ignoreTimezone: true
+    end_time:
+        label: 'End Time'
+        mode: time
+        span: auto
+        required: 1
+        type: datepicker
+        ignoreTimezone: true
+    is_fully_booked:
+        label: 'Fully Booked ?'
+        span: auto
+        type: switch

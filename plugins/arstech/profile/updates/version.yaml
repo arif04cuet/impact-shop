@@ -1,0 +1,13 @@
+1.0.1: 'First version of Profile'
+1.0.2:
+    - 'add new fields to users table'
+    - migration102.php
+1.0.3:
+    - 'Created table arstech_profile_'
+    - builder_table_create_arstech_profile_.php
+1.0.4:
+    - 'add phone field to users table'
+    - migration104.php
+1.0.5:
+    - 'add number fields to user table'
+    - migration105.php

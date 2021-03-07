@@ -1,0 +1,235 @@
+description = "Hero Home"
+
+[viewBag]
+
+[products advies]
+category = 9
+filterComponent = "productsFilter"
+setPageTitle = 0
+includeVariants = 1
+includeChildren = 0
+perPage = 9
+paginate = 1
+
+[products wftpe]
+category = 10
+filterComponent = "productsFilter"
+setPageTitle = 0
+includeVariants = 1
+includeChildren = 0
+perPage = 9
+paginate = 1
+
+[products seh]
+category = 11
+filterComponent = "productsFilter"
+setPageTitle = 0
+includeVariants = 1
+includeChildren = 0
+perPage = 9
+paginate = 1
+
+[products ffp]
+category = 12
+filterComponent = "productsFilter"
+setPageTitle = 0
+includeVariants = 1
+includeChildren = 0
+perPage = 9
+paginate = 1
+
+[products overige]
+category = 13
+filterComponent = "productsFilter"
+setPageTitle = 0
+includeVariants = 1
+includeChildren = 0
+perPage = 9
+paginate = 1
+
+[Webshop]
+==
+<!-- Hero Section -->
+
+<div class="bg-img-hero home-slider position-relative" style="background-image: url({{block.image|media}});">
+    <div style="background-image: linear-gradient(138deg, #D21650 0%, rgba(255,153,0,0.26) 100%);">
+
+        <img src="{{'assets/img/bg-shapes/oval.svg'|theme}}" class="position-absolute oval-left z-index-2" alt="">
+        <img src="{{'assets/img/bg-shapes/oval.svg'|theme}}" class="position-absolute oval-right z-index-2" alt="">
+        <div class="container space-2 z-index-4 position-relative">
+
+            <div class="position-absolute right-0">
+                <button type="button" class="btn btn-outline-light btn-pill btn-lg transition-3d-hover"
+                    data-toggle="modal" data-target="#modalExpertbox">
+                    <i class="fa fa-comment-dots"></i> Expertbox
+                </button>
+            </div>
+
+            <div class="w-md-65 w-lg-50 mb-11">
+                <div class="mb-4">
+                    <h1 class="text-white text-shadow" data-aos="fade-left">{{block.title}}</h1>
+                    <p class="text-white lead-2 text-shadow" data-aos="fade-left" data-aos-delay="100">
+                        {{block.subtitle}}</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <a class="btn btn-warning btn-pill transition-3d-hover pl-6 pr-6" href="/opleidingen">Bekijk de
+                        opleidingen</a>
+                    <a class="btn transition-3d-hover btn-link text-white font-weight-normal" href="/over-impact"><i
+                            class="fas fa-angle-right fa-sm ml-1"></i> Over Impact</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container position-relative h-250rem">
+    <div class="card position-absolute home-shared">
+        <div class="card-body card-body-centered">
+            <h3 class="text-brown font-weight-normal mt-3">Kies je opleidingscategorie(ën)</h3>
+            <div class="home-filter-list mt-3 mb-3 ">
+                <div class="row">
+                    <div class="offset-1 col-lg-2 col-sm-6">
+                        <div class="custom-control custom-block custom-control-success" data-aos="flip-up">
+                            <input type="checkbox" class="custom-control-input course-filter" id="filter-1" name="cat_1"
+                                value="9" data-counter="{{advies.items.count}}">
+                            <label class="custom-control-label" for="filter-1">
+                                <span class="d-block text-center">
+                                    <img src="https://www.impactkennis.nl/storage/app/media/categorieen/Advieskwaliteit.png"
+                                        style="width:50%"><br>
+                                    <span class="d-none d-sm-block">Advieskwaliteit</span>
+                                </span>
+                            </label>
+                            <span class="custom-block-indicator">
+                                <i class="fa fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="custom-control custom-block custom-control-success" data-aos="flip-up"
+                            data-aos-delay="50">
+                            <input type="checkbox" class="custom-control-input course-filter" id="filter-2" name="cat_2"
+                                value="10" data-counter="{{wftpe.items.count}}">
+                            <label class="custom-control-label" for="filter-2">
+                                <span class="d-block text-center">
+                                    <img src="https://www.impactkennis.nl/storage/app/media/categorieen/Wft.png"
+                                        style="width:50%"><br>
+                                    <span class="d-none d-sm-block">Wft / PE</span>
+                                </span>
+                            </label>
+                            <span class="custom-block-indicator">
+                                <i class="fa fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="custom-control custom-block custom-control-success" data-aos="flip-up"
+                            data-aos-delay="150">
+                            <input type="checkbox" class="custom-control-input course-filter" id="filter-3" name="cat_3"
+                                value="11" data-counter="{{seh.items.count}}">
+                            <label class="custom-control-label" for="filter-3">
+                                <span class="d-block text-center">
+                                    <img src="https://www.impactkennis.nl/storage/app/media/categorieen/SEH.png"
+                                        style="width:50%"><br>
+                                    <span class="d-none d-sm-block">SEH</span>
+                                </span>
+                            </label>
+                            <span class="custom-block-indicator">
+                                <i class="fa fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="custom-control custom-block custom-control-success" data-aos="flip-up"
+                            data-aos-delay="250">
+                            <input type="checkbox" class="custom-control-input course-filter" id="filter-4" name="cat_4"
+                                value="12" data-counter="{{ffp.items.count}}">
+                            <label class="custom-control-label" for="filter-4">
+                                <span class="d-block text-center">
+                                    <img src="https://www.impactkennis.nl/storage/app/media/categorieen/FFP.png"
+                                        style="width:50%"><br>
+                                    <span class="d-none d-sm-block">FFP</span>
+                                </span>
+                            </label>
+                            <span class="custom-block-indicator">
+                                <i class="fa fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-6">
+                        <div class="custom-control custom-block custom-control-success" data-aos="flip-up"
+                            data-aos-delay="350">
+                            <input type="checkbox" class="custom-control-input course-filter" id="filter-5" name="cat_5"
+                                value="13" data-counter="{{overige.items.count}}">
+                            <label class="custom-control-label" for="filter-5">
+                                <span class="d-block text-center">
+                                    <img src="https://www.impactkennis.nl/storage/app/media/categorieen/Overig.png"
+                                        style="width:50%"><br>
+                                    <span class="d-none d-sm-block">Overige</span>
+                                </span>
+                            </label>
+                            <span class="custom-block-indicator">
+                                <i class="fa fa-check"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center bg-warning">
+            <a id="categorySelection" href="/opleidingen" class="text-white font-weight-bold">Toon <span
+                    id="total_counter">{{shop_count_products}}</span> <span id="total_name">opleidingen</span></a>
+        </div>
+    </div>
+
+</div>
+
+<!-- End Hero Section -->
+{% put endscripts %}
+<script>
+    // Home teller
+    function calcHomeCourses() {
+        var tots = 0;
+        jQuery(".course-filter:checked").each(function () {
+            var price = jQuery(this).attr("data-counter");
+            tots += parseFloat(price);
+        });
+
+        if (tots == 1) {
+            jQuery('#total_name').text('opleiding');
+        } else {
+            jQuery('#total_name').text('opleidingen');
+        }
+
+        if (tots == 0) {
+            jQuery('#total_counter').text('{{shop_count_products}}');
+        } else {
+            jQuery('#total_counter').text(tots);
+        }
+    }
+
+    function handleCategorySelectionButton() {
+        var selected = [];
+        $('.home-filter-list input:checked').each(function () {
+            selected.push($(this).val());
+        });
+
+        return selected;
+    }
+
+
+    jQuery(function () {
+        jQuery(document).on("change", ".course-filter", calcHomeCourses);
+
+        // handle category selection click button
+        $("#categorySelection").click(function (e) {
+            e.preventDefault();
+            var selectedCats = handleCategorySelectionButton().join(',');
+            window.location.href = '/opleidingen?c=' + selectedCats;
+            return false;
+        });
+
+
+    });
+</script>
+{% endput %}

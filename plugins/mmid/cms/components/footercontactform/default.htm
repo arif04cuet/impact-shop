@@ -1,0 +1,40 @@
+<form 
+    data-request="FooterContactForm::onSubmit" 
+    data-request-validate 
+    data-request-files 
+    data-request-flash 
+    class="js-validate card shadow-lg mb-4" action="javascript: void(0);" method="post">
+    <div class="card-body p-4 p-md-6">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="js-form-message form-group">
+                    <input name="name" type="text" class="form-control" placeholder="Naam" aria-label="Nataly" data-msg="Please enter first your name" required>
+                    <span class="text-danger" data-validate-for="name"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="js-form-message form-group">
+                    <input name="email" type="email" class="form-control" placeholder="E-mail adres" aria-label="alex@pixeel.com" data-msg="Please enter a valid email address" required>
+                    <span class="text-danger" data-validate-for="email"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="js-form-message form-group">
+                    <input name="phone" type="text" class="form-control" placeholder="Telefoonnummer" aria-label="Gaga" data-msg="Please enter last your name" required>
+                    <span class="text-danger" data-validate-for="phone"></span>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="js-form-message form-group">
+                    <div class="input-group">
+                        <textarea name="message" class="form-control" rows="4" placeholder="Bericht" aria-label="Hi there, I would like to ..." data-msg="Please enter a reason." required></textarea>
+                    </div>
+                    <span class="text-danger" data-validate-for="message"></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary transition-3d-hover" data-attach-loading>
+            Verzenden
+        </button>
+    </div>
+</form>

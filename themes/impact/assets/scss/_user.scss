@@ -1,0 +1,67 @@
+/*------------------------------------
+  File for your custom SCSS style
+------------------------------------*/
+
+.avatar-xxxl {
+  width: 12rem;
+  height: 12rem;
+}
+
+.ons-team .card-body,
+.ons-team .card-footer {
+  text-align: center;
+}
+
+small, .small {
+  font-size: 85%;
+}
+
+.btn-warning {
+  color:#ffffff;
+}
+
+.grayworth {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+/*{
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  font-family: Arial, sans-serif;
+}
+*/
+
+
+.ibrown {
+  color:$impact-brown;
+}
+
+.product-steps .checkbox-outline-input:checked ~ .product-steps .checkbox-outline-label {
+  background:$impact-red;
+  color:white !important;
+  border-color:$impact-red;
+}
+.product-steps .checkbox-icon-input:checked ~ .product-steps .checkbox-icon-label::after,
+.product-steps .checkbox-outline-label:checked ~ .product-steps .text-muted {
+  color: #fff !important;
+  border-color: #fff;
+}
+.courses-menu {
+  width:650px;
+}
+
+.gradient-y-overlay-impact2::before {
+  background-image: linear-gradient(to bottom, #13487dc2 0%, rgba(33, 50, 91, 0.25) 100%);
+  background-repeat: repeat-x;
+}
+.gradient-y-overlay-impact::before {
+  background-image: linear-gradient(to bottom, #13487dc2 0%, rgba(33, 50, 91, 0.75) 100%);
+  background-repeat: repeat-x;
+}
+
+
+.gradient-y-overlay-impact3::before {
+  background-image: linear-gradient(to bottom, #795548 0%, rgba(33, 50, 91, 0.25) 100%);
+  background-repeat: repeat-x;
+}
