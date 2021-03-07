@@ -1,0 +1,42 @@
+{
+    "name": "omnipay/bitkassa",
+    "type": "library",
+    "description": "BitKassa driver for the Omnipay payment processing library",
+    "keywords": [
+        "bitcoin",
+        "bitkassa",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment"
+    ],
+    "homepage": "https://github.com/thephpleague/omnipay-bitkassa",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Macneil",
+            "email": "adrian@adrianmacneil.com"
+        },
+        {
+            "name": "Omnipay Contributors",
+            "homepage": "https://github.com/thephpleague/omnipay-bitkassa/contributors"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\BitKassa\\": "src/"
+        }
+    },
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
+    }
+}
