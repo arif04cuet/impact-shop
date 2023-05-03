@@ -1,5 +1,4 @@
-# impact-shop
-Webshop with OctoberCMS and Mall package.
+# Webshop with OctoberCMS and Mall package.
 
 ### Features
 - Webshop with Molie payment gateway integrated
